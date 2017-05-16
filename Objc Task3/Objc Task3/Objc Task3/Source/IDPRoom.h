@@ -21,4 +21,6 @@
 - (void)addWorkers:(NSArray *)workers;
 - (void)removeWorkers:(NSArray *)workers;
 
+- (NSArray *)workersWithClass:(Class)cls;
+
 @end

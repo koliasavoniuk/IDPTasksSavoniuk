@@ -40,13 +40,11 @@
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        self.name = [NSString stringWithFormat:@"%@ #%lu",
-                     [self class],
-                     IDPRandomTillNumber(kIDPSizeRandomNames)];
-        self.buildings = [NSMutableArray array];
-        [self createWorld];
-    }
+    self.name = [NSString stringWithFormat:@"%@ #%lu",
+                 [self class],
+                 IDPRandomTillNumber(kIDPSizeRandomNames)];
+    self.buildings = [NSMutableArray array];
+    [self startProcess];
     
     return self;
 }
@@ -54,7 +52,7 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)createWorld {    
+- (void)startProcess {
     IDPBuilding *building = [IDPBuilding object];
     
     IDPWasher *washerNumberOne = [IDPWasher object];
@@ -80,9 +78,9 @@
 }
 
 - (void)washCar:(IDPCar *)car {
-    IDPWasher *freeWasher = [self freeWorkerWithClass:[IDPWasher class]];
-    IDPAccountant *firstAccountant = [self freeWorkerWithClass:[IDPAccountant class]];
-    IDPDirector *firstDirector = [self freeWorkerWithClass:[IDPDirector class]];
+    IDPWasher *freeWasher = [self workerWithClass:[IDPWasher class]];
+    IDPAccountant *firstAccountant = [self workerWithClass:[IDPAccountant class]];
+    IDPDirector *firstDirector = [self workerWithClass:[IDPDirector class]];
     
     
     // 1. Мойщику мойки отдают машину
@@ -98,7 +96,7 @@
     // 7. Директор получает прибыль
     [firstDirector processObject:firstAccountant];
 }
-
+/*
 - (id)freeWorkerWithArray:(NSArray *)workers {
     id  worker = [workers firsObjectByFilteringWithBlock:^BOOL(id object) {
         return ([(IDPWorker *)object state] == IDPFree);
@@ -106,8 +104,19 @@
     
     return  worker;
 }
+*/
 
-- (id)freeWorkerWithClass:(Class)class {
+- (id)freeWorkerWithArray:(NSArray *)workers {
+    for (IDPWorker *worker in workers) {
+        if (worker.state == IDPFree) {
+            return worker;
+        }
+    }
+    
+    return nil;
+}
+
+- (id)workerWithClass:(Class)class {
     NSMutableArray *array = [NSMutableArray array];
     for (id building in self.buildings) {
         [array addObjectsFromArray:[building workersWithClass:class]];

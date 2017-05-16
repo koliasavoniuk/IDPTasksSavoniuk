@@ -13,7 +13,7 @@
 @property (nonatomic, assign)   NSUInteger              salary;
 @property (nonatomic, copy)     NSString                *responsibility;
 @property (nonatomic, assign)   NSUInteger              money;
-@property (nonatomic, assign)   IDPStateOfEmployment    state;
+@property (nonatomic, assign)   IDPStateOfEmployee    state;
 
 @end
 

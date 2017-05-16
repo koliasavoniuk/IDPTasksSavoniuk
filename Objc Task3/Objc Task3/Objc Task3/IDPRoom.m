@@ -9,6 +9,8 @@
 #import "IDPRoom.h"
 #import "IDPRandom.h"
 
+#import "NSArray+IDPCategory.h"
+
 @interface IDPRoom ()
 @property (nonatomic, retain)   NSMutableArray  *mutableWorkers;
 
@@ -78,5 +80,12 @@
         [self removeWorker:worker];
     }
 }
+
+- (NSArray *)workersWithClass:(Class)class {
+    return [[self workers] arrayByFilteringWithBlock:^BOOL(id object) {
+        return [object isKindOfClass:[class class]];
+    }];
+}
+
 
 @end

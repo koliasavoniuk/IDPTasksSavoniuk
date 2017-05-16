@@ -17,7 +17,7 @@
 
 @interface IDPBuilding()
 @property (nonatomic, retain)   NSMutableArray  *mutableRooms;
-@property (nonatomic, assign)   NSInteger       countHumens;
+@property (nonatomic, assign)   NSInteger       humanCount;
 
 @end
 
@@ -40,13 +40,11 @@
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        self.name = [NSString stringWithFormat:@"%@ #%lu",
-                     [self class],
-                     IDPRandomTillNumber(kIDPSizeRandomNames)];
-        self.mutableRooms = [NSMutableArray array];
-        self.countHumens = 0;
-    }
+    self.name = [NSString stringWithFormat:@"%@ #%lu",
+                 [self class],
+                 IDPRandomTillNumber(kIDPSizeRandomNames)];
+    self.mutableRooms = [NSMutableArray array];
+    self.humanCount = 0;
     
     return self;
 }
@@ -71,14 +69,10 @@
     [self.mutableCopy removeObject:room];
 }
 
-- (NSArray *)workersWithClass:(Class)class {
-    
+- (NSArray *)workersWithClass:(Class)class {    
     NSMutableArray *array = [NSMutableArray array];
     for (id room in self.mutableRooms ) {
-        NSArray *workers =  [[room workers] arrayByFilteringWithBlock:^BOOL(id object) {
-            return [object isKindOfClass:[class class]];
-        }];
-        [array addObjectsFromArray:workers];
+        [array addObjectsFromArray:[room workersWithClass:class]];
     }
     
     return array;
