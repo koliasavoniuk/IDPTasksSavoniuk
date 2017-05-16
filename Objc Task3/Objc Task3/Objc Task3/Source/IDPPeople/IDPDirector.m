@@ -10,7 +10,7 @@
 
 @implementation IDPDirector
 
-- (void)processObject:(id)object {
+- (void)performWorkWithObject:(id)object {
     [self takeMoneyFromObject:object];
     [self calculateProfit];
 }

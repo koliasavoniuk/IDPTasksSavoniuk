@@ -41,9 +41,8 @@ static const NSRange kIDPRangeSalary = { 500, 5000 };
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)processObject:(id)object {
+- (void)performWorkWithObject:(id)object {
     [self washCar:object];
-    [self takeMoneyFromObject:object];
 }
 
 - (void)washCar:(IDPCar *)car {
@@ -54,7 +53,7 @@ static const NSRange kIDPRangeSalary = { 500, 5000 };
     self.car = car;
     NSLog(@"Car: %@ washed", self.car.name);
     self.car = nil;
-    //[car changeState:IDPCarClean];
+    car.state = IDPCarClean;
 
     }   
 

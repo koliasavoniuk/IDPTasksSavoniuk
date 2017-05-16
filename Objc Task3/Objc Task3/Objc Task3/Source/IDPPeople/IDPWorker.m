@@ -8,18 +8,18 @@
 
 #import "IDPWorker.h"
 
+static const NSString *kIDPResponsibility = @"responsibility";
+static const NSRange kIDPRangeSalary = { 500, 10000 };
+static const NSUInteger kIDPSizeRandomExperience = 30;
+
 @interface IDPWorker()
 @property (nonatomic, assign)   NSUInteger              experience;
 @property (nonatomic, assign)   NSUInteger              salary;
 @property (nonatomic, copy)     NSString                *responsibility;
 @property (nonatomic, assign)   NSUInteger              money;
-@property (nonatomic, assign)   IDPStateOfEmployee    state;
+@property (nonatomic, assign)   IDPStateOfWorker        state;
 
 @end
-
-static const NSString *kIDPResponsibility = @"responsibility";
-static const NSRange kIDPRangeSalary = { 500, 10000 };
-static const int kIDPSizeRandomExperience = 30;
 
 @implementation IDPWorker
 
@@ -42,7 +42,7 @@ static const int kIDPSizeRandomExperience = 30;
     self.experience = IDPRandomTillNumber(kIDPSizeRandomExperience);
     self.salary = IDPRandomWithRange(kIDPRangeSalary);
     self.responsibility = [[kIDPResponsibility copy] autorelease];
-    self.state = IDPFree;
+    self.state = IDPWorkerFree;
     }
         
     return self;
@@ -51,23 +51,15 @@ static const int kIDPSizeRandomExperience = 30;
 #pragma mark -
 #pragma mark Public Methods
 
-- (NSUInteger) money {
-    return _money;
-}
-
 - (void)processObject:(id<IDPCashFlow>)object {
-    [self changeState];
-    [self makeWork:object];
-    [self takeMoney:[object giveMoney]];
-    [self changeState];
+    self.state = IDPWorkerBusy;
+    [self performWorkWithObject:object];
+    [self takeMoneyFromObject:object];
+    self.state = IDPWorkerFree;
 }
 
--(void)makeWork:(id)object {
+-(void)performWorkWithObject:(id)object {
     
-}
-
-- (void)changeState {
-    self.state = (self.state == IDPFree) ? IDPBusy : IDPFree;
 }
 
 #pragma mark -
@@ -84,6 +76,7 @@ static const int kIDPSizeRandomExperience = 30;
 - (NSUInteger)giveMoney {
     NSUInteger temp = self.money;
     self.money = 0;
+    
     return temp;
 }
 

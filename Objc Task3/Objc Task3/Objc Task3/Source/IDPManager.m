@@ -108,7 +108,7 @@
 
 - (id)freeWorkerWithArray:(NSArray *)workers {
     for (IDPWorker *worker in workers) {
-        if (worker.state == IDPFree) {
+        if (worker.state == IDPWorkerFree) {
             return worker;
         }
     }

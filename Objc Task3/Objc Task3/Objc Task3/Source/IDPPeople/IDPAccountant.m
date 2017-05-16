@@ -34,7 +34,7 @@ static const NSRange kIDPRangeSalary = { 500, 7000};
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)processObject:(id)object {
+- (void)performWorkWithObject:(id)object {
     [self takeMoneyFromObject:object];
     [self countMoney];
 }
