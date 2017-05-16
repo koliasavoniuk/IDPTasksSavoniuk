@@ -10,7 +10,7 @@
 
 @implementation IDPFemale
 
--(void)giveBirth{
+- (void)giveBirth {
     NSLog(@"%@I made a children!!!", self.name);
 }
 
