@@ -10,7 +10,7 @@
 
 @interface NSObject (IDPCategory)
 
++ (instancetype)object;
 + (NSArray *)objectsWithCount:(NSUInteger)count;
-- (instancetype)object;
 
 @end
