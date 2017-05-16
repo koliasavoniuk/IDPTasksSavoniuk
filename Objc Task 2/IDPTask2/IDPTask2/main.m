@@ -14,5 +14,6 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         IDPObjCHumanCreationTests();
     }
+    
     return 0;
 }

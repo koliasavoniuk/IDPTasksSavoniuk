@@ -22,10 +22,6 @@ static const NSRange kIDPWeightRange = { 1, 150 };
     return [[[IDPHuman alloc] initWithName:name] autorelease];
 }
 
-- (NSArray *) children {
-    return[[self.mutableChildren copy] autorelease];
-}
-
 - (void)dealloc {
     self.name = nil;
     self.mutableChildren = nil;
@@ -42,6 +38,10 @@ static const NSRange kIDPWeightRange = { 1, 150 };
     self.mutableChildren = [NSMutableArray array];
     
     return self;
+}
+
+- (NSArray *)children {
+    return[[self.mutableChildren copy] autorelease];
 }
 
 #pragma mark -
