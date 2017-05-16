@@ -12,14 +12,14 @@
 
 @implementation NSObject (IDPCategory)
 
++ (instancetype)object {
+    return [[[self alloc] init] autorelease];
+}
+
 + (NSArray *)objectsWithCount:(NSUInteger)count {
     return [NSArray objectsWithCount:count factoryBlock:^id {
         return [IDPHuman object];
     }];
-}
-
-- (instancetype)object {
-    return [[[self alloc] init] autorelease];
 }
 
 @end

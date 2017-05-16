@@ -10,7 +10,7 @@
 
 @implementation IDPMale
 
--(void)fight{
+- (void)fight {
     NSLog(@"%@Fight!!!", self.name);
 }
 
