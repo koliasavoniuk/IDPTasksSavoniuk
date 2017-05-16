@@ -6,9 +6,6 @@
 //  Copyright © 2017 Student002. All rights reserved.
 //
 
-#include "IDPMacros.h"
+#import <Foundation/Foundation.h>
 
-NSUIntegerConstExtern(kIDPOriginWeight);
-NSUIntegerConstExtern(kIDLengthWeight);
-NSUIntegerConstExtern(kIDPSizeRandomNames);
-NSUIntegerConstExtern(kIDPSizeRandomMany);
+extern const NSUInteger kIDPSizeRandomNames;

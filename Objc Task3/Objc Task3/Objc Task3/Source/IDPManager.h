@@ -18,7 +18,7 @@
 @property (nonatomic, copy)     NSString      *name;
 
 - (void)createWorld;
-- (void)startWashCar:(IDPCar *)car;
+- (void)washCar:(IDPCar *)car;
 
 - (id)freeWorkerWithClass:(Class)classs;
 

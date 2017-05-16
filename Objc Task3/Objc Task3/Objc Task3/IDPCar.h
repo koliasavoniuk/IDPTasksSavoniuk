@@ -11,17 +11,13 @@
 
 #import "IDPCashFlow.h"
 
-typedef NS_ENUM(NSUInteger, IDPState) {
-    IDPClean,
-    IDPDirty
+typedef NS_ENUM(NSUInteger, IDPCarState) {
+    IDPCarClean,
+    IDPCarDirty
 };
 
 @interface IDPCar : NSObject <IDPCashFlow>
 @property(nonatomic,copy) NSString *name;
-@property(nonatomic,readonly) IDPState state;
-
-- (NSUInteger)money;
-- (void)changeState:(IDPState)state;
-
+@property(nonatomic,assign, readonly) IDPCarState state;
 
 @end

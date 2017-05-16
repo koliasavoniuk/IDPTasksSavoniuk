@@ -79,7 +79,7 @@
     [self.buildings addObject:building];
 }
 
-- (void)startWashCar:(IDPCar *)car {
+- (void)washCar:(IDPCar *)car {
     IDPWasher *freeWasher = [self freeWorkerWithClass:[IDPWasher class]];
     IDPAccountant *firstAccountant = [self freeWorkerWithClass:[IDPAccountant class]];
     IDPDirector *firstDirector = [self freeWorkerWithClass:[IDPDirector class]];

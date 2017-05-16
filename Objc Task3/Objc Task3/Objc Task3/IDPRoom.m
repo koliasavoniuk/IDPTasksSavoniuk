@@ -11,7 +11,6 @@
 
 @interface IDPRoom ()
 @property (nonatomic, retain)   NSMutableArray  *mutableWorkers;
-@property (nonatomic, assign)   NSInteger       workerCount;
 
 @end
 
@@ -34,12 +33,10 @@
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
         self.name = [NSString stringWithFormat:@"%@ #%lu",
                      [self class],
                      (unsigned long)IDPRandomTillNumber(kIDPSizeRandomNames)];
         self.mutableWorkers = [NSMutableArray array];
-    }
     
     return self;
 }
@@ -51,35 +48,29 @@
     return [[self.mutableWorkers copy] autorelease];
 }
 
-- (NSInteger)workerCount {
+- (NSUInteger)workerCount {
     return self.workers.count;
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)changeWorkerCount:(NSInteger)count {
-    self.workerCount += count;
-}
-
 - (void)addWorker:(IDPWorker *)worker {
     if (worker) {
         [self.mutableWorkers addObject:worker];
-        [self changeWorkerCount:1];
     }
 }
 
 - (void)addWorkers:(NSArray *)workers {
-    if (workers) {
-        for (id worker in workers) {
-            [self addWorker:worker];
-        }
+
+    for (id worker in workers) {
+        [self addWorker:worker];
     }
+
 }
 
 - (void)removeWorker:(IDPWorker *)worker {
     [self.mutableWorkers removeObject:worker];
-    [self changeWorkerCount:1];
 }
 
 - (void)removeWorkers:(NSArray *)workers {
@@ -87,6 +78,5 @@
         [self removeWorker:worker];
     }
 }
-
 
 @end

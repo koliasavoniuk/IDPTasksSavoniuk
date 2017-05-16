@@ -54,7 +54,7 @@ static const NSRange kIDPRangeSalary = { 500, 5000 };
     self.car = car;
     NSLog(@"Car: %@ washed", self.car.name);
     self.car = nil;
-    [car changeState:IDPClean];
+    //[car changeState:IDPCarClean];
 
     }   
 
