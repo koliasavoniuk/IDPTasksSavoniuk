@@ -20,7 +20,7 @@
 - (void)startProcess;
 - (void)washCar:(IDPCar *)car;
 
-- (id)workerWithClass:(Class)classs;
+- (id)workersWithClass:(Class)classs;
 
 @end
 

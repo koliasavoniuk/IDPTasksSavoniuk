@@ -58,8 +58,8 @@
     IDPWasher *washerNumberOne = [IDPWasher object];
     
     // car wash
-    IDPRoomWashCar *roomCarWashNumberOne = [IDPRoomWashCar object];
-    [roomCarWashNumberOne addWorker:washerNumberOne];
+    IDPRoomWashCar *carWashRoom = [IDPRoomWashCar object];
+    [carWashRoom addWorker:washerNumberOne];
     
     // accountant & director
     IDPAccountant *accountantNumberOne = [IDPAccountant object];
@@ -69,18 +69,18 @@
     IDPRoom *roomOfficeNumberOne = [IDPRoom object];
     [roomOfficeNumberOne addWorkers:@[accountantNumberOne,directorNumberOne]];
     
-    IDPBuilding  *office = [IDPBuilding object];
+    IDPBuilding *office = [IDPBuilding object];
     [office addRoom:roomOfficeNumberOne];
     
-    [building addRoom:roomCarWashNumberOne];
+    [building addRoom:carWashRoom];
     [building addRoom:roomOfficeNumberOne];
     [self.buildings addObject:building];
 }
 
 - (void)washCar:(IDPCar *)car {
-    IDPWasher *freeWasher = [self workerWithClass:[IDPWasher class]];
-    IDPAccountant *firstAccountant = [self workerWithClass:[IDPAccountant class]];
-    IDPDirector *firstDirector = [self workerWithClass:[IDPDirector class]];
+    IDPWasher *freeWasher = [self workersWithClass:[IDPWasher class]];
+    IDPAccountant *firstAccountant = [self workersWithClass:[IDPAccountant class]];
+    IDPDirector *firstDirector = [self workersWithClass:[IDPDirector class]];
     
     
     // 1. Мойщику мойки отдают машину
@@ -96,15 +96,6 @@
     // 7. Директор получает прибыль
     [firstDirector processObject:firstAccountant];
 }
-/*
-- (id)freeWorkerWithArray:(NSArray *)workers {
-    id  worker = [workers firsObjectByFilteringWithBlock:^BOOL(id object) {
-        return ([(IDPWorker *)object state] == IDPFree);
-    }];
-    
-    return  worker;
-}
-*/
 
 - (id)freeWorkerWithArray:(NSArray *)workers {
     for (IDPWorker *worker in workers) {
@@ -116,7 +107,7 @@
     return nil;
 }
 
-- (id)workerWithClass:(Class)class {
+- (id)workersWithClass:(Class)class {
     NSMutableArray *array = [NSMutableArray array];
     for (id building in self.buildings) {
         [array addObjectsFromArray:[building workersWithClass:class]];

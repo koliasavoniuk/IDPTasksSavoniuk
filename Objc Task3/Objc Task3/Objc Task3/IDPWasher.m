@@ -24,7 +24,7 @@ static const NSRange kIDPRangeSalary = { 500, 5000 };
 #pragma mark Initializations and Reallocations
 
 - (void)dealloc {
-    [_car release];
+    self.car = nil;
     
     [super dealloc];
 }
