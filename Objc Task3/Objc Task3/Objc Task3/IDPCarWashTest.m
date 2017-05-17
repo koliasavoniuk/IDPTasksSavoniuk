@@ -39,9 +39,10 @@ void IDPCarWashTest() {
 void IDPCarWashTestOne() {
     NSArray *cars = [IDPCar objectsWithCount:kIDPCountCars];
     
-    IDPManager *manager = [[IDPManager alloc] init];
+    IDPManager *manager = [IDPManager object];
+    
     
     for (IDPCar *car in cars) {
-        [manager startWashCar:car];
+        [manager washCar:car];
     }
 }

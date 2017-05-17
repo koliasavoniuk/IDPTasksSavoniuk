@@ -12,7 +12,7 @@ static const NSRange kIDPRangeSalary = { 500, 5000 };
 
 @interface IDPWasher ()
 @property (nonatomic, retain) IDPCar *car;
-@property (nonatomic, assign, readwrite) NSInteger salary;
+@property (nonatomic, assign, readwrite) NSUInteger salary;
 
 @end
 
@@ -24,7 +24,7 @@ static const NSRange kIDPRangeSalary = { 500, 5000 };
 #pragma mark Initializations and Reallocations
 
 - (void)dealloc {
-    [_car release];
+    self.car = nil;
     
     [super dealloc];
 }
@@ -41,9 +41,8 @@ static const NSRange kIDPRangeSalary = { 500, 5000 };
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)processObject:(id)object {
+- (void)performWorkWithObject:(id)object {
     [self washCar:object];
-    [self takeMoneyFromObject:object];
 }
 
 - (void)washCar:(IDPCar *)car {
@@ -54,8 +53,7 @@ static const NSRange kIDPRangeSalary = { 500, 5000 };
     self.car = car;
     NSLog(@"Car: %@ washed", self.car.name);
     self.car = nil;
-    [car changeState:IDPClean];
-
-    }   
+    car.state = IDPCarClean;
+}   
 
 @end

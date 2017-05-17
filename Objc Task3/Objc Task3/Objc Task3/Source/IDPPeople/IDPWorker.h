@@ -11,18 +11,18 @@
 #import "IDPRandom.h"
 #import "IDPCashFlow.h"
 
-typedef NS_ENUM (NSUInteger, IDPStateOfEmployment) {
-    IDPBusy,
-    IDPFree
+typedef NS_ENUM (NSUInteger, IDPStateOfWorker) {
+    IDPWorkerBusy,
+    IDPWorkerFree
 };
 
 @interface IDPWorker : IDPHuman <IDPCashFlow>
-@property (nonatomic, readonly) NSUInteger experience;
-@property (nonatomic, assign, readonly) NSUInteger salary;
-@property (nonatomic, copy, readonly) NSString *responsibility;
-@property (nonatomic, assign, readonly) IDPStateOfEmployment state;
+@property (nonatomic, readonly)         NSUInteger          experience;
+@property (nonatomic, readonly)         NSUInteger          salary;
+@property (nonatomic, copy, readonly)   NSString            *responsibility;
+@property (nonatomic, readonly)         IDPStateOfWorker    state;
 
-- (NSUInteger) money;
-- (void)processObject:(id)object;
+- (void)processObject:(id<IDPCashFlow>)object;
+- (void)performWorkWithObject:(id<IDPCashFlow>)object;
 
 @end

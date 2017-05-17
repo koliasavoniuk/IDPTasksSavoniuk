@@ -14,11 +14,13 @@
 
 @property (nonatomic, copy)     NSString    *name;
 @property (nonatomic, retain)   NSArray     *workers;
-@property (nonatomic, readonly) NSInteger   workerCount;
 
 - (void)addWorker:(IDPWorker *)worker;
-- (void)addWorkers:(NSArray *)workers;
 - (void)removeWorker:(IDPWorker *)worker;
+
+- (void)addWorkers:(NSArray *)workers;
 - (void)removeWorkers:(NSArray *)workers;
+
+- (NSArray *)workersWithClass:(Class)cls;
 
 @end

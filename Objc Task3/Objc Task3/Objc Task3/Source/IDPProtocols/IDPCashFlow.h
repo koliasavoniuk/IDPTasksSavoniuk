@@ -12,7 +12,6 @@
 @optional
 - (NSUInteger)giveMoney;
 - (void)takeMoney:(NSUInteger)money;
-
 - (void)takeMoneyFromObject:(id<IDPCashFlow>)object;
 
 @end

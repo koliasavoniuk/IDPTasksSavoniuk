@@ -17,8 +17,55 @@
 
 @dynamic cars;
 
+#pragma mark -
+#pragma mark Initializations and Reallocations
+
+- (void)dealloc {
+    self.mutableCars = nil;
+    
+    [super dealloc];
+}
+
+- (instancetype)init {
+    self = [super init];
+    self.mutableCars = [NSMutableArray array];
+    
+    return self;
+}
+
+#pragma mark -
+#pragma mark Accessors Methods
+
 - (NSArray *)cars {
     return [[self.mutableCars copy] autorelease];
 }
+
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)addCar:(IDPCar *)car {
+    if (car) {
+        [self.mutableCars addObject:car];
+    }
+}
+
+- (void)removeCar:(IDPCar *)car {
+    [self.mutableCars removeObject:car];
+}
+
+- (void)addCars:(NSArray *)cars {
+    for (id car in cars) {
+        [self addCar:car];
+    }
+}
+
+- (void)removeCars:(NSArray *)cars {
+    for (id car in cars) {
+        [self removeCar:car];
+    }
+}
+
+    
+
 
 @end

@@ -17,10 +17,9 @@
 @interface IDPManager : NSObject
 @property (nonatomic, copy)     NSString      *name;
 
-- (void)createWorld;
-- (void)startWashCar:(IDPCar *)car;
-
-- (id)freeWorkerWithClass:(Class)classs;
+- (void)startProcess;
+- (void)washCar:(IDPCar *)car;
+- (id)workersWithClass:(Class)class;
 
 @end
 

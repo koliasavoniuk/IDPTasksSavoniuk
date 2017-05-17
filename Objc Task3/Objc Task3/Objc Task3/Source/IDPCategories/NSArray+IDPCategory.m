@@ -35,18 +35,4 @@
     return [self filteredArrayUsingPredicate:predicate];
 }
 
-- (id)firsObjectByFilteringWithBlock:(BOOL(^)(id object))block {
-    if (!block) {
-        return nil;
-    }
-    
-    for (id item in self) {
-        if (block(item)) {
-            return item;
-        }
-    }
-    
-    return nil;
-}
-
 @end

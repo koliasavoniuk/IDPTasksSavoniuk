@@ -8,9 +8,11 @@
 
 #import "IDPCar.h"
 
+static const NSUInteger kIDPSizeRandomMoney = 1500;
+
 @interface IDPCar()
-@property(nonatomic, assign, getter=money) NSUInteger money;
-@property(nonatomic, assign) IDPState state;
+@property(nonatomic, assign) NSUInteger money;
+
 @end
 
 @implementation IDPCar
@@ -18,7 +20,7 @@
 #pragma mark -
 #pragma mark Initializations and Reallocation
 
-- (void) dealloc {
+- (void)dealloc {
     self.name = nil;
     
     [super dealloc];
@@ -26,20 +28,13 @@
 
 - (instancetype)init {
     self = [super init];
-    if(self) {
         self.name = [NSString stringWithFormat:@"%@ #%lu",
                      [self class],
                      IDPRandomTillNumber(kIDPSizeRandomNames)];
-        self.state = IDPDirty;
-        self.money = IDPRandomTillNumber(kIDPSizeRandomMany);
-
-    }
+        self.state = IDPCarDirty;
+        self.money = IDPRandomTillNumber(kIDPSizeRandomMoney);
     
     return self;
-}
-
-- (void)changeState:(IDPState)state {
-    self.state = state;
 }
 
 - (NSUInteger)giveMoney {

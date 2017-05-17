@@ -11,7 +11,7 @@
 static const NSRange kIDPRangeSalary = { 500, 7000};
 
 @interface IDPAccountant ()
-@property (nonatomic, assign, readwrite)     NSInteger   salary;
+@property (nonatomic, assign)   NSInteger   salary;
 @end
 
 @implementation IDPAccountant
@@ -21,20 +21,17 @@ static const NSRange kIDPRangeSalary = { 500, 7000};
 #pragma mark -
 #pragma mark Initializations and Reallocations
 
-- (void)dealloc {
-    [super dealloc];
-}
-
 - (instancetype)init {
     self = [super init];
     self.salary = IDPRandomWithRange(kIDPRangeSalary);
+    
     return self;
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)processObject:(id)object {
+- (void)performWorkWithObject:(id)object {
     [self takeMoneyFromObject:object];
     [self countMoney];
 }

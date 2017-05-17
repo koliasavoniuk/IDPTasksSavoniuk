@@ -40,13 +40,11 @@
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        self.name = [NSString stringWithFormat:@"%@ #%lu",
-                     [self class],
-                     IDPRandomTillNumber(kIDPSizeRandomNames)];
-        self.buildings = [NSMutableArray array];
-        [self createWorld];
-    }
+    self.name = [NSString stringWithFormat:@"%@ #%lu",
+                 [self class],
+                 IDPRandomTillNumber(kIDPSizeRandomNames)];
+    self.buildings = [NSMutableArray array];
+    [self startProcess];
     
     return self;
 }
@@ -54,36 +52,33 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)createWorld {    
+- (void)startProcess {
     IDPBuilding *building = [IDPBuilding object];
-    
-    IDPWasher *washerNumberOne = [IDPWasher object];
+    IDPWasher *washer = [IDPWasher object];
     
     // car wash
-    IDPRoomWashCar *roomCarWashNumberOne = [IDPRoomWashCar object];
-    [roomCarWashNumberOne addWorker:washerNumberOne];
+    IDPRoomWashCar *carWashRoom = [IDPRoomWashCar object];
+    [carWashRoom addWorker:washer];
     
     // accountant & director
-    IDPAccountant *accountantNumberOne = [IDPAccountant object];
-    IDPDirector *directorNumberOne = [IDPDirector object];
+    IDPAccountant *accountant = [IDPAccountant object];
+    IDPDirector *director = [IDPDirector object];
     
     // office
-    IDPRoom *roomOfficeNumberOne = [IDPRoom object];
-    [roomOfficeNumberOne addWorkers:@[accountantNumberOne,directorNumberOne]];
+    IDPRoom *officeRoom = [IDPRoom object];
+    [officeRoom addWorkers:@[accountant,director]];
     
-    IDPBuilding  *office = [IDPBuilding object];
-    [office addRoom:roomOfficeNumberOne];
-    
-    [building addRoom:roomCarWashNumberOne];
-    [building addRoom:roomOfficeNumberOne];
+    IDPBuilding *office = [IDPBuilding object];
+    [office addRoom:officeRoom];
+    [building addRoom:carWashRoom];
+    [building addRoom:officeRoom];
     [self.buildings addObject:building];
 }
 
-- (void)startWashCar:(IDPCar *)car {
-    IDPWasher *freeWasher = [self freeWorkerWithClass:[IDPWasher class]];
-    IDPAccountant *firstAccountant = [self freeWorkerWithClass:[IDPAccountant class]];
-    IDPDirector *firstDirector = [self freeWorkerWithClass:[IDPDirector class]];
-    
+- (void)washCar:(IDPCar *)car {
+    IDPWasher *freeWasher = [self freeWorkerWithArray:[self workersWithClass:[IDPWasher class]]];
+    IDPAccountant *freeAccountant = [self freeWorkerWithArray:[self workersWithClass:[IDPAccountant class]]];
+    IDPDirector *freeDirector = [self freeWorkerWithArray:[self workersWithClass:[IDPDirector class]]];
     
     // 1. Мойщику мойки отдают машину
     // 2. Мойщик моет машину
@@ -92,28 +87,31 @@
     
     // 4. Мойщик отдает деньги бухгалтеру
     // 5. Бухгалтер считает деньги
-    [firstAccountant processObject:freeWasher];
+    [freeAccountant processObject:freeWasher];
     
     // 6. Бухгалтер отдает деньги директору
     // 7. Директор получает прибыль
-    [firstDirector processObject:firstAccountant];
+    [freeDirector processObject:freeAccountant];
 }
 
 - (id)freeWorkerWithArray:(NSArray *)workers {
-    id  worker = [workers firsObjectByFilteringWithBlock:^BOOL(id object) {
-        return ([(IDPWorker *)object state] == IDPFree);
-    }];
+    for (IDPWorker *worker in workers) {
+        if (worker.state == IDPWorkerFree) {
+            return worker;
+        }
+    }
     
-    return  worker;
+    return nil;
 }
 
-- (id)freeWorkerWithClass:(Class)class {
+
+- (id)workersWithClass:(Class)class {
     NSMutableArray *array = [NSMutableArray array];
     for (id building in self.buildings) {
         [array addObjectsFromArray:[building workersWithClass:class]];
     }
     
-    return [self freeWorkerWithArray:array];
+    return array;
 }
 
 @end
