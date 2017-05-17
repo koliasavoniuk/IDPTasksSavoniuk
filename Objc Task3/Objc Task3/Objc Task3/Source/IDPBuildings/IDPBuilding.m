@@ -52,7 +52,7 @@
 #pragma mark -
 #pragma mark Accessors Methods
 
--(NSMutableArray *)rooms {
+- (NSMutableArray *)rooms {
     return [[self.mutableRooms copy] autorelease];
 }
 

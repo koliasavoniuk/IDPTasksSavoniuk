@@ -11,7 +11,7 @@
 static const NSRange kIDPRangeSalary = { 500, 7000};
 
 @interface IDPAccountant ()
-@property (nonatomic, assign)     NSInteger   salary;
+@property (nonatomic, assign)   NSInteger   salary;
 @end
 
 @implementation IDPAccountant
@@ -24,6 +24,7 @@ static const NSRange kIDPRangeSalary = { 500, 7000};
 - (instancetype)init {
     self = [super init];
     self.salary = IDPRandomWithRange(kIDPRangeSalary);
+    
     return self;
 }
 

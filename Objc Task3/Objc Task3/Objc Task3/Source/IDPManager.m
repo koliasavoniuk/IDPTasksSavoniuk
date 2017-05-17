@@ -54,34 +54,31 @@
 
 - (void)startProcess {
     IDPBuilding *building = [IDPBuilding object];
-    
-    IDPWasher *washerNumberOne = [IDPWasher object];
+    IDPWasher *washer = [IDPWasher object];
     
     // car wash
     IDPRoomWashCar *carWashRoom = [IDPRoomWashCar object];
-    [carWashRoom addWorker:washerNumberOne];
+    [carWashRoom addWorker:washer];
     
     // accountant & director
-    IDPAccountant *accountantNumberOne = [IDPAccountant object];
-    IDPDirector *directorNumberOne = [IDPDirector object];
+    IDPAccountant *accountant = [IDPAccountant object];
+    IDPDirector *director = [IDPDirector object];
     
     // office
-    IDPRoom *roomOfficeNumberOne = [IDPRoom object];
-    [roomOfficeNumberOne addWorkers:@[accountantNumberOne,directorNumberOne]];
+    IDPRoom *officeRoom = [IDPRoom object];
+    [officeRoom addWorkers:@[accountant,director]];
     
     IDPBuilding *office = [IDPBuilding object];
-    [office addRoom:roomOfficeNumberOne];
-    
+    [office addRoom:officeRoom];
     [building addRoom:carWashRoom];
-    [building addRoom:roomOfficeNumberOne];
+    [building addRoom:officeRoom];
     [self.buildings addObject:building];
 }
 
 - (void)washCar:(IDPCar *)car {
-    IDPWasher *freeWasher = [self workersWithClass:[IDPWasher class]];
-    IDPAccountant *firstAccountant = [self workersWithClass:[IDPAccountant class]];
-    IDPDirector *firstDirector = [self workersWithClass:[IDPDirector class]];
-    
+    IDPWasher *freeWasher = [self freeWorkerWithArray:[self workersWithClass:[IDPWasher class]]];
+    IDPAccountant *freeAccountant = [self freeWorkerWithArray:[self workersWithClass:[IDPAccountant class]]];
+    IDPDirector *freeDirector = [self freeWorkerWithArray:[self workersWithClass:[IDPDirector class]]];
     
     // 1. Мойщику мойки отдают машину
     // 2. Мойщик моет машину
@@ -90,11 +87,11 @@
     
     // 4. Мойщик отдает деньги бухгалтеру
     // 5. Бухгалтер считает деньги
-    [firstAccountant processObject:freeWasher];
+    [freeAccountant processObject:freeWasher];
     
     // 6. Бухгалтер отдает деньги директору
     // 7. Директор получает прибыль
-    [firstDirector processObject:firstAccountant];
+    [freeDirector processObject:freeAccountant];
 }
 
 - (id)freeWorkerWithArray:(NSArray *)workers {
@@ -107,13 +104,14 @@
     return nil;
 }
 
+
 - (id)workersWithClass:(Class)class {
     NSMutableArray *array = [NSMutableArray array];
     for (id building in self.buildings) {
         [array addObjectsFromArray:[building workersWithClass:class]];
     }
     
-    return [self freeWorkerWithArray:array];
+    return array;
 }
 
 @end

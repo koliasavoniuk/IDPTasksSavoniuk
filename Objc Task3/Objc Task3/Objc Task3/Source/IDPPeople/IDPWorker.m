@@ -35,7 +35,6 @@ static const NSUInteger kIDPSizeRandomExperience = 30;
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
     self.name = [NSString stringWithFormat:@"%@ #%lu",
                  [self class],
                  IDPRandomTillNumber(kIDPSizeRandomNames)];
@@ -43,10 +42,9 @@ static const NSUInteger kIDPSizeRandomExperience = 30;
     self.salary = IDPRandomWithRange(kIDPRangeSalary);
     self.responsibility = [[kIDPResponsibility copy] autorelease];
     self.state = IDPWorkerFree;
-    }
         
     return self;
-    }
+}
 
 #pragma mark -
 #pragma mark Public Methods

@@ -12,7 +12,7 @@ static const NSUInteger kIDPSizeRandomMoney = 1500;
 
 @interface IDPCar()
 @property(nonatomic, assign) NSUInteger money;
-//@property(nonatomic, assign) IDPCarState state;
+
 @end
 
 @implementation IDPCar

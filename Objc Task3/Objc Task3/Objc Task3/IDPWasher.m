@@ -12,7 +12,7 @@ static const NSRange kIDPRangeSalary = { 500, 5000 };
 
 @interface IDPWasher ()
 @property (nonatomic, retain) IDPCar *car;
-@property (nonatomic, assign, readwrite) NSInteger salary;
+@property (nonatomic, assign, readwrite) NSUInteger salary;
 
 @end
 
@@ -54,7 +54,6 @@ static const NSRange kIDPRangeSalary = { 500, 5000 };
     NSLog(@"Car: %@ washed", self.car.name);
     self.car = nil;
     car.state = IDPCarClean;
-
-    }   
+}   
 
 @end
