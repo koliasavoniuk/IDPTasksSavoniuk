@@ -11,7 +11,7 @@
 @implementation IDPMale
 
 - (void)fight {
-    NSLog(@"%@Fight!!!", self.name);
+    NSLog(@"%@ Fight!!!", self.name);
 }
 
 - (void)performGenderSpecificOperation {

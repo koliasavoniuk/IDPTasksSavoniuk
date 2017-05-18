@@ -10,6 +10,6 @@
 
 @interface IDPFemale : IDPHuman
 
--(void)giveBirth;
+- (IDPHuman *)child;
 
 @end

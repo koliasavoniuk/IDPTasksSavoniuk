@@ -6,7 +6,7 @@
 //  Copyright © 2017 Student002. All rights reserved.
 //
 
-#import"IDPHumanCreationTests.h"
+#import "IDPHumanCreationTests.h"
 
 #import "IDPHuman.h"
 
@@ -44,7 +44,6 @@ void IDPObjCHumanCreationTesting() {
     
     for (IDPHuman *child in children) {
         [child sayHi];
-        
         if (child.gender == IDPHumanGenderMale) {
             [child fight];
         } else {

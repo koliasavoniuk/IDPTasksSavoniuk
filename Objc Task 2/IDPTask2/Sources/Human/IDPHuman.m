@@ -1,3 +1,11 @@
+//
+//  IDPHuman.m
+//  IDPTask2
+//
+//  Created by Student002 on 5/10/17.
+//  Copyright © 2017 Student002. All rights reserved.
+//
+
 #import "IDPHuman.h"
 #import "IDPRandom.h"
 
@@ -5,6 +13,7 @@
 
 static const char kIDPAgeMax = 100;
 static const NSRange kIDPWeightRange = { 1, 150 };
+static const NSUInteger kIDPRandomNameSize = 700;
 
 @interface IDPHuman ()
 @property (nonatomic, copy)     NSString        *name;
@@ -18,10 +27,6 @@ static const NSRange kIDPWeightRange = { 1, 150 };
 
 @dynamic children;
 
-+ (instancetype)objectWithName:(NSString *)name {
-    return [[[IDPHuman alloc] initWithName:name] autorelease];
-}
-
 - (void)dealloc {
     self.name = nil;
     self.mutableChildren = nil;
@@ -29,10 +34,9 @@ static const NSRange kIDPWeightRange = { 1, 150 };
     [super dealloc];
 }
 
-- (instancetype)initWithName:(NSString *)name {
+- (instancetype)init {
     self = [super init];
-    
-    self.name = name;
+    self.name = [NSString stringWithFormat:@"Human #%lu", (unsigned long)IDPRandomTillNumber(kIDPRandomNameSize)];
     self.age = IDPRandomTillNumber(kIDPAgeMax);
     self.weight = IDPRandomWithRange(kIDPWeightRange);
     self.mutableChildren = [NSMutableArray array];
@@ -49,11 +53,9 @@ static const NSRange kIDPWeightRange = { 1, 150 };
 
 - (void)sayHi {
     NSLog(@"%@Hi", self.name);
-    NSMutableArray *array = self.mutableChildren;
-    if (array) {
-        for (id temp in array) {
-            [temp sayHi];
-        }
+
+    for (id child in self.mutableChildren) {
+        [child sayHi];
     }
 }
 
@@ -64,13 +66,13 @@ static const NSRange kIDPWeightRange = { 1, 150 };
 #pragma mark -
 #pragma mark Private Methods
 
-
-- (void)addChildWithName:(NSString *)name {
-    IDPHuman *baby = [[[IDPHuman alloc] initWithName:name] autorelease];
-    [self.mutableChildren addObject:baby];
+- (void)addChild:(IDPHuman *)child {
+    if (child) {
+        [self.mutableChildren addObject:child];
+    }
 }
 
-- (void)removeChild:(id)child {
+- (void)removeChild:(IDPHuman *)child {
     [self.mutableChildren removeObject:child];
 }
 

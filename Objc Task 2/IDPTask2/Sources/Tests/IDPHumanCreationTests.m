@@ -1,13 +1,23 @@
+//
+//  IDPHumanCreationTests.m
+//  IDPTask2
+//
+//  Created by Student002 on 5/10/17.
+//  Copyright © 2017 Student002. All rights reserved.
+//
+
 #import"IDPHumanCreationTests.h"
+
 #import "IDPHuman.h"
 #import "IDPMale.h"
 #import "IDPFemale.h"
+
 #import "IDPRandom.h"
 
 #import "NSObject+IDPCategory.h"
 #import "NSArray+IDPCategory.h"
 
-static const char countObjects = 7;
+static const char objectCount = 7;
 
 typedef id(^IDPObject)();
 
@@ -32,6 +42,9 @@ void IDPObjCHumanCreationTesting() {
         return IDPRandomBool() ? [IDPMale object] : [IDPFemale object];
     };
     
-    [NSObject objectsWithCount:countObjects];
-    [NSArray objectsWithCount:countObjects factoryBlock:generator];
+    NSArray *humans = [NSArray objectsWithCount:objectCount factoryBlock:generator];
+    
+    for (IDPHuman *human in humans) {
+        [human performGenderSpecificOperation];
+    }
 }

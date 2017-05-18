@@ -8,14 +8,18 @@
 
 #import "IDPFemale.h"
 
+#import "NSObject+IDPCategory.h"
+
 @implementation IDPFemale
 
-- (void)giveBirth {
-    NSLog(@"%@I made a children!!!", self.name);
+- (IDPHuman *)child {
+    NSLog(@"%@ I made children!!!", self.name);
+    
+    return [IDPHuman object];
 }
 
-- (void) performGenderSpecificOperation {
-    [self giveBirth];
+- (void)performGenderSpecificOperation {
+    [self child];
 }
 
 @end
