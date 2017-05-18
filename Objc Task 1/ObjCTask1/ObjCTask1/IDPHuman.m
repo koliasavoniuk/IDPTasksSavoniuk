@@ -7,6 +7,7 @@
 //
 
 #import "IDPHuman.h"
+
 #import "IDPRandom.h"
 
 static const NSUInteger     kIDPAgeMax      = 100;

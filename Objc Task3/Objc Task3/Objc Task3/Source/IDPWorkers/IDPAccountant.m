@@ -8,8 +8,6 @@
 
 #import "IDPAccountant.h"
 
-static const NSRange kIDPRangeSalary = { 500, 7000};
-
 @interface IDPAccountant ()
 @property (nonatomic, assign)   NSInteger   salary;
 @end

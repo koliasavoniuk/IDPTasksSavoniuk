@@ -8,16 +8,15 @@
 
 #import "IDPWorker.h"
 
-static const NSString *kIDPResponsibility = @"responsibility";
-static const NSRange kIDPRangeSalary = { 500, 10000 };
-static const NSUInteger kIDPSizeRandomExperience = 30;
+//static const NSString *kIDPResponsibility = @"responsibility";
+//static const NSRange kIDPRangeSalary = { 500, 10000 };
+//static const NSUInteger kIDPSizeRandomExperience = 30;
 
 @interface IDPWorker()
 @property (nonatomic, assign)   NSUInteger              experience;
 @property (nonatomic, assign)   NSUInteger              salary;
-@property (nonatomic, copy)     NSString                *responsibility;
 @property (nonatomic, assign)   NSUInteger              money;
-@property (nonatomic, assign)   IDPStateOfWorker        state;
+@property (nonatomic, assign)   IDPWorkerState          state;
 
 @end
 
@@ -27,8 +26,8 @@ static const NSUInteger kIDPSizeRandomExperience = 30;
 #pragma mark Initializations and Reallocations
 
 - (void)dealloc {
-    self.name = nil;
-    self.responsibility = nil;
+    //self.name = nil;
+    //self.responsibility = nil;
     
     [super dealloc];
 }
@@ -40,7 +39,7 @@ static const NSUInteger kIDPSizeRandomExperience = 30;
                  IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.experience = IDPRandomTillNumber(kIDPSizeRandomExperience);
     self.salary = IDPRandomWithRange(kIDPRangeSalary);
-    self.responsibility = [[kIDPResponsibility copy] autorelease];
+    //self.responsibility = [[kIDPResponsibility copy] autorelease];
     self.state = IDPWorkerFree;
         
     return self;
@@ -72,10 +71,10 @@ static const NSUInteger kIDPSizeRandomExperience = 30;
 }
 
 - (NSUInteger)giveMoney {
-    NSUInteger temp = self.money;
+    NSUInteger tempMoney = self.money;
     self.money = 0;
     
-    return temp;
+    return tempMoney;
 }
 
 @end

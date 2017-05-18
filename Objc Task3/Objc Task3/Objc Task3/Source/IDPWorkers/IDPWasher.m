@@ -8,11 +8,11 @@
 
 #import "IDPWasher.h"
 
-static const NSRange kIDPRangeSalary = { 500, 5000 };
+//static const NSRange kIDPRangeSalary = { 500, 5000 };
 
 @interface IDPWasher ()
-@property (nonatomic, retain) IDPCar *car;
-@property (nonatomic, assign, readwrite) NSUInteger salary;
+@property (nonatomic, retain)   IDPCar      *car;
+@property (nonatomic, assign)   NSUInteger  salary;
 
 @end
 
@@ -31,9 +31,7 @@ static const NSRange kIDPRangeSalary = { 500, 5000 };
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        self.salary = IDPRandomWithRange(kIDPRangeSalary);
-    }
+    self.salary = IDPRandomWithRange(kIDPRangeSalary);
     
     return self;
 }

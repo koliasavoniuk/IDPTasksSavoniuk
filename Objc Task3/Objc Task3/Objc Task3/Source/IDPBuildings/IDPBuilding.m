@@ -7,6 +7,7 @@
 //
 
 #import "IDPBuilding.h"
+
 #import "IDPConstants.h"
 #import "IDPRandom.h"
 
@@ -17,7 +18,6 @@
 
 @interface IDPBuilding()
 @property (nonatomic, retain)   NSMutableArray  *mutableRooms;
-@property (nonatomic, assign)   NSInteger       humanCount;
 
 @end
 
@@ -44,7 +44,6 @@
                  [self class],
                  IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.mutableRooms = [NSMutableArray array];
-    self.humanCount = 0;
     
     return self;
 }
@@ -60,9 +59,7 @@
 #pragma mark Public Methods
 
 - (void)addRoom:(IDPRoom *)room {
-    if (room) {
-        [self.mutableRooms addObject:room];
-    }
+    [self.mutableRooms addObject:room];
 }
 
 - (void)removeRoom:(IDPRoom *)room {

@@ -6,17 +6,18 @@
 //  Copyright © 2017 Student002. All rights reserved.
 //
 
-#import "IDPCarWashTest.h"
 #import "IDPManager.h"
+
+//#import "IDPCarWashTest.h"
 #import "IDPBuilding.h"
 #import "IDPCarWashRoom.h"
-#import "IDPCar.h"
+//#import "IDPCar.h"
 #import "IDPAccountant.h"
 #import "IDPWasher.h"
 #import "IDPDirector.h"
 
-#import "IDPRandom.h"
-#import "IDPConstants.h"
+//#import "IDPRandom.h"
+//#import "IDPConstants.h"
 
 #import "NSArray+IDPCategory.h"
 #import "NSObject+IDPExtension.h"
@@ -32,7 +33,7 @@
 #pragma mark Initializations and Reallocations
 
 - (void)dealloc {
-    self.name = nil;
+    //self.name = nil;
     self.buildings = nil;
     
     [super dealloc];
@@ -40,11 +41,11 @@
 
 - (instancetype)init {
     self = [super init];
-    self.name = [NSString stringWithFormat:@"%@ #%lu",
-                 [self class],
-                 IDPRandomTillNumber(kIDPSizeRandomNames)];
+    //self.name = [NSString stringWithFormat:@"%@ #%lu",
+    //             [self class],
+    //             IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.buildings = [NSMutableArray array];
-    [self startProcess];
+    [self buildCarWash];
     
     return self;
 }
@@ -52,7 +53,7 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)startProcess {
+- (void)buildCarWash {
     IDPBuilding *building = [IDPBuilding object];
     IDPWasher *washer = [IDPWasher object];
     
@@ -76,9 +77,9 @@
 }
 
 - (void)washCar:(IDPCar *)car {
-    IDPWasher *freeWasher = [self freeWorkerWithArray:[self workersWithClass:[IDPWasher class]]];
-    IDPAccountant *freeAccountant = [self freeWorkerWithArray:[self workersWithClass:[IDPAccountant class]]];
-    IDPDirector *freeDirector = [self freeWorkerWithArray:[self workersWithClass:[IDPDirector class]]];
+    IDPWasher *freeWasher = [self freeWorkerWithClass:[IDPWasher class]];
+    IDPAccountant *freeAccountant = [self freeWorkerWithClass:[IDPAccountant class]];
+    IDPDirector *freeDirector = [self freeWorkerWithClass:[IDPDirector class]];
     
     // 1. Мойщику мойки отдают машину
     // 2. Мойщик моет машину
@@ -94,24 +95,23 @@
     [freeDirector processObject:freeAccountant];
 }
 
-- (id)freeWorkerWithArray:(NSArray *)workers {
-    for (IDPWorker *worker in workers) {
-        if (worker.state == IDPWorkerFree) {
-            return worker;
-        }
-    }
-    
-    return nil;
-}
-
-
 - (id)workersWithClass:(Class)class {
     NSMutableArray *array = [NSMutableArray array];
-    for (id building in self.buildings) {
+    for (IDPBuilding *building in self.buildings) {
         [array addObjectsFromArray:[building workersWithClass:class]];
     }
     
-    return array;
+    return [[array copy] autorelease];
+}
+
+- (id)freeWorkersWithClass:(Class)class {
+    return [[self workersWithClass:class] arrayByFilteringWithBlock:^BOOL(IDPWorker *worker) {
+        return worker.state == IDPWorkerFree;
+    }];
+}
+
+- (id)freeWorkerWithClass:(Class)class {
+    return [[self freeWorkersWithClass:class]firstObject];
 }
 
 @end

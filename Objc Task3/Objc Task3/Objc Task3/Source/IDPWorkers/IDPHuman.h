@@ -11,10 +11,7 @@
 #import "IDPRandom.h"
 #import "IDPConstants.h"
 
-#import "NSObject+IDPExtension.h"
-
 @interface IDPHuman : NSObject
-
 @property (nonatomic, copy) NSString *name;
 
 @end

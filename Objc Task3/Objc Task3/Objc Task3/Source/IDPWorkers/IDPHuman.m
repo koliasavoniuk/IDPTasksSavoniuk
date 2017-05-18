@@ -8,6 +8,9 @@
 
 #import "IDPHuman.h"
 
+//#import "IDPConstants.h"
+//#import "IDPRandom.h"
+
 @implementation IDPHuman
 
 #pragma mark -
@@ -21,11 +24,9 @@
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        self.name = [NSString stringWithFormat:@"%@ #%lu",
-                     [self class],
-                     IDPRandomTillNumber(kIDPSizeRandomNames)];
-    }
+    self.name = [NSString stringWithFormat:@"%@ #%lu",
+                 [self class],
+                 IDPRandomTillNumber(kIDPSizeRandomNames)];
     
     return self;
 }

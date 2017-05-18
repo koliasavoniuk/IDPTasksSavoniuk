@@ -9,17 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @class IDPCar;
-@class IDPWasher;
+/*@class IDPWasher;
 @class IDPWorker;
 @class IDPAccountant;
-@class IDPDirector;
+@class IDPDirector;*/
 
 @interface IDPManager : NSObject
-@property (nonatomic, copy)     NSString      *name;
+//@property (nonatomic, copy)     NSString      *name;
 
-- (void)startProcess;
+//- (void)startProcess;
 - (void)washCar:(IDPCar *)car;
-- (id)workersWithClass:(Class)class;
+//- (id)workersWithClass:(Class)class;
 
 @end
 

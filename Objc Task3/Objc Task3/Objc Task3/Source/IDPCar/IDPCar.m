@@ -8,7 +8,7 @@
 
 #import "IDPCar.h"
 
-static const NSUInteger kIDPSizeRandomMoney = 1500;
+//static const NSUInteger kIDPSizeRandomMoney = 1500;
 
 @interface IDPCar()
 @property(nonatomic, assign) NSUInteger money;

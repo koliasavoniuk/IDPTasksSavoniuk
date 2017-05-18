@@ -7,6 +7,7 @@
 //
 
 #import "NSObject+IDPExtension.h"
+
 #import "NSArray+IDPCategory.h"
 
 @implementation NSObject (IDPExtension)

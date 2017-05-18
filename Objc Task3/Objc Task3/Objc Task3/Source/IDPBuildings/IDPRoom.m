@@ -7,7 +7,9 @@
 //
 
 #import "IDPRoom.h"
+
 #import "IDPRandom.h"
+#import "IDPConstants.h"
 
 #import "NSArray+IDPCategory.h"
 
