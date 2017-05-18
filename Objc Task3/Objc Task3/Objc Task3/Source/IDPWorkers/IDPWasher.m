@@ -9,7 +9,7 @@
 #import "IDPWasher.h"
 
 @interface IDPWasher ()
-@property (nonatomic, retain)   IDPCar      *car;
+@property (nonatomic, retain)   IDPCar  *car;
 
 @end
 
@@ -24,12 +24,6 @@
     [super dealloc];
 }
 
-- (instancetype)init {
-    self = [super init];
-    
-    return self;
-}
-
 #pragma mark -
 #pragma mark Public Methods
 
@@ -39,9 +33,10 @@
 
 - (void)washCar:(IDPCar *)car {
     if (!car) {
-        NSLog(@"%@ - can't wash car, because car not found",self.name);
+        NSLog(@"%@ - can't wash car, because car not found", self.name);
         return;
     }
+    
     self.car = car;
     NSLog(@"Car: %@ washed", self.car.name);
     self.car = nil;

@@ -13,7 +13,7 @@
 
 #import "NSArray+IDPCategory.h"
 
-@class IDPRoomWashCar;
+@class IDPCarWashRoom;
 @class IDPRoom;
 
 @interface IDPBuilding()

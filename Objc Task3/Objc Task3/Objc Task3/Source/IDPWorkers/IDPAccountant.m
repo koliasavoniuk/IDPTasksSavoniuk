@@ -8,19 +8,7 @@
 
 #import "IDPAccountant.h"
 
-@interface IDPAccountant ()
-@end
-
 @implementation IDPAccountant
-
-#pragma mark -
-#pragma mark Initializations and Reallocations
-
-- (instancetype)init {
-    self = [super init];
-    
-    return self;
-}
 
 #pragma mark -
 #pragma mark Public Methods

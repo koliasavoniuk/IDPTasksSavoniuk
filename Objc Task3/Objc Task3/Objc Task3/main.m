@@ -14,5 +14,6 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         IDPCarWashTest();
     }
+    
     return 0;
 }

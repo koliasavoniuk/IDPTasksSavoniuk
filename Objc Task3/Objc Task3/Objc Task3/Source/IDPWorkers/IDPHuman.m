@@ -8,9 +8,6 @@
 
 #import "IDPHuman.h"
 
-//#import "IDPConstants.h"
-//#import "IDPRandom.h"
-
 @implementation IDPHuman
 
 #pragma mark -

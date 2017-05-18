@@ -8,12 +8,10 @@
 
 #import "IDPWorker.h"
 
-//static const NSUInteger kIDPSizeRandomExperience = 30;
-
 @interface IDPWorker()
-@property (nonatomic, assign)   NSUInteger              experience;
-@property (nonatomic, assign)   NSUInteger              money;
-@property (nonatomic, assign)   IDPWorkerState          state;
+@property (nonatomic, assign)   NSUInteger      experience;
+@property (nonatomic, assign)   NSUInteger      money;
+@property (nonatomic, assign)   IDPWorkerState  state;
 
 @end
 
@@ -21,12 +19,6 @@
 
 #pragma mark -
 #pragma mark Initializations and Reallocations
-
-- (void)dealloc {
-    //self.name = nil;
-    
-    [super dealloc];
-}
 
 - (instancetype)init {
     self = [super init];

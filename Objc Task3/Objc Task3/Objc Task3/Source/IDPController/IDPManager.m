@@ -8,16 +8,11 @@
 
 #import "IDPManager.h"
 
-//#import "IDPCarWashTest.h"
 #import "IDPBuilding.h"
 #import "IDPCarWashRoom.h"
-//#import "IDPCar.h"
 #import "IDPAccountant.h"
 #import "IDPWasher.h"
 #import "IDPDirector.h"
-
-//#import "IDPRandom.h"
-//#import "IDPConstants.h"
 
 #import "NSArray+IDPCategory.h"
 #import "NSObject+IDPExtension.h"
@@ -33,7 +28,6 @@
 #pragma mark Initializations and Reallocations
 
 - (void)dealloc {
-    //self.name = nil;
     self.buildings = nil;
     
     [super dealloc];
@@ -41,9 +35,6 @@
 
 - (instancetype)init {
     self = [super init];
-    //self.name = [NSString stringWithFormat:@"%@ #%lu",
-    //             [self class],
-    //             IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.buildings = [NSMutableArray array];
     [self buildCarWash];
     

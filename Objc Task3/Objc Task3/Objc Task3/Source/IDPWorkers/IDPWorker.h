@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 #import "IDPHuman.h"
+
 #import "IDPRandom.h"
+
 #import "IDPCashFlow.h"
 
 typedef NS_ENUM (NSUInteger, IDPWorkerState) {
