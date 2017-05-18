@@ -7,6 +7,7 @@
 //
 
 #import "IDPHuman.h"
+
 #import "IDPRandom.h"
 
 static const NSUInteger     kIDPAgeMax      = 100;
@@ -35,7 +36,7 @@ static const NSRange        kIDPWeightRange = { 1, 150 };
 - (instancetype)initWithName:(NSString *)name {
     self = [super init];
     self.name = name;
-    self.gender = (uint32_t)IDPRandomBool();
+    self.gender = IDPRandomBool();
     self.age = IDPRandomTillNumber(kIDPAgeMax);
     self.weight = IDPRandomWithRange(kIDPWeightRange);
     self.mutableChildren = [NSMutableArray array];
@@ -44,13 +45,13 @@ static const NSRange        kIDPWeightRange = { 1, 150 };
 }
 
 - (NSArray *)children {
-    return[[self.mutableChildren copy] autorelease];
+    return [[self.mutableChildren copy] autorelease];
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)fightHuman {
+- (void)fight {
     NSLog(@"I wanna fight!!!");
 }
 
@@ -60,11 +61,10 @@ static const NSRange        kIDPWeightRange = { 1, 150 };
 
 - (void)sayHi {
     NSLog(@"%@Hi", self.name);
-    NSMutableArray *array = self.mutableChildren;
-    if (array) {
-        for (id temp in array) {
-        [temp sayHi];
-        }
+    NSMutableArray *children = self.mutableChildren;
+    
+    for (id child in children) {
+        [child sayHi];
     }
 }
 

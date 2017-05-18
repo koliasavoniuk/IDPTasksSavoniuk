@@ -8,22 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-
 typedef NS_ENUM (NSUInteger, IDPHumanGender) {
     IDPHumanGenderMale,
     IDPHumanGenderFemale
 };
 
 @interface IDPHuman : NSObject
-@property(nonatomic, readonly)          IDPHumanGender  gender;
-@property(nonatomic, readonly)          NSString        *name;
-@property(nonatomic, readonly)          NSUInteger      age;
-@property(nonatomic, readonly)          NSUInteger      weight;
-@property(nonatomic, copy, readonly)    NSArray         *children;
+@property (nonatomic, readonly)          IDPHumanGender  gender;
+@property (nonatomic, readonly)          NSString        *name;
+@property (nonatomic, readonly)          NSUInteger      age;
+@property (nonatomic, readonly)          NSUInteger      weight;
+@property (nonatomic, copy, readonly)    NSArray         *children;
 
 - (instancetype)initWithName:(NSString *)name;
 
-- (void)fightHuman;
+- (void)fight;
 - (void)giveBirth;
 - (void)sayHi;
 

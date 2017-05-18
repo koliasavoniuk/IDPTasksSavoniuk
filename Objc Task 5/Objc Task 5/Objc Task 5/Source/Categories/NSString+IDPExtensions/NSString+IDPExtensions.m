@@ -74,7 +74,7 @@ static NSRange alphabetRange(char loc, char len) {
     NSMutableString *result = [NSMutableString stringWithCapacity:length];
     NSUInteger alphabetLength = [alphabet length];
     
-    for (NSUInteger index = 0; index < length; index++) {
+    for (NSUInteger index = 0; index <= length; index++) {
         unichar resultChar = [alphabet characterAtIndex:IDPRandomTillNumber(alphabetLength)];
         [result appendFormat:@"%c",resultChar];
     }

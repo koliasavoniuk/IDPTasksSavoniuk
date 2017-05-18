@@ -67,12 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				763EA84C1EBB6FC900ADC331 /* main.m */,
-				763EA8531EBB70BF00ADC331 /* IDPHuman.m */,
 				763EA8551EBB70D400ADC331 /* IDPHuman.h */,
-				763EA8561EBB712700ADC331 /* IDPHumanCreationTests.m */,
+				763EA8531EBB70BF00ADC331 /* IDPHuman.m */,
 				763EA8581EBB713600ADC331 /* IDPHumanCreationTests.h */,
-				76306C711EBCCC92005B0E29 /* IDPRandom.m */,
+				763EA8561EBB712700ADC331 /* IDPHumanCreationTests.m */,
 				76306C731EBCCCD2005B0E29 /* IDPRandom.h */,
+				76306C711EBCCC92005B0E29 /* IDPRandom.m */,
 			);
 			path = ObjCTask1;
 			sourceTree = "<group>";

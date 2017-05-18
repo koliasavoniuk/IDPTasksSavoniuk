@@ -32,7 +32,7 @@
 }
 
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabets {
-    return [[[IDPRangeAlphabet alloc] initWithAlpabets:alphabets] autorelease];
+    return [[[IDPRangeAlphabet alloc] initWithAlphabets:alphabets] autorelease];
 }
 
 + (instancetype)alphabetWithSymbols:(NSString *)string {
