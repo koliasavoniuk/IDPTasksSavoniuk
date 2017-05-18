@@ -10,4 +10,8 @@
 
 @implementation IDPClusterAlphabet
 
+- (instancetype)initWithAlphabets:(NSArray *)alphabets {
+    return nil;
+}
+
 @end

@@ -9,7 +9,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface IDPAlphabet : NSObject
+//extern
+//NSRange IDPMakeAlphabetRange)(unichar value1, unichar value2);
+
+@interface IDPAlphabet : NSArray
 
 + (instancetype)alphabetWithRange:(NSRange)range;
 + (instancetype)alphabetWithStrings:(NSArray *)strings;

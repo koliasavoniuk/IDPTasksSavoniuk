@@ -10,4 +10,8 @@
 
 @implementation IDPRangeAlphabet
 
+- (instancetype)initWithRange:(NSRange)range {
+    return nil;
+}
+
 @end

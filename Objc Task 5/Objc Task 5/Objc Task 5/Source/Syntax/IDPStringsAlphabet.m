@@ -10,4 +10,8 @@
 
 @implementation IDPStringsAlphabet
 
+- (instancetype)initWithStrings:(NSArray *)string {
+    return nil;
+}
+
 @end

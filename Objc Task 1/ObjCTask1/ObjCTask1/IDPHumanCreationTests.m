@@ -31,26 +31,24 @@ void IDPObjCHumanCreationTesting() {
     NSMutableArray *children = [NSMutableArray array];
     
     for (id name in humanNames) {
-        [children addObject:[[[IDPHuman alloc] initWithName:name]autorelease]];
+        [children addObject:[[[IDPHuman alloc] initWithName:name] autorelease]];
     }
     
     NSUInteger childCount[] = { 4, 2, 4, 6 };
     
-    for (id tempObject in children) {
-        id human = tempObject;
+    for (IDPHuman *child in children) {
         for (NSUInteger i = 0; i < childCount[i]; i++) {
-            [human giveBirth];
+            [child giveBirth];
         }
     }
     
-    for (id someObject in children) {
-        [someObject sayHi];
-        IDPHuman *human = someObject;
+    for (IDPHuman *child in children) {
+        [child sayHi];
         
-        if (human.gender == IDPHumanGenderMale) {
-            [someObject fightHuman];
+        if (child.gender == IDPHumanGenderMale) {
+            [child fight];
         } else {
-            [someObject giveBirth];
+            [child giveBirth];
         }
     }
 }
