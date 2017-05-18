@@ -9,19 +9,15 @@
 #import "IDPAccountant.h"
 
 @interface IDPAccountant ()
-@property (nonatomic, assign)   NSInteger   salary;
 @end
 
 @implementation IDPAccountant
-
-@dynamic salary;
 
 #pragma mark -
 #pragma mark Initializations and Reallocations
 
 - (instancetype)init {
     self = [super init];
-    self.salary = IDPRandomWithRange(kIDPRangeSalary);
     
     return self;
 }
@@ -30,7 +26,6 @@
 #pragma mark Public Methods
 
 - (void)performWorkWithObject:(id)object {
-    [self takeMoneyFromObject:object];
     [self countMoney];
 }
 

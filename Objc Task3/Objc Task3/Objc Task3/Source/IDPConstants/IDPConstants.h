@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 extern const NSUInteger kIDPSizeRandomNames;
-extern const NSRange kIDPRangeSalary;
 extern const NSUInteger kIDPSizeRandomExperience;
 extern const NSUInteger kIDPSizeRandomMoney;
 extern const NSInteger kIDPCarsCount;

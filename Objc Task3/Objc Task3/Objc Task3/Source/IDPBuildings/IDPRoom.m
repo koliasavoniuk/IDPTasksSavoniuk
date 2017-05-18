@@ -66,7 +66,6 @@
 }
 
 - (void)addWorkers:(NSArray *)workers {
-
     for (id worker in workers) {
         [self addWorker:worker];
     }

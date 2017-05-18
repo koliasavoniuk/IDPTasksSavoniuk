@@ -11,7 +11,6 @@
 @implementation IDPDirector
 
 - (void)performWorkWithObject:(id)object {
-    [self takeMoneyFromObject:object];
     [self calculateProfit];
 }
 

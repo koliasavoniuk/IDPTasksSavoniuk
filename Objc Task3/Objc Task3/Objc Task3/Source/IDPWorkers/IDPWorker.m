@@ -8,13 +8,10 @@
 
 #import "IDPWorker.h"
 
-//static const NSString *kIDPResponsibility = @"responsibility";
-//static const NSRange kIDPRangeSalary = { 500, 10000 };
 //static const NSUInteger kIDPSizeRandomExperience = 30;
 
 @interface IDPWorker()
 @property (nonatomic, assign)   NSUInteger              experience;
-@property (nonatomic, assign)   NSUInteger              salary;
 @property (nonatomic, assign)   NSUInteger              money;
 @property (nonatomic, assign)   IDPWorkerState          state;
 
@@ -27,7 +24,6 @@
 
 - (void)dealloc {
     //self.name = nil;
-    //self.responsibility = nil;
     
     [super dealloc];
 }
@@ -38,8 +34,6 @@
                  [self class],
                  IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.experience = IDPRandomTillNumber(kIDPSizeRandomExperience);
-    self.salary = IDPRandomWithRange(kIDPRangeSalary);
-    //self.responsibility = [[kIDPResponsibility copy] autorelease];
     self.state = IDPWorkerFree;
         
     return self;
@@ -50,8 +44,8 @@
 
 - (void)processObject:(id<IDPCashFlow>)object {
     self.state = IDPWorkerBusy;
-    [self performWorkWithObject:object];
     [self takeMoneyFromObject:object];
+    [self performWorkWithObject:object];
     self.state = IDPWorkerFree;
 }
 

@@ -11,7 +11,7 @@
 @class IDPCar;
 
 @interface IDPRoomWashCar : IDPRoom
-@property (nonatomic, retain, readonly)   NSArray  *cars;
+@property (nonatomic, readonly)   NSArray  *cars;
 
 - (void)addCar:(IDPCar *)car;
 - (void)removeCar:(IDPCar *)car;

@@ -9,7 +9,6 @@
 @protocol IDPCashFlow <NSObject>
 @property (nonatomic, readonly) NSUInteger money;
 
-@optional
 - (NSUInteger)giveMoney;
 - (void)takeMoney:(NSUInteger)money;
 - (void)takeMoneyFromObject:(id<IDPCashFlow>)object;

@@ -19,7 +19,6 @@ typedef NS_ENUM (NSUInteger, IDPWorkerState) {
 
 @interface IDPWorker : IDPHuman <IDPCashFlow>
 @property (nonatomic, readonly)         NSUInteger          experience;
-@property (nonatomic, readonly)         NSUInteger          salary;
 @property (nonatomic, readonly)         IDPWorkerState      state;
 
 - (void)processObject:(id<IDPCashFlow>)object;

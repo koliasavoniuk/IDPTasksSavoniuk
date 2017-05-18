@@ -8,17 +8,12 @@
 
 #import "IDPWasher.h"
 
-//static const NSRange kIDPRangeSalary = { 500, 5000 };
-
 @interface IDPWasher ()
 @property (nonatomic, retain)   IDPCar      *car;
-@property (nonatomic, assign)   NSUInteger  salary;
 
 @end
 
 @implementation IDPWasher
-
-@dynamic salary;
 
 #pragma mark -
 #pragma mark Initializations and Reallocations
@@ -31,7 +26,6 @@
 
 - (instancetype)init {
     self = [super init];
-    self.salary = IDPRandomWithRange(kIDPRangeSalary);
     
     return self;
 }
@@ -45,7 +39,7 @@
 
 - (void)washCar:(IDPCar *)car {
     if (!car) {
-        NSLog(@"%@ - can't washing car, because car not found",self.name);
+        NSLog(@"%@ - can't wash car, because car not found",self.name);
         return;
     }
     self.car = car;
