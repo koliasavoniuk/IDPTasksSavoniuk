@@ -16,7 +16,7 @@
 @implementation IDPWasher
 
 #pragma mark -
-#pragma mark Initializations and Reallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
     self.car = nil;
@@ -32,11 +32,6 @@
 }
 
 - (void)washCar:(IDPCar *)car {
-    if (!car) {
-        NSLog(@"%@ - can't wash car, because car not found", self.name);
-        return;
-    }
-    
     self.car = car;
     NSLog(@"Car: %@ washed", self.car.name);
     self.car = nil;

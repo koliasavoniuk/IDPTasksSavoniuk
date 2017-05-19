@@ -16,7 +16,7 @@
 @implementation IDPCar
 
 #pragma mark -
-#pragma mark Initializations and Reallocation
+#pragma mark Initializations and Deallocation
 
 - (void)dealloc {
     self.name = nil;
@@ -38,6 +38,7 @@
 - (NSUInteger)giveMoney {
     NSUInteger tempMoney = self.money;
     self.money = 0;
+    
     return tempMoney;
 }
 

@@ -8,17 +8,17 @@
 
 #import "IDPCarWashRoom.h"
 
-@interface IDPRoomWashCar()
+@interface IDPCarWashRoom()
 @property (nonatomic, retain)   NSMutableArray  *mutableCars;
 
 @end
 
-@implementation IDPRoomWashCar
+@implementation IDPCarWashRoom
 
 @dynamic cars;
 
 #pragma mark -
-#pragma mark Initializations and Reallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
     self.mutableCars = nil;

@@ -18,7 +18,7 @@
 @implementation IDPWorker
 
 #pragma mark -
-#pragma mark Initializations and Reallocations
+#pragma mark Initializations and Deallocations
 
 - (instancetype)init {
     self = [super init];
@@ -41,7 +41,7 @@
     self.state = IDPWorkerFree;
 }
 
--(void)performWorkWithObject:(id)object {
+- (void)performWorkWithObject:(id)object {
     
 }
 
@@ -57,10 +57,10 @@
 }
 
 - (NSUInteger)giveMoney {
-    NSUInteger tempMoney = self.money;
+    NSUInteger money = self.money;
     self.money = 0;
     
-    return tempMoney;
+    return money;
 }
 
 @end

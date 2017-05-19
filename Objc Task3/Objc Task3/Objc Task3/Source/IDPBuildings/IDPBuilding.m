@@ -26,10 +26,7 @@
 @dynamic rooms;
 
 #pragma mark -
-#pragma mark Class Methods
-
-#pragma mark -
-#pragma mark Initializations and Reallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
     self.mutableRooms = nil;
@@ -74,4 +71,3 @@
 }
 
 @end
-

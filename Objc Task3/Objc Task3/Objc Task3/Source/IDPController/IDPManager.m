@@ -25,7 +25,7 @@
 @implementation IDPManager
 
 #pragma mark -
-#pragma mark Initializations and Reallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
     self.buildings = nil;
@@ -45,26 +45,27 @@
 #pragma mark Public Methods
 
 - (void)buildCarWash {
-    IDPBuilding *building = [IDPBuilding object];
+    IDPBuilding *officeBuilding = [IDPBuilding object];
+    IDPBuilding *carWashBuilding = [IDPBuilding object];
+    
+    // creating workers
     IDPWasher *washer = [IDPWasher object];
-    
-    // car wash
-    IDPRoomWashCar *carWashRoom = [IDPRoomWashCar object];
-    [carWashRoom addWorker:washer];
-    
-    // accountant & director
     IDPAccountant *accountant = [IDPAccountant object];
     IDPDirector *director = [IDPDirector object];
+    
+    // car wash
+    IDPCarWashRoom *carWashRoom = [IDPCarWashRoom object];
+    [carWashRoom addWorker:washer];
     
     // office
     IDPRoom *officeRoom = [IDPRoom object];
     [officeRoom addWorkers:@[accountant,director]];
     
-    IDPBuilding *office = [IDPBuilding object];
-    [office addRoom:officeRoom];
-    [building addRoom:carWashRoom];
-    [building addRoom:officeRoom];
-    [self.buildings addObject:building];
+    // add rooms to building
+    [carWashBuilding addRoom:carWashRoom];
+    [officeBuilding addRoom:officeRoom];
+
+    [self.buildings addObjectsFromArray:@[carWashRoom, officeRoom]];
 }
 
 - (void)washCar:(IDPCar *)car {

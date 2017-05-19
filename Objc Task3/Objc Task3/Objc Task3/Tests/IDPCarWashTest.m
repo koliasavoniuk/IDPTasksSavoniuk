@@ -28,7 +28,7 @@ void IDPCarWashTest() {
 }
 
 #pragma mark -
-#pragma mark PrivateDeclaretions
+#pragma mark Private Declarations
 
 void IDPCarWashTestOne() {
     NSArray *cars = [IDPCar objectsWithCount:kIDPCarsCount];

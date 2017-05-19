@@ -23,10 +23,7 @@
 @dynamic workers;
 
 #pragma mark -
-#pragma mark Class Methods
-
-#pragma mark -
-#pragma mark Initializations and Reallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
     self.mutableWorkers = nil;
@@ -46,10 +43,6 @@
 
 - (NSArray *)workers {
     return [[self.mutableWorkers copy] autorelease];
-}
-
-- (NSUInteger)workerCount {
-    return self.workers.count;
 }
 
 #pragma mark -
@@ -80,7 +73,7 @@
 
 - (NSArray *)workersWithClass:(Class)class {
     return [[self workers] arrayByFilteringWithBlock:^BOOL(id object) {
-        return [object isKindOfClass:[class class]];
+        return [object isKindOfClass:class];
     }];
 }
 

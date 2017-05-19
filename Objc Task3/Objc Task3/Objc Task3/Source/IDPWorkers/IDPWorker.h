@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "IDPHuman.h"
-
+#import "IDPConstants.h"
 #import "IDPRandom.h"
 
 #import "IDPCashFlow.h"
@@ -19,9 +18,10 @@ typedef NS_ENUM (NSUInteger, IDPWorkerState) {
     IDPWorkerFree
 };
 
-@interface IDPWorker : IDPHuman <IDPCashFlow>
-@property (nonatomic, readonly)         NSUInteger          experience;
-@property (nonatomic, readonly)         IDPWorkerState      state;
+@interface IDPWorker : NSObject<IDPCashFlow>
+@property (nonatomic, copy)         NSString        *name;
+@property (nonatomic, readonly)     NSUInteger      experience;
+@property (nonatomic, readonly)     IDPWorkerState  state;
 
 - (void)processObject:(id<IDPCashFlow>)object;
 
