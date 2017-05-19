@@ -8,6 +8,8 @@
 
 #import "IDPAlphabet.h"
 
+#import <math.h>
+
 #import "IDPRangeAlphabet.h"
 #import "IDPClusterAlphabet.h"
 #import "IDPStringsAlphabet.h"
@@ -51,19 +53,19 @@ NSRange IDPMakeAlphabetRange(unichar value1, unichar value2) {
 - (instancetype)initWithRange:(NSRange)range {
     [self release];
     
-    return [[[IDPRangeAlphabet alloc] initWithRange:range] autorelease];
+    return [[IDPRangeAlphabet alloc] initWithRange:range];
 }
 
 - (instancetype)initWithAlphabets:(NSArray *)alphabets {
     [self release];
     
-    return [[[IDPClusterAlphabet alloc] initWithAlphabets:alphabets] autorelease];
+    return [[IDPClusterAlphabet alloc] initWithAlphabets:alphabets];
 }
 
 - (instancetype)initWithStrings:(NSArray *)strings {
     [self release];
     
-    return [[[IDPStringsAlphabet alloc] initWithStrings:strings] autorelease];
+    return [[IDPStringsAlphabet alloc] initWithStrings:strings];
 }
 
 - (instancetype)initWithSymbols:(NSString *)string {
@@ -108,7 +110,5 @@ NSRange IDPMakeAlphabetRange(unichar value1, unichar value2) {
                                     count:(NSUInteger)len {
     return 0;
 }
-
-
 
 @end

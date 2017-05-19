@@ -39,7 +39,7 @@
 - (NSString *)stringAtIndex:(NSUInteger)index {
     NSRange range = self.range;
     
-    NSAssert(<#condition#>, <#desc, ...#>)
+    NSAssert(index < range.length, NSRangeException);
     
     return [NSString stringWithFormat:@"%c", (unichar)(range.location + index)];
 }

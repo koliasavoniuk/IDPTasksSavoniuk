@@ -35,13 +35,13 @@ describe(@"IDPAlphabet", ^{
      
      */
     
-    afterEach(^{
+    afterAll(^{
         alphabet = nil;
     });
     
     context(@"when initialized with +alphabetWithRange: with range 'A'-'B'", ^{
         beforeAll(^{
-            alphabet = [IDPAlphabet alphabetWithRange:NSMakeRange('A', 'B' - 'A')];
+            alphabet = [IDPAlphabet alphabetWithRange:IDPMakeAlphabetRange('A', 'B')];
         });
         
         it(@"should be of class IDPRangeAlphabet", ^{
@@ -61,9 +61,17 @@ describe(@"IDPAlphabet", ^{
             [[alphabet[1] should] equal:@"B"];
         });
         
+        it(@"should throw, when requesting object at index 3", ^{
+            [[theBlock(^{
+                [alphabet stringAtIndex:3];
+                id a = alphabet[3];
+            }) should] raise];
+        });
+        
         it(@"should return @\"AB\" from -string", ^{
             [[[alphabet string] should] equal:@"AB"];
         });
+        
     });
     
     context(@"when initialized with -initWithRange: with range 'A'-'B'", ^{        
