@@ -7,17 +7,17 @@
 //
 
 #import "IDPBuilding.h"
+
 #import "IDPConstants.h"
 #import "IDPRandom.h"
 
 #import "NSArray+IDPCategory.h"
 
-@class IDPRoomWashCar;
+@class IDPCarWashRoom;
 @class IDPRoom;
 
 @interface IDPBuilding()
 @property (nonatomic, retain)   NSMutableArray  *mutableRooms;
-@property (nonatomic, assign)   NSInteger       humanCount;
 
 @end
 
@@ -26,13 +26,9 @@
 @dynamic rooms;
 
 #pragma mark -
-#pragma mark Class Methods
-
-#pragma mark -
-#pragma mark Initializations and Reallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.name = nil;
     self.mutableRooms = nil;
     
     [super dealloc];
@@ -40,11 +36,7 @@
 
 - (instancetype)init {
     self = [super init];
-    self.name = [NSString stringWithFormat:@"%@ #%lu",
-                 [self class],
-                 IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.mutableRooms = [NSMutableArray array];
-    self.humanCount = 0;
     
     return self;
 }
@@ -79,4 +71,3 @@
 }
 
 @end
-

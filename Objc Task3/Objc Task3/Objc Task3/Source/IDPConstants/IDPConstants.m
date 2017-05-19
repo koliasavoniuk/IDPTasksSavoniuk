@@ -9,3 +9,6 @@
 #import <Foundation/Foundation.h>
 
 const NSUInteger kIDPSizeRandomNames = 500;
+const NSUInteger kIDPSizeRandomExperience = 30;
+const NSUInteger kIDPSizeRandomMoney = 1500;
+const NSUInteger kIDPCarsCount = 5;

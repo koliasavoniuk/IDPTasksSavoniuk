@@ -11,9 +11,7 @@
 #import "IDPWorker.h"
 
 @interface IDPRoom : NSObject
-
-@property (nonatomic, copy)     NSString    *name;
-@property (nonatomic, retain)   NSArray     *workers;
+@property (nonatomic, readonly)   NSArray     *workers;
 
 - (void)addWorker:(IDPWorker *)worker;
 - (void)removeWorker:(IDPWorker *)worker;

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 extern
 NSUInteger IDPRandomTillNumber(NSUInteger number);
 

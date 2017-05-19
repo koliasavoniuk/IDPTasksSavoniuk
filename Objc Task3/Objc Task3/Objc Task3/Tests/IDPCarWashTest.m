@@ -7,40 +7,32 @@
 //
 
 #import "IDPCarWashTest.h"
+
 #import "IDPManager.h"
-#import "IDPBuilding.h"
-#import "IDPCarWashRoom.h"
 #import "IDPCar.h"
-#import "IDPAccountant.h"
-#import "IDPWasher.h"
-#import "IDPDirector.h"
 
 #import "NSArray+IDPCategory.h"
 #import "NSObject+IDPExtension.h"
 
-static const NSInteger kIDPCountCars = 5;
-
 #pragma mark -
-#pragma mar Private Declaration
+#pragma mark Private Declaration
 
 static
 void IDPCarWashTestOne();
 
 #pragma mark -
-#pragma mar Public Implementations
+#pragma mark Public Implementations
 
 void IDPCarWashTest() {
     IDPCarWashTestOne();
 }
 
 #pragma mark -
-#pragma mar PrivateDeclaretions
+#pragma mark Private Declarations
 
 void IDPCarWashTestOne() {
-    NSArray *cars = [IDPCar objectsWithCount:kIDPCountCars];
-    
+    NSArray *cars = [IDPCar objectsWithCount:kIDPCarsCount];
     IDPManager *manager = [IDPManager object];
-    
     
     for (IDPCar *car in cars) {
         [manager washCar:car];

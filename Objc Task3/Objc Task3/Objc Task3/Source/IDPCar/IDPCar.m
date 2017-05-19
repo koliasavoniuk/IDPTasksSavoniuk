@@ -8,8 +8,6 @@
 
 #import "IDPCar.h"
 
-static const NSUInteger kIDPSizeRandomMoney = 1500;
-
 @interface IDPCar()
 @property(nonatomic, assign) NSUInteger money;
 
@@ -18,7 +16,7 @@ static const NSUInteger kIDPSizeRandomMoney = 1500;
 @implementation IDPCar
 
 #pragma mark -
-#pragma mark Initializations and Reallocation
+#pragma mark Initializations and Deallocation
 
 - (void)dealloc {
     self.name = nil;
@@ -40,6 +38,7 @@ static const NSUInteger kIDPSizeRandomMoney = 1500;
 - (NSUInteger)giveMoney {
     NSUInteger tempMoney = self.money;
     self.money = 0;
+    
     return tempMoney;
 }
 

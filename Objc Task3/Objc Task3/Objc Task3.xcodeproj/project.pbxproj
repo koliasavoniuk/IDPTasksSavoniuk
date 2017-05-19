@@ -19,7 +19,6 @@
 		7668929A1ECDB64D007CE08F /* IDPRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 766892821ECDB64D007CE08F /* IDPRandom.m */; };
 		7668929B1ECDB64D007CE08F /* IDPAccountant.m in Sources */ = {isa = PBXBuildFile; fileRef = 766892851ECDB64D007CE08F /* IDPAccountant.m */; };
 		7668929C1ECDB64D007CE08F /* IDPDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = 766892871ECDB64D007CE08F /* IDPDirector.m */; };
-		7668929D1ECDB64D007CE08F /* IDPHuman.m in Sources */ = {isa = PBXBuildFile; fileRef = 766892891ECDB64D007CE08F /* IDPHuman.m */; };
 		7668929E1ECDB64D007CE08F /* IDPWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7668928B1ECDB64D007CE08F /* IDPWasher.m */; };
 		7668929F1ECDB64D007CE08F /* IDPWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7668928D1ECDB64D007CE08F /* IDPWorker.m */; };
 		766892A01ECDB64D007CE08F /* IDPCarWashTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 766892901ECDB64D007CE08F /* IDPCarWashTest.m */; };
@@ -63,8 +62,6 @@
 		766892851ECDB64D007CE08F /* IDPAccountant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPAccountant.m; sourceTree = "<group>"; };
 		766892861ECDB64D007CE08F /* IDPDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPDirector.h; sourceTree = "<group>"; };
 		766892871ECDB64D007CE08F /* IDPDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPDirector.m; sourceTree = "<group>"; };
-		766892881ECDB64D007CE08F /* IDPHuman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPHuman.h; sourceTree = "<group>"; };
-		766892891ECDB64D007CE08F /* IDPHuman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPHuman.m; sourceTree = "<group>"; };
 		7668928A1ECDB64D007CE08F /* IDPWasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPWasher.h; sourceTree = "<group>"; };
 		7668928B1ECDB64D007CE08F /* IDPWasher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPWasher.m; sourceTree = "<group>"; };
 		7668928C1ECDB64D007CE08F /* IDPWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPWorker.h; sourceTree = "<group>"; };
@@ -200,8 +197,6 @@
 				766892851ECDB64D007CE08F /* IDPAccountant.m */,
 				766892861ECDB64D007CE08F /* IDPDirector.h */,
 				766892871ECDB64D007CE08F /* IDPDirector.m */,
-				766892881ECDB64D007CE08F /* IDPHuman.h */,
-				766892891ECDB64D007CE08F /* IDPHuman.m */,
 				7668928A1ECDB64D007CE08F /* IDPWasher.h */,
 				7668928B1ECDB64D007CE08F /* IDPWasher.m */,
 				7668928C1ECDB64D007CE08F /* IDPWorker.h */,
@@ -281,7 +276,6 @@
 				7668929E1ECDB64D007CE08F /* IDPWasher.m in Sources */,
 				7668929C1ECDB64D007CE08F /* IDPDirector.m in Sources */,
 				766892971ECDB64D007CE08F /* NSObject+IDPExtension.m in Sources */,
-				7668929D1ECDB64D007CE08F /* IDPHuman.m in Sources */,
 				7668929B1ECDB64D007CE08F /* IDPAccountant.m in Sources */,
 				7668929A1ECDB64D007CE08F /* IDPRandom.m in Sources */,
 				766892911ECDB64D007CE08F /* main.m in Sources */,

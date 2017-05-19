@@ -13,4 +13,5 @@
 + (instancetype)objectsWithCount:(NSUInteger)count factoryBlock:(id(^)(void))block;
 
 - (NSArray *)arrayByFilteringWithBlock:(BOOL(^)(id object))block;
+
 @end

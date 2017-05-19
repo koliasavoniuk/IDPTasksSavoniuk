@@ -6,17 +6,13 @@
 //  Copyright © 2017 Student002. All rights reserved.
 //
 
-#import "IDPCarWashTest.h"
 #import "IDPManager.h"
+
 #import "IDPBuilding.h"
 #import "IDPCarWashRoom.h"
-#import "IDPCar.h"
 #import "IDPAccountant.h"
 #import "IDPWasher.h"
 #import "IDPDirector.h"
-
-#import "IDPRandom.h"
-#import "IDPConstants.h"
 
 #import "NSArray+IDPCategory.h"
 #import "NSObject+IDPExtension.h"
@@ -29,10 +25,9 @@
 @implementation IDPManager
 
 #pragma mark -
-#pragma mark Initializations and Reallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.name = nil;
     self.buildings = nil;
     
     [super dealloc];
@@ -40,11 +35,8 @@
 
 - (instancetype)init {
     self = [super init];
-    self.name = [NSString stringWithFormat:@"%@ #%lu",
-                 [self class],
-                 IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.buildings = [NSMutableArray array];
-    [self startProcess];
+    [self buildCarWash];
     
     return self;
 }
@@ -52,33 +44,34 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)startProcess {
-    IDPBuilding *building = [IDPBuilding object];
+- (void)buildCarWash {
+    IDPBuilding *officeBuilding = [IDPBuilding object];
+    IDPBuilding *carWashBuilding = [IDPBuilding object];
+    
+    // creating workers
     IDPWasher *washer = [IDPWasher object];
-    
-    // car wash
-    IDPRoomWashCar *carWashRoom = [IDPRoomWashCar object];
-    [carWashRoom addWorker:washer];
-    
-    // accountant & director
     IDPAccountant *accountant = [IDPAccountant object];
     IDPDirector *director = [IDPDirector object];
+    
+    // car wash
+    IDPCarWashRoom *carWashRoom = [IDPCarWashRoom object];
+    [carWashRoom addWorker:washer];
     
     // office
     IDPRoom *officeRoom = [IDPRoom object];
     [officeRoom addWorkers:@[accountant,director]];
     
-    IDPBuilding *office = [IDPBuilding object];
-    [office addRoom:officeRoom];
-    [building addRoom:carWashRoom];
-    [building addRoom:officeRoom];
-    [self.buildings addObject:building];
+    // add rooms to building
+    [carWashBuilding addRoom:carWashRoom];
+    [officeBuilding addRoom:officeRoom];
+
+    [self.buildings addObjectsFromArray:@[carWashRoom, officeRoom]];
 }
 
 - (void)washCar:(IDPCar *)car {
-    IDPWasher *freeWasher = [self freeWorkerWithArray:[self workersWithClass:[IDPWasher class]]];
-    IDPAccountant *freeAccountant = [self freeWorkerWithArray:[self workersWithClass:[IDPAccountant class]]];
-    IDPDirector *freeDirector = [self freeWorkerWithArray:[self workersWithClass:[IDPDirector class]]];
+    IDPWasher *freeWasher = [self freeWorkerWithClass:[IDPWasher class]];
+    IDPAccountant *freeAccountant = [self freeWorkerWithClass:[IDPAccountant class]];
+    IDPDirector *freeDirector = [self freeWorkerWithClass:[IDPDirector class]];
     
     // 1. Мойщику мойки отдают машину
     // 2. Мойщик моет машину
@@ -94,24 +87,23 @@
     [freeDirector processObject:freeAccountant];
 }
 
-- (id)freeWorkerWithArray:(NSArray *)workers {
-    for (IDPWorker *worker in workers) {
-        if (worker.state == IDPWorkerFree) {
-            return worker;
-        }
-    }
-    
-    return nil;
-}
-
-
 - (id)workersWithClass:(Class)class {
     NSMutableArray *array = [NSMutableArray array];
-    for (id building in self.buildings) {
+    for (IDPBuilding *building in self.buildings) {
         [array addObjectsFromArray:[building workersWithClass:class]];
     }
     
-    return array;
+    return [[array copy] autorelease];
+}
+
+- (id)freeWorkersWithClass:(Class)class {
+    return [[self workersWithClass:class] arrayByFilteringWithBlock:^BOOL(IDPWorker *worker) {
+        return worker.state == IDPWorkerFree;
+    }];
+}
+
+- (id)freeWorkerWithClass:(Class)class {
+    return [[self freeWorkersWithClass:class]firstObject];
 }
 
 @end

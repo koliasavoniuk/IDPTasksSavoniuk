@@ -7,7 +7,9 @@
 //
 
 #import "IDPRoom.h"
+
 #import "IDPRandom.h"
+#import "IDPConstants.h"
 
 #import "NSArray+IDPCategory.h"
 
@@ -21,13 +23,9 @@
 @dynamic workers;
 
 #pragma mark -
-#pragma mark Class Methods
-
-#pragma mark -
-#pragma mark Initializations and Reallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.name = nil;
     self.mutableWorkers = nil;
     
     [super dealloc];
@@ -35,10 +33,7 @@
 
 - (instancetype)init {
     self = [super init];
-        self.name = [NSString stringWithFormat:@"%@ #%lu",
-                     [self class],
-                     (unsigned long)IDPRandomTillNumber(kIDPSizeRandomNames)];
-        self.mutableWorkers = [NSMutableArray array];
+    self.mutableWorkers = [NSMutableArray array];
     
     return self;
 }
@@ -48,10 +43,6 @@
 
 - (NSArray *)workers {
     return [[self.mutableWorkers copy] autorelease];
-}
-
-- (NSUInteger)workerCount {
-    return self.workers.count;
 }
 
 #pragma mark -
@@ -64,7 +55,6 @@
 }
 
 - (void)addWorkers:(NSArray *)workers {
-
     for (id worker in workers) {
         [self addWorker:worker];
     }
@@ -83,7 +73,7 @@
 
 - (NSArray *)workersWithClass:(Class)class {
     return [[self workers] arrayByFilteringWithBlock:^BOOL(id object) {
-        return [object isKindOfClass:[class class]];
+        return [object isKindOfClass:class];
     }];
 }
 
