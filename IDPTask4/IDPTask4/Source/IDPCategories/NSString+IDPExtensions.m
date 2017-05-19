@@ -8,72 +8,70 @@
 
 #import "NSString+IDPExtensions.h"
 
-#define NSUIntegerConstExtern(nameConstant) extern const Range nameConstant
-#define NSUIntegerConst(nameConstant, value1, value2) const int nameConstant = value
+#import "IDPRandom.h"
 
 static const NSUInteger kIDPStringDefaultRandomStringLength = 25;
 
 static NSRange IDPAlphabetRange(char loc, char len) {
     NSUInteger min = MIN(loc, len);
     NSUInteger max = MAX(loc, len);
+    
     return NSMakeRange(min, max - min + 1 );
 }
 
 @implementation NSString (IDPExtension)
 
 #pragma mark -
-#pragma mark Classes Methods
+#pragma mark Class Methods
 
-+ (id)numericAlphabet {
++ (instancetype)numericAlphabet {
     return [self alphabetWithUnicodeRange:IDPAlphabetRange('0', '9')];
 }
 
-+ (id)lowercaseLetterAlphabet {
++ (instancetype)lowercaseLetterAlphabet {
     return [self alphabetWithUnicodeRange:IDPAlphabetRange('a', 'z')];
 }
 
-+ (id)capitalizedLetterAlphabet {
++ (instancetype)capitalizedLetterAlphabet {
     return [self alphabetWithUnicodeRange:IDPAlphabetRange('A', 'Z')];
 }
 
-+ (id)alphanumericAlphabet {
++ (instancetype)alphanumericAlphabet {
     NSString *result = [self letterAlphabet];
-    result = [result stringByAppendingString:[self numericAlphabet]];
     
-    return result;
+    return [result stringByAppendingString:[self numericAlphabet]];
 }
 
-+ (id)letterAlphabet {
++ (instancetype)letterAlphabet {
     NSString *result = [self lowercaseLetterAlphabet];
-    result = [result stringByAppendingString:[self capitalizedLetterAlphabet]];
-    
-    return result;
+
+    return [result stringByAppendingString:[self capitalizedLetterAlphabet]];
 }
 
-+ (id)alphabetWithUnicodeRange:(NSRange)renge {
++ (instancetype)alphabetWithUnicodeRange:(NSRange)range {
     NSMutableString *result = [NSMutableString string];
-    for (unichar character = renge.location; character < NSMaxRange(renge); character++) {
+    for (unichar character = range.location; character < NSMaxRange(range); character++) {
         [result appendFormat:@"%c", character];
     }
     
     return [self stringWithString:result];
 }
 
-+ (id)randomString {
++ (instancetype)randomString {
     return [self randomStringWithLength:IDPRandomTillNumber(kIDPStringDefaultRandomStringLength)];
 }
 
-+ (id)randomStringWithLength:(NSUInteger)length {
++ (instancetype)randomStringWithLength:(NSUInteger)length {
     return [self randomStringWithLength:length alphabet:[self alphanumericAlphabet]];
 }
 
-+ (id)randomStringWithLength:(NSUInteger)length alphabet:(NSString *)alphabet {
++ (instancetype)randomStringWithLength:(NSUInteger)length alphabet:(NSString *)alphabet {
     NSMutableString *result = [NSMutableString stringWithCapacity:length];
     NSUInteger alphabetLength = [alphabet length];
     
     for (NSUInteger index = 0; index < length; index++) {
-        unichar resultChar = [alphabet characterAtIndex:IDPRandomTillNumber(alphabetLength)];
-        [result appendFormat:@"%c",resultChar];
+        unichar resultChar = [alphabet characterAtIndex:IDPRandomTillNumber(alphabetLength - 1)];
+        [result appendFormat:@"%c", resultChar];
     }
     
     return [self stringWithString:result];

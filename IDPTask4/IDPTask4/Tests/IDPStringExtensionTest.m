@@ -18,19 +18,19 @@ static NSUInteger kIDPStringLength = 50;
 #pragma mark Private Declaration
 
 static
-void IDPRandomString();
+void IDPStringExtensionTesting();
 
 #pragma mark -
 #pragma mark Public Implementations
 
 void IDPStringExtensionTest() {
-    IDPRandomString();
+    IDPStringExtensionTesting();
 }
 
 #pragma mark -
-#pragma mark PrivateDeclarations
+#pragma mark Private Declarations
 
-void IDPRandomString() {
+void IDPStringExtensionTesting() {
     NSLog(@"%@", [NSString randomString]);
     NSLog(@"%@", [NSString randomStringWithLength:kIDPStringLength]);
     NSLog(@"%@", [NSString randomStringWithLength:kIDPStringLength alphabet:[NSString numericAlphabet]]);
