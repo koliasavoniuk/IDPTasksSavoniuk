@@ -32,7 +32,6 @@
 #pragma mark Initializations and Reallocations
 
 - (void)dealloc {
-    self.name = nil;
     self.mutableRooms = nil;
     
     [super dealloc];
@@ -40,9 +39,6 @@
 
 - (instancetype)init {
     self = [super init];
-    self.name = [NSString stringWithFormat:@"%@ #%lu",
-                 [self class],
-                 IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.mutableRooms = [NSMutableArray array];
     
     return self;

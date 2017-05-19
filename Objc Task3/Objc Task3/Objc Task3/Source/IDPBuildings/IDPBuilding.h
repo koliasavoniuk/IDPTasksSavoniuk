@@ -11,7 +11,6 @@
 #import "IDPRoom.h"
 
 @interface IDPBuilding : NSObject
-@property (nonatomic, copy)     NSString        *name;
 @property (nonatomic, readonly) NSMutableArray  *rooms;
 
 - (void)addRoom:(IDPRoom *)room;

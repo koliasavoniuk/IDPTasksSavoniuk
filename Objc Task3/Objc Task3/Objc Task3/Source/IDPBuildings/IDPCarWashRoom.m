@@ -53,19 +53,4 @@
     [self.mutableCars removeObject:car];
 }
 
-- (void)addCars:(NSArray *)cars {
-    for (id car in cars) {
-        [self addCar:car];
-    }
-}
-
-- (void)removeCars:(NSArray *)cars {
-    for (id car in cars) {
-        [self removeCar:car];
-    }
-}
-
-    
-
-
 @end

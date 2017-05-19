@@ -16,7 +16,4 @@
 - (void)addCar:(IDPCar *)car;
 - (void)removeCar:(IDPCar *)car;
 
-- (void)addCars:(NSArray *)cars;
-- (void)removeCars:(NSArray *)cars;
-
 @end
