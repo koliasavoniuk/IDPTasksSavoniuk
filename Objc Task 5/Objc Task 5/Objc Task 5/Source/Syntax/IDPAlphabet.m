@@ -42,25 +42,25 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
--(instancetype)initWithRange:(NSRange)range {
+- (instancetype)initWithRange:(NSRange)range {
     [self release];
     
     return [[[IDPRangeAlphabet alloc] initWithRange:range] autorelease];
 }
 
--(instancetype)initWithAlphabets:(NSArray *)alphabets {
+- (instancetype)initWithAlphabets:(NSArray *)alphabets {
     [self release];
     
     return [[[IDPClusterAlphabet alloc] initWithAlphabets:alphabets] autorelease];
 }
 
--(instancetype)initWithStrings:(NSArray *)strings {
+- (instancetype)initWithStrings:(NSArray *)strings {
     [self release];
     
     return [[[IDPStringsAlphabet alloc] initWithStrings:strings] autorelease];
 }
 
--(instancetype)initWithSymbols:(NSString *)string {
+- (instancetype)initWithSymbols:(NSString *)string {
     return [self initWithStrings:[string symbols]];
 }
 

@@ -17,7 +17,6 @@ SPEC_BEGIN(IDPAlphabetSpec)
 
 describe(@"IDPAlphabet", ^{
     __block IDPAlphabet *alphabet = nil;
-    
     /*
      + (instancetype)alphabetWithRange:(NSRange)range;
      + (instancetype)alphabetWithStrings:(NSArray *)strings;
@@ -41,7 +40,6 @@ describe(@"IDPAlphabet", ^{
     });
     
     context(@"when initialized with +alphabetWithRange: with range 'A'-'B'", ^{
-        
         beforeAll(^{
             alphabet = [IDPAlphabet alphabetWithRange:NSMakeRange('A', 'B' - 'A')];
         });
@@ -64,8 +62,7 @@ describe(@"IDPAlphabet", ^{
         });
     });
     
-    context(@"when initialized with -initWithRange: with range 'A'-'B'", ^{
-        
+    context(@"when initialized with -initWithRange: with range 'A'-'B'", ^{        
         beforeAll(^{
             alphabet = [[IDPAlphabet alloc] initWithRange:NSMakeRange('A', 'B' - 'A')];
         });
