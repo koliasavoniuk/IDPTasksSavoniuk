@@ -14,6 +14,12 @@
 
 #import "NSString+IDPExtensions.h"
 
+NSRange IDPMakeAlphabetRange(unichar value1, unichar value2) {
+    unichar minValue = MIN(value1, value2);
+    unichar maxValue = MAX(value1, value2);
+    
+    return NSMakeRange(minValue, maxValue);
+}
 
 @implementation IDPAlphabet
 

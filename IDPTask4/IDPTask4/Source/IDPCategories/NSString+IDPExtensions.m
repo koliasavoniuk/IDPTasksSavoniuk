@@ -8,6 +8,8 @@
 
 #import "NSString+IDPExtensions.h"
 
+#import <math.h>
+
 #import "IDPRandom.h"
 
 static const NSUInteger kIDPStringDefaultRandomStringLength = 25;

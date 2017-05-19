@@ -9,8 +9,8 @@
 
 #import <Foundation/Foundation.h>
 
-//extern
-//NSRange IDPMakeAlphabetRange)(unichar value1, unichar value2);
+extern
+NSRange IDPMakeAlphabetRange(unichar value1, unichar value2);
 
 @interface IDPAlphabet : NSArray
 
