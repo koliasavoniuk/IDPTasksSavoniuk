@@ -18,7 +18,7 @@ NSRange IDPMakeAlphabetRange(unichar value1, unichar value2) {
     unichar minValue = MIN(value1, value2);
     unichar maxValue = MAX(value1, value2);
     
-    return NSMakeRange(minValue, maxValue);
+    return NSMakeRange(minValue, maxValue - minValue + 1);
 }
 
 @implementation IDPAlphabet
@@ -75,19 +75,29 @@ NSRange IDPMakeAlphabetRange(unichar value1, unichar value2) {
 #pragma mark -
 #pragma mark Public
 
--(NSUInteger)count {
+- (NSUInteger)count {
     [self doesNotRecognizeSelector:_cmd];
     
     return 0;
 }
--(NSString *)stringAtIndex:(NSUInteger)index {
+
+- (NSString *)stringAtIndex:(NSUInteger)index {
     [self doesNotRecognizeSelector:_cmd];
     
     return nil;
 }
 
--(id)objectAtIndexedSubscript:(NSUInteger)idx {
-    return [self stringAtIndex:idx];
+- (id)objectAtIndexedSubscript:(NSUInteger)index {
+    return [self stringAtIndex:index];
+}
+
+- (NSString *)string {
+    NSMutableString *string = [NSMutableString stringWithCapacity:[self count]];
+    for (NSString *symbol in self) {
+        [string appendString:symbol];
+    }
+    
+    return [[string copy] autorelease];
 }
 
 #pragma mark -

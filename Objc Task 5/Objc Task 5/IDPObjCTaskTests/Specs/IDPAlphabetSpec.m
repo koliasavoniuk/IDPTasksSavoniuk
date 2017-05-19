@@ -31,7 +31,7 @@ describe(@"IDPAlphabet", ^{
      -(NSUInteger)count;
      -(NSString *)stringAtIndex:(NSUInteger)index;
      
-     -(id)objectAtIndexedSubscript:(NSUInteger)idx;
+     -(id)objectAtIndexedSubscript:(NSUInteger)index;
      
      */
     
@@ -59,6 +59,10 @@ describe(@"IDPAlphabet", ^{
         
         it(@"should contain @\"B\" at index = 1", ^{
             [[alphabet[1] should] equal:@"B"];
+        });
+        
+        it(@"should return @\"AB\" from -string", ^{
+            [[[alphabet string] should] equal:@"AB"];
         });
     });
     

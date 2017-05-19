@@ -10,6 +10,6 @@
 
 @interface IDPAccountant : IDPWorker
 
-- (void)countMoney;
+- (void)calculateMoney;
 
 @end

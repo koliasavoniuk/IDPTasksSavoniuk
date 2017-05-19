@@ -24,9 +24,11 @@ NSRange IDPMakeAlphabetRange(unichar value1, unichar value2);
 - (instancetype)initWithStrings:(NSArray *)strings;
 - (instancetype)initWithSymbols:(NSString *)strings;
 
--(NSUInteger)count;
--(NSString *)stringAtIndex:(NSUInteger)index;
+- (NSUInteger)count;
+- (NSString *)stringAtIndex:(NSUInteger)index;
 
--(id)objectAtIndexedSubscript:(NSUInteger)idx;
+- (NSString *)objectAtIndexedSubscript:(NSUInteger)index;
+
+- (NSString *)string;
 
 @end

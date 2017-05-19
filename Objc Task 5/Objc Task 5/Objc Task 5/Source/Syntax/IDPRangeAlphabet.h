@@ -9,6 +9,7 @@
 #import "IDPAlphabet.h"
 
 @interface IDPRangeAlphabet : IDPAlphabet
+@property (nonatomic, readonly) NSRange range;
 
 - (instancetype)initWithRange:(NSRange)range;
 

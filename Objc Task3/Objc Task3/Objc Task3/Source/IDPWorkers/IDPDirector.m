@@ -8,9 +8,11 @@
 
 #import "IDPDirector.h"
 
+#import "IDPAccountant.h"
+
 @implementation IDPDirector
 
-- (void)performWorkWithObject:(id)object {
+- (void)performWorkWithObject:(IDPAccountant *)object {
     [self calculateProfit];
 }
 
