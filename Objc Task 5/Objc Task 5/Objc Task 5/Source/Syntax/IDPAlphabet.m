@@ -23,6 +23,10 @@ NSRange IDPMakeAlphabetRange(unichar firstChar, unichar secondChar) {
     return NSMakeRange(minValue, maxValue - minValue + 1);
 }
 
+@interface IDPAlphabet ()
+@property (nonatomic, assign) NSUInteger  count;
+
+@end
 @implementation IDPAlphabet
 
 #pragma mark -

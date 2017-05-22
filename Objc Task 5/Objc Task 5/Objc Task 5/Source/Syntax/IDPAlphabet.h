@@ -13,6 +13,7 @@ extern
 NSRange IDPMakeAlphabetRange(unichar firstChar, unichar lactChar);
 
 @interface IDPAlphabet : NSObject<NSFastEnumeration>
+@property (nonatomic, readonly) NSUInteger  count;
 
 + (instancetype)alphanumericAlphabet;
 + (instancetype)numericAlphabet;

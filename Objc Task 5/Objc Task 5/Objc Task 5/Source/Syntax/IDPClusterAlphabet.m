@@ -10,7 +10,7 @@
 
 @interface IDPClusterAlphabet ()
 @property (nonatomic, retain)   NSArray     *alphabets;
-@property (nonatomic, assign)   NSUInteger  count;
+//@property (nonatomic, assign)   NSUInteger  count;
 
 - (NSUInteger)countWithAlphabets:(NSArray *)alphabets;
 
@@ -31,7 +31,7 @@
     self = [super init];
     if (self) {
         self.alphabets = alphabets;
-        self.count = [self countWithAlphabets:alphabets];
+        //self.count = [self countWithAlphabets:alphabets];
     }
     
     return self;
@@ -40,6 +40,10 @@
 
 #pragma mark -
 #pragma mark Public
+
+//- (NSUInteger)count {
+//    return [self countWithAlphabets:alphabets];
+//}
 
 - (NSString *)stringAtIndex:(NSUInteger)index {
     NSUInteger count = self.count;
