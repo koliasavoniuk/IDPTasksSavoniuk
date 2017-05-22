@@ -10,9 +10,16 @@
 #import <Foundation/Foundation.h>
 
 extern
-NSRange IDPMakeAlphabetRange(unichar value1, unichar value2);
+NSRange IDPMakeAlphabetRange(unichar firstChar, unichar lactChar);
 
-@interface IDPAlphabet : NSArray
+@interface IDPAlphabet : NSObject<NSFastEnumeration>
+
++ (instancetype)alphanumericAlphabet;
++ (instancetype)numericAlphabet;
++ (instancetype)lowercaseLetterAlphabet;
++ (instancetype)capitalizedLetterAlphabet;
++ (instancetype)letterAlphabet;
+
 
 + (instancetype)alphabetWithRange:(NSRange)range;
 + (instancetype)alphabetWithStrings:(NSArray *)strings;

@@ -11,12 +11,6 @@
 
 @interface NSString (IDPExtension)
 
-+ (instancetype)alphanumericAlphabet;
-+ (instancetype)numericAlphabet;
-+ (instancetype)lowercaseLetterAlphabet;
-+ (instancetype)capitalizedLetterAlphabet;
-+ (instancetype)letterAlphabet;
-
 + (instancetype)alphabetWithUnicodeRange:(NSRange)range;
 
 + (instancetype)randomString;

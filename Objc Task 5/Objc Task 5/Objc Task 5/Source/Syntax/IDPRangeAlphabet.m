@@ -26,7 +26,7 @@
         self.range = range;
     }
     
-    return nil;
+    return self;
 }
 
 #pragma mark -

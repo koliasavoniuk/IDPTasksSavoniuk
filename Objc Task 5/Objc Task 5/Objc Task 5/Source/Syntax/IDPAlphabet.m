@@ -6,9 +6,9 @@
 //  Copyright © 2017 Student002. All rights reserved.
 //
 
-#import "IDPAlphabet.h"
-
 #import <math.h>
+
+#import "IDPAlphabet.h"
 
 #import "IDPRangeAlphabet.h"
 #import "IDPClusterAlphabet.h"
@@ -16,9 +16,9 @@
 
 #import "NSString+IDPExtensions.h"
 
-NSRange IDPMakeAlphabetRange(unichar value1, unichar value2) {
-    unichar minValue = MIN(value1, value2);
-    unichar maxValue = MAX(value1, value2);
+NSRange IDPMakeAlphabetRange(unichar firstChar, unichar secondChar) {
+    unichar minValue = MIN(firstChar, secondChar);
+    unichar maxValue = MAX(firstChar, secondChar);
     
     return NSMakeRange(minValue, maxValue - minValue + 1);
 }
@@ -26,10 +26,35 @@ NSRange IDPMakeAlphabetRange(unichar value1, unichar value2) {
 @implementation IDPAlphabet
 
 #pragma mark -
-#pragma mark NSArray
-
-#pragma mark -
 #pragma mark Class Methods
+
++ (instancetype)numericAlphabet {
+    return [self alphabetWithRange:IDPMakeAlphabetRange('0', '9')];
+}
+
++ (instancetype)lowercaseLetterAlphabet {
+    return [self alphabetWithRange:IDPMakeAlphabetRange('a', 'z')];
+}
+
++ (instancetype)capitalizedLetterAlphabet {
+    return [self alphabetWithRange:IDPMakeAlphabetRange('A', 'Z')];
+}
+
++ (instancetype)letterAlphabet {
+    NSArray *alphabets = [NSArray arrayWithObjects:[self lowercaseLetterAlphabet],
+                          [self capitalizedLetterAlphabet],
+                          nil];
+    
+    return [self alphabetWithAlphabets:alphabets];
+}
+
++ (instancetype)alphanumericAlphabet {
+    NSArray *alphabets = [NSArray arrayWithObjects:[self letterAlphabet],
+                          [self numericAlphabet],
+                          nil];
+    
+    return [self alphabetWithAlphabets:alphabets];
+}
 
 + (instancetype)alphabetWithRange:(NSRange)range {
     return [[[IDPRangeAlphabet alloc] initWithRange:range] autorelease];
@@ -40,7 +65,7 @@ NSRange IDPMakeAlphabetRange(unichar value1, unichar value2) {
 }
 
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabets {
-    return [[[IDPRangeAlphabet alloc] initWithAlphabets:alphabets] autorelease];
+    return [[[IDPClusterAlphabet alloc] initWithAlphabets:alphabets] autorelease];
 }
 
 + (instancetype)alphabetWithSymbols:(NSString *)string {
@@ -49,6 +74,10 @@ NSRange IDPMakeAlphabetRange(unichar value1, unichar value2) {
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    [super dealloc];
+}
 
 - (instancetype)initWithRange:(NSRange)range {
     [self release];
@@ -89,12 +118,13 @@ NSRange IDPMakeAlphabetRange(unichar value1, unichar value2) {
     return nil;
 }
 
-- (id)objectAtIndexedSubscript:(NSUInteger)index {
+- (NSString *)objectAtIndexedSubscript:(NSUInteger)index {
     return [self stringAtIndex:index];
 }
 
 - (NSString *)string {
-    NSMutableString *string = [NSMutableString stringWithCapacity:[self count]];
+    NSMutableString *string = [NSMutableString stringWithCapacity:self.count];
+    
     for (NSString *symbol in self) {
         [string appendString:symbol];
     }
@@ -106,9 +136,25 @@ NSRange IDPMakeAlphabetRange(unichar value1, unichar value2) {
 #pragma mark NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                  objects:(id  _Nullable [])buffer
-                                    count:(NSUInteger)len {
-    return 0;
+                                  objects:(id [])stackbuf
+                                    count:(NSUInteger)resultLength
+{
+    state->mutationsPtr = (unsigned long *)self;
+    
+    NSUInteger length = MIN(state->state + resultLength, [self count]);
+    resultLength = length - state->state;
+    
+    if (0 != resultLength) {
+        for (NSUInteger index = 0; index < resultLength; index++) {
+            stackbuf[index] = self[index + state->state];
+        }
+    }
+    
+    state->itemsPtr = stackbuf;
+    
+    state->state += resultLength;
+    
+    return resultLength;
 }
 
 @end
