@@ -48,20 +48,16 @@
     IDPBuilding *officeBuilding = [IDPBuilding object];
     IDPBuilding *carWashBuilding = [IDPBuilding object];
     
-    // creating workers
     IDPWasher *washer = [IDPWasher object];
     IDPAccountant *accountant = [IDPAccountant object];
     IDPDirector *director = [IDPDirector object];
     
-    // car wash
     IDPCarWashRoom *carWashRoom = [IDPCarWashRoom object];
     [carWashRoom addWorker:washer];
     
-    // office
     IDPRoom *officeRoom = [IDPRoom object];
-    [officeRoom addWorkers:@[accountant,director]];
+    [officeRoom addWorkers:@[accountant, director]];
     
-    // add rooms to building
     [carWashBuilding addRoom:carWashRoom];
     [officeBuilding addRoom:officeRoom];
 
@@ -69,26 +65,27 @@
 }
 
 - (void)washCar:(IDPCar *)car {
-    IDPWasher *freeWasher = [self freeWorkerWithClass:[IDPWasher class]];
-    IDPAccountant *freeAccountant = [self freeWorkerWithClass:[IDPAccountant class]];
-    IDPDirector *freeDirector = [self freeWorkerWithClass:[IDPDirector class]];
+    IDPWasher *washer = [self freeWorkerWithClass:[IDPWasher class]];
+    IDPAccountant *accountant = [self freeWorkerWithClass:[IDPAccountant class]];
+    IDPDirector *director = [self freeWorkerWithClass:[IDPDirector class]];
     
     // 1. Мойщику мойки отдают машину
     // 2. Мойщик моет машину
     // 3. Мойщик забирает деньги у машины
-    [freeWasher processObject:car];
+    [washer processObject:car];
     
     // 4. Мойщик отдает деньги бухгалтеру
     // 5. Бухгалтер считает деньги
-    [freeAccountant processObject:freeWasher];
+    [accountant processObject:washer];
     
     // 6. Бухгалтер отдает деньги директору
     // 7. Директор получает прибыль
-    [freeDirector processObject:freeAccountant];
+    [director processObject:accountant];
 }
 
 - (id)workersWithClass:(Class)class {
     NSMutableArray *array = [NSMutableArray array];
+    
     for (IDPBuilding *building in self.buildings) {
         [array addObjectsFromArray:[building workersWithClass:class]];
     }

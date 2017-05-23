@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, IDPCarState) {
 };
 
 @interface IDPCar : NSObject <IDPCashFlow>
-@property(nonatomic,copy)   NSString    *name;
-@property(nonatomic,assign) IDPCarState state;
+@property(nonatomic, copy)   NSString    *name;
+@property(nonatomic, assign) IDPCarState state;
 
 @end
