@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "IDPRandom.h"
 
 @interface NSString (IDPExtension)

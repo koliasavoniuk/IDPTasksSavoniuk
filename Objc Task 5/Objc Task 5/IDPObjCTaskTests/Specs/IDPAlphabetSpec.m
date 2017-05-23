@@ -98,6 +98,7 @@ describe(@"IDPAlphabet", ^{
         
         it(@"should return symbols in range 'A'-'z'", ^{
             unichar character = range.location;
+            
             for (NSString *symbol in alphabet) {
                 [[symbol should] equal:[NSString stringWithFormat:@"%c", character]];
                 character++;

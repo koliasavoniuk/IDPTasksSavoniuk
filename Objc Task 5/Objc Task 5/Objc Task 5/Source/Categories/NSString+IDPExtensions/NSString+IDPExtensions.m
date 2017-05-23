@@ -18,9 +18,9 @@ static const NSUInteger kIDPStringDefaultRandomStringLength = 25;
 #pragma mark -
 #pragma mark Private Methods
 
-static NSRange alphabetRange(char loc, char len) {
-    NSUInteger min = MIN(loc, len);
-    NSUInteger max = MAX(loc, len);
+static NSRange alphabetRange(char location, char length) {
+    NSUInteger min = MIN(location, length);
+    NSUInteger max = MAX(location, length);
     return NSMakeRange(min, max - min + 1 );
 }
 
