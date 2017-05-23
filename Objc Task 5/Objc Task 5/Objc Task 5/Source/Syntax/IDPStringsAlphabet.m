@@ -26,9 +26,7 @@
 
 - (instancetype)initWithStrings:(NSArray *)strings {
     self = [super init];
-    if (self) {
-        self.strings = strings;
-    }
+    self.strings = strings;
     
     return self;
 }

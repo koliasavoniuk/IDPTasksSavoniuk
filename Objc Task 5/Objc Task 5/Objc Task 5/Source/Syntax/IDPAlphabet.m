@@ -27,10 +27,11 @@ NSRange IDPMakeAlphabetRange(unichar firstChar, unichar secondChar) {
 @property (nonatomic, assign) NSUInteger  count;
 
 @end
+
 @implementation IDPAlphabet
 
 #pragma mark -
-#pragma mark Class Methods
+#pragma mark Class
 
 + (instancetype)numericAlphabet {
     return [self alphabetWithRange:IDPMakeAlphabetRange('0', '9')];
@@ -155,7 +156,6 @@ NSRange IDPMakeAlphabetRange(unichar firstChar, unichar secondChar) {
     }
     
     state->itemsPtr = stackbuf;
-    
     state->state += resultLength;
     
     return resultLength;

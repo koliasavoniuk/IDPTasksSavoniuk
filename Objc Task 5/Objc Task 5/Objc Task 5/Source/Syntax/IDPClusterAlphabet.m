@@ -9,8 +9,7 @@
 #import "IDPClusterAlphabet.h"
 
 @interface IDPClusterAlphabet ()
-@property (nonatomic, retain)   NSArray     *alphabets;
-//@property (nonatomic, assign)   NSUInteger  count;
+@property (nonatomic, retain)   NSArray *alphabets;
 
 - (NSUInteger)countWithAlphabets:(NSArray *)alphabets;
 
@@ -29,10 +28,7 @@
 
 - (instancetype)initWithAlphabets:(NSArray *)alphabets {
     self = [super init];
-    if (self) {
-        self.alphabets = alphabets;
-        //self.count = [self countWithAlphabets:alphabets];
-    }
+    self.alphabets = alphabets;
     
     return self;
 }

@@ -21,7 +21,6 @@ NSRange IDPMakeAlphabetRange(unichar firstChar, unichar lactChar);
 + (instancetype)capitalizedLetterAlphabet;
 + (instancetype)letterAlphabet;
 
-
 + (instancetype)alphabetWithRange:(NSRange)range;
 + (instancetype)alphabetWithStrings:(NSArray *)strings;
 + (instancetype)alphabetWithAlphabets:(NSArray *)alphabets;

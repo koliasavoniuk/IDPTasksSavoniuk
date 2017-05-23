@@ -175,6 +175,7 @@ describe(@"IDPAlphabet", ^{
         
         it(@"should return count of symbols equal to 'A'-'z' range", ^{
             NSUInteger count = 0;
+            
             for (NSString *symbol in alphabet) {
                 [symbol description];
                 count++;
@@ -185,6 +186,7 @@ describe(@"IDPAlphabet", ^{
         
         it(@"should return symbols in range 'A'-'z'", ^{
             unichar character = range.location;
+            
             for (NSString *symbol in alphabet) {
                 [[symbol should] equal:[NSString stringWithFormat:@"%c", character]];
                 character++;
@@ -244,6 +246,7 @@ describe(@"IDPAlphabet", ^{
     context(@"when initialized with +initWithStrings: with array containing 'A'-'z' when enumerated", ^{
         NSRange capitalizedRange = IDPMakeAlphabetRange('A', 'Z');
         NSRange lowercaseRange = IDPMakeAlphabetRange('a', 'z');
+        
         IDPAlphabet *capitalizedAlphabet = [IDPAlphabet alphabetWithRange:capitalizedRange];
         IDPAlphabet *lowercaseAlphabet = [IDPAlphabet alphabetWithRange:lowercaseRange];
         
@@ -261,6 +264,7 @@ describe(@"IDPAlphabet", ^{
         
         it(@"should return count of symbols equal to 'A'-'Z'+'a'-'z' range", ^{
             NSUInteger count = 0;
+            
             for (NSString *symbol in alphabet) {
                 [symbol description];
                 count++;
@@ -272,11 +276,9 @@ describe(@"IDPAlphabet", ^{
         it(@"should return symbols in range 'A'-'z'+'a'-'z'", ^{
             NSMutableString *string = [NSMutableString stringWithString:[capitalizedAlphabet string]];
             [string appendString:[lowercaseAlphabet string]];
-            
             NSUInteger index = 0;
+            
             for (NSString *symbol in alphabet) {
-                
-                
                 [[symbol should] equal:[NSString stringWithFormat:@"%c", [string characterAtIndex:index]]];
                 index++;
             }
