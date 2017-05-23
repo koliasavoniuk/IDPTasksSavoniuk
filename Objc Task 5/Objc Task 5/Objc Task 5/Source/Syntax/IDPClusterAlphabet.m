@@ -41,9 +41,9 @@
 #pragma mark -
 #pragma mark Public
 
-//- (NSUInteger)count {
-//    return [self countWithAlphabets:alphabets];
-//}
+- (NSUInteger)count {
+    return [self countWithAlphabets:self.alphabets];
+}
 
 - (NSString *)stringAtIndex:(NSUInteger)index {
     NSUInteger count = self.count;

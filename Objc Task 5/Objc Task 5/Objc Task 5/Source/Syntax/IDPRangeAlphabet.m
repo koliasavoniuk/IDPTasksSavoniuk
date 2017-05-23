@@ -22,9 +22,7 @@
 
 - (instancetype)initWithRange:(NSRange)range {
     self = [super init];
-    if (self) {
-        self.range = range;
-    }
+    self.range = range;
     
     return self;
 }

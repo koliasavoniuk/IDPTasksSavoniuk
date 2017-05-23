@@ -87,8 +87,10 @@ describe(@"IDPAlphabet", ^{
         
         it(@"should return count of symbols equal to 'A'-'z' range", ^{
             NSUInteger count = 0;
+            
             for (NSString *symbol in alphabet) {
                 [symbol description];
+                count++;
             }
             
             [[theValue(count) should] equal:@(range.length)];
@@ -136,7 +138,7 @@ describe(@"IDPAlphabet", ^{
         });
         
         it(@"should return @\"ab\" from -string", ^{
-            [[[alphabet string] should] equal:@"AB"];
+            [[[alphabet string] should] equal:@"ab"];
         });
         
     });
@@ -175,6 +177,7 @@ describe(@"IDPAlphabet", ^{
             NSUInteger count = 0;
             for (NSString *symbol in alphabet) {
                 [symbol description];
+                count++;
             }
             
             [[theValue(count) should] equal:@(range.length)];
@@ -260,6 +263,7 @@ describe(@"IDPAlphabet", ^{
             NSUInteger count = 0;
             for (NSString *symbol in alphabet) {
                 [symbol description];
+                count++;
             }
             
             [[theValue(count) should] equal:@([capitalizedAlphabet count] + [lowercaseAlphabet count])];
