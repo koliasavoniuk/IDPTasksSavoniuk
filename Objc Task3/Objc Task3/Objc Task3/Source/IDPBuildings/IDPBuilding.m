@@ -58,12 +58,12 @@
 }
 
 - (void)removeRoom:(IDPRoom *)room {
-    [self.mutableCopy removeObject:room];
+    [self.mutableRooms removeObject:room];
 }
 
 - (NSArray *)workersWithClass:(Class)class {    
     NSMutableArray *array = [NSMutableArray array];
-    for (id room in self.mutableRooms ) {
+    for (id room in self.mutableRooms) {
         [array addObjectsFromArray:[room workersWithClass:class]];
     }
     

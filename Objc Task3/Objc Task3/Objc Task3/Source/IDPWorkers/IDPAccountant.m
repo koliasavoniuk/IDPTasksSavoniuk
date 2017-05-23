@@ -8,16 +8,18 @@
 
 #import "IDPAccountant.h"
 
+#import "IDPWasher.h"
+
 @implementation IDPAccountant
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)performWorkWithObject:(id)object {
-    [self countMoney];
+- (void)performWorkWithObject:(IDPWasher *)object {
+    [self calculateMoney];
 }
 
-- (void)countMoney {
+- (void)calculateMoney {
     NSLog(@"%@ counted the money, I have %lu$", self.name, self.money);
 }
 

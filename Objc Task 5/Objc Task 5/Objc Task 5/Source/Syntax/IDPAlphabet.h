@@ -9,10 +9,17 @@
 
 #import <Foundation/Foundation.h>
 
-//extern
-//NSRange IDPMakeAlphabetRange)(unichar value1, unichar value2);
+extern
+NSRange IDPMakeAlphabetRange(unichar firstChar, unichar lactChar);
 
-@interface IDPAlphabet : NSArray
+@interface IDPAlphabet : NSObject<NSFastEnumeration>
+@property (nonatomic, readonly) NSUInteger  count;
+
++ (instancetype)alphanumericAlphabet;
++ (instancetype)numericAlphabet;
++ (instancetype)lowercaseLetterAlphabet;
++ (instancetype)capitalizedLetterAlphabet;
++ (instancetype)letterAlphabet;
 
 + (instancetype)alphabetWithRange:(NSRange)range;
 + (instancetype)alphabetWithStrings:(NSArray *)strings;
@@ -24,9 +31,14 @@
 - (instancetype)initWithStrings:(NSArray *)strings;
 - (instancetype)initWithSymbols:(NSString *)strings;
 
--(NSUInteger)count;
--(NSString *)stringAtIndex:(NSUInteger)index;
+//the method should be overriden
+- (NSUInteger)count;
 
--(id)objectAtIndexedSubscript:(NSUInteger)idx;
+//the method should be overriden
+- (NSString *)stringAtIndex:(NSUInteger)index;
+
+- (NSString *)objectAtIndexedSubscript:(NSUInteger)index;
+
+- (NSString *)string;
 
 @end

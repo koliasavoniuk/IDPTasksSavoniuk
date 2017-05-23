@@ -8,30 +8,32 @@
 
 #import "IDPStringExtensionTest.h"
 
+#import "IDPAlphabet.h"
+
 #import "IDPRandom.h"
 
 #import "NSString+IDPExtensions.h"
 
 #pragma mark -
-#pragma mar Private Declaration
+#pragma mark Private Declaration
 
 static
 void IDPRandomString();
 
 #pragma mark -
-#pragma mar Public Implementations
+#pragma mark Public Implementations
 
 void IDPStringExtensionTest() {
     IDPRandomString();
 }
 
 #pragma mark -
-#pragma mar PrivateDeclaretions
+#pragma mark Private Declarations
 
 void IDPRandomString() {
     NSLog(@"%@", [NSString randomString]);
     NSLog(@"%@", [NSString randomStringWithLength:5]);
-    NSLog(@"%@", [NSString randomStringWithLength:5 alphabet:[NSString numericAlphabet]]);
+    NSLog(@"%@", [NSString randomStringWithLength:5 alphabet:[IDPAlphabet numericAlphabet]]);
     
     SEL selectors[] = { @selector(alphanumericAlphabet),
         @selector(numericAlphabet),

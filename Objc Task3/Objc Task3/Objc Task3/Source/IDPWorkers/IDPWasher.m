@@ -27,7 +27,7 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)performWorkWithObject:(id)object {
+- (void)performWorkWithObject:(IDPCar *)object {
     [self washCar:object];
 }
 

@@ -98,12 +98,12 @@
 
 - (id)freeWorkersWithClass:(Class)class {
     return [[self workersWithClass:class] arrayByFilteringWithBlock:^BOOL(IDPWorker *worker) {
-        return worker.state == IDPWorkerFree;
+        return IDPWorkerFree == worker.state;
     }];
 }
 
 - (id)freeWorkerWithClass:(Class)class {
-    return [[self freeWorkersWithClass:class]firstObject];
+    return [[self freeWorkersWithClass:class] firstObject];
 }
 
 @end
