@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "IDPConstants.h"
+
 const NSUInteger kIDPSizeRandomNames = 500;
 const NSUInteger kIDPSizeRandomExperience = 30;
 const NSUInteger kIDPSizeRandomMoney = 1500;
+const NSUInteger kIDPSizeRandomWashers = 10;
 const NSUInteger kIDPCarsCount = 5;

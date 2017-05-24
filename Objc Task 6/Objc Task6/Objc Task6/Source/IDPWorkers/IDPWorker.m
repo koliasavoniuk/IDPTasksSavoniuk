@@ -32,13 +32,26 @@
 }
 
 #pragma mark -
+#pragma mark Accessors
+
+- (void)setState:(IDPWorkerState)state {
+    _state = state;
+    
+    if (state == IDPWorkerReadyToProcess) {
+        [self.delegate didWorkerFinishWork:self];        
+    }
+}
+
+#pragma mark -
 #pragma mark Public Methods
 
 - (void)processObject:(id<IDPCashFlow>)object {
     self.state = IDPWorkerBusy;
+    
     [self takeMoneyFromObject:object];
     [self performWorkWithObject:object];
-    self.state = IDPWorkerFree;
+    
+    self.state = IDPWorkerReadyToProcess;
 }
 
 - (void)performWorkWithObject:(id)object {
@@ -61,6 +74,14 @@
     self.money = 0;
     
     return money;
+}
+
+#pragma mark -
+#pragma mark Implementation IDPWorkerDelegate
+
+- (void)didWorkerFinishWork:(IDPWorker *)worker {
+    [self processObject:worker];
+    worker.state = IDPWorkerFree;
 }
 
 @end
