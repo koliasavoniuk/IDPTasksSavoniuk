@@ -100,10 +100,18 @@
 		765957411ED41F3E005E3333 /* ObjcTask6Tests */ = {
 			isa = PBXGroup;
 			children = (
+				765EE6561ED589630086BE77 /* Specs */,
 				765957421ED41F3E005E3333 /* ObjcTask6Tests.m */,
 				765957441ED41F3E005E3333 /* Info.plist */,
 			);
 			path = ObjcTask6Tests;
+			sourceTree = "<group>";
+		};
+		765EE6561ED589630086BE77 /* Specs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Specs;
 			sourceTree = "<group>";
 		};
 		7661DF841EC30C230017A7C5 = {

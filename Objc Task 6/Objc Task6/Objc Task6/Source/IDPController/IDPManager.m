@@ -54,6 +54,7 @@
         washer.delegate = accountant;
         [self.workers addObject:washer];
     }
+    
     accountant.delegate = director;
     
     [self.workers addObjectsFromArray:@[accountant, director]];
