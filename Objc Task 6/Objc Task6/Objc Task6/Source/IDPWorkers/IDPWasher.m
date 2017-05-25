@@ -38,4 +38,8 @@
     car.state = IDPCarClean;
 }   
 
+- (void)setWorkerStateFree:(IDPWorker *)object {
+    
+}
+
 @end
