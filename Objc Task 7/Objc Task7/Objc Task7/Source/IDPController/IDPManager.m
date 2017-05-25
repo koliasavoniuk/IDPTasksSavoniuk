@@ -52,8 +52,7 @@
     
     for (IDPWasher *washer in washers) {
         [washer addObserver:accountant];
-        //washer.delegate = accountant;
-        //[self.workers addObject:washer];
+        [self.workers addObject:washer];
     }
     
     [accountant addObserver:director];

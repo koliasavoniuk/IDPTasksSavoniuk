@@ -22,6 +22,12 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+    self.observers = nil;
+    
+    [super dealloc];
+}
+
 - (instancetype)init {
     self = [super init];
     self.name = [NSString stringWithFormat:@"%@ #%lu",
@@ -29,6 +35,7 @@
                  IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.experience = IDPRandomTillNumber(kIDPSizeRandomExperience);
     self.state = IDPWorkerFree;
+    self.observers = [NSMutableArray array];
         
     return self;
 }
@@ -40,7 +47,7 @@
     _state = state;
     
     if (state == IDPWorkerReadyToProcess) {
-        [self.observableObject notifyObservers];
+        [self notifyObservers];
     }
 }
 
@@ -82,7 +89,7 @@
 #pragma mark Implementation IDPObserver
 
 - (void)performWorkWithObservableObject:(id)observableObject {
-        
+    [self processObject:observableObject];
 }
 
 #pragma mark -
@@ -98,7 +105,7 @@
 
 - (void)notifyObservers {
     for (id observer in self.observers) {
-        [observer processObject:self];
+        [observer performWorkWithObservableObject:self];
     }
 }
 
