@@ -11,6 +11,6 @@
 @protocol IDPWorkerDelegate <NSObject>
 
 @optional
-- (void)didWorkerFinishWork:(id)worker;
+- (void)workerDidFinishWork:(id)worker;
 
 @end

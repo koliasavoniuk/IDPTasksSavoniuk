@@ -24,13 +24,15 @@ typedef NS_ENUM (NSUInteger, IDPWorkerState) {
 @interface IDPWorker : NSObject<IDPCashFlow, IDPWorkerDelegate>
 @property (nonatomic, copy)         NSString                *name;
 @property (nonatomic, readonly)     NSUInteger              experience;
-@property (nonatomic, readonly)     IDPWorkerState          state;
+@property (nonatomic, assign)       IDPWorkerState          state;
 
 @property (nonatomic, assign)       id<IDPWorkerDelegate>   delegate;
 
 - (void)processObject:(id<IDPCashFlow>)object;
 
-// This method is created for subclasses, don't call this method manually
+// This methods is created for subclasses, don't call these methods manually
 - (void)performWorkWithObject:(id<IDPCashFlow>)object;
+- (void)processObjectFinish;
+- (void)setWorkerStateFree:(IDPWorker *)object;
 
 @end

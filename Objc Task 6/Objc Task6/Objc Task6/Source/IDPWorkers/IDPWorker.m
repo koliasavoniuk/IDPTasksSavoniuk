@@ -11,7 +11,6 @@
 @interface IDPWorker()
 @property (nonatomic, assign)   NSUInteger      experience;
 @property (nonatomic, assign)   NSUInteger      money;
-@property (nonatomic, assign)   IDPWorkerState  state;
 
 @end
 
@@ -38,24 +37,35 @@
     _state = state;
     
     if (state == IDPWorkerReadyToProcess) {
-        [self.delegate didWorkerFinishWork:self];        
+        [self.delegate workerDidFinishWork:self];
     }
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)processObject:(id<IDPCashFlow>)object {
+- (void)processObject:(id)object {
     self.state = IDPWorkerBusy;
     
     [self takeMoneyFromObject:object];
     [self performWorkWithObject:object];
     
-    self.state = IDPWorkerReadyToProcess;
+    [self processObjectFinish];
+    [self setWorkerStateFree:object];
+    
+    
 }
 
 - (void)performWorkWithObject:(id)object {
     
+}
+
+- (void)processObjectFinish {
+    self.state = IDPWorkerReadyToProcess;
+}
+
+- (void)setWorkerStateFree:(IDPWorker *)object {
+    object.state = IDPWorkerFree;
 }
 
 #pragma mark -
@@ -79,7 +89,7 @@
 #pragma mark -
 #pragma mark Implementation IDPWorkerDelegate
 
-- (void)didWorkerFinishWork:(IDPWorker *)worker {
+- (void)workerDidFinishWork:(IDPWorker *)worker {
     [self processObject:worker];
     worker.state = IDPWorkerFree;
 }
