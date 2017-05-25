@@ -13,6 +13,8 @@
 @property (nonatomic, assign)   NSUInteger      money;
 @property (nonatomic, assign)   IDPWorkerState  state;
 
+@property (nonatomic, retain)     NSMutableArray  *observers;
+
 @end
 
 @implementation IDPWorker
@@ -38,7 +40,7 @@
     _state = state;
     
     if (state == IDPWorkerReadyToProcess) {
-        [self.delegate didWorkerFinishWork:self];        
+        [self.observableObject notifyObservers];
     }
 }
 
@@ -77,11 +79,27 @@
 }
 
 #pragma mark -
-#pragma mark Implementation IDPWorkerDelegate
+#pragma mark Implementation IDPObserver
 
-- (void)didWorkerFinishWork:(IDPWorker *)worker {
-    [self processObject:worker];
-    worker.state = IDPWorkerFree;
+- (void)performWorkWithObservableObject:(id)observableObject {
+        
+}
+
+#pragma mark -
+#pragma mark Implementation IDPObserver
+
+- (void)addObserver:(id)observer {
+    [self.observers addObject:observer];
+}
+
+- (void)deleteObserver:(id)observer {
+    [self.observers removeObject:observer];
+}
+
+- (void)notifyObservers {
+    for (id observer in self.observers) {
+        [observer processObject:self];
+    }
 }
 
 @end

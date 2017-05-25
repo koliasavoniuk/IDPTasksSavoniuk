@@ -51,11 +51,12 @@
     IDPDirector *director = [IDPDirector object];
     
     for (IDPWasher *washer in washers) {
-        washer.delegate = accountant;
-        [self.workers addObject:washer];
+        [washer addObserver:accountant];
+        //washer.delegate = accountant;
+        //[self.workers addObject:washer];
     }
     
-    accountant.delegate = director;
+    [accountant addObserver:director];
     
     [self.workers addObjectsFromArray:@[accountant, director]];
 }
