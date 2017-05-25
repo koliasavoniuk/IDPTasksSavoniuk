@@ -13,12 +13,20 @@
 @property (nonatomic, assign)   NSUInteger      money;
 @property (nonatomic, assign)   IDPWorkerState  state;
 
+@property (nonatomic, retain)     NSMutableArray  *observers;
+
 @end
 
 @implementation IDPWorker
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
+
+- (void)dealloc {
+    self.observers = nil;
+    
+    [super dealloc];
+}
 
 - (instancetype)init {
     self = [super init];
@@ -27,6 +35,7 @@
                  IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.experience = IDPRandomTillNumber(kIDPSizeRandomExperience);
     self.state = IDPWorkerFree;
+    self.observers = [NSMutableArray array];
         
     return self;
 }
@@ -38,7 +47,7 @@
     _state = state;
     
     if (state == IDPWorkerReadyToProcess) {
-        [self.delegate didWorkerFinishWork:self];        
+        [self notifyObservers];
     }
 }
 
@@ -77,11 +86,27 @@
 }
 
 #pragma mark -
-#pragma mark Implementation IDPWorkerDelegate
+#pragma mark Implementation IDPObserver
 
-- (void)didWorkerFinishWork:(IDPWorker *)worker {
-    [self processObject:worker];
-    worker.state = IDPWorkerFree;
+- (void)performWorkWithObservableObject:(id)observableObject {
+    [self processObject:observableObject];
+}
+
+#pragma mark -
+#pragma mark Implementation IDPObserver
+
+- (void)addObserver:(id)observer {
+    [self.observers addObject:observer];
+}
+
+- (void)deleteObserver:(id)observer {
+    [self.observers removeObject:observer];
+}
+
+- (void)notifyObservers {
+    for (id observer in self.observers) {
+        [observer performWorkWithObservableObject:self];
+    }
 }
 
 @end
