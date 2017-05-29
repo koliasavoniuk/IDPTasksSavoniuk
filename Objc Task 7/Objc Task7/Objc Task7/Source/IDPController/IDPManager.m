@@ -17,7 +17,7 @@
 #import "NSObject+IDPExtension.h"
 
 @interface IDPManager ()
-@property (nonatomic, retain) NSMutableArray           *washers;
+@property (nonatomic, retain) NSMutableArray    *washers;
 @property (nonatomic, retain) IDPAccountant     *accountant;
 @property (nonatomic, retain) IDPDirector       *director;
 
