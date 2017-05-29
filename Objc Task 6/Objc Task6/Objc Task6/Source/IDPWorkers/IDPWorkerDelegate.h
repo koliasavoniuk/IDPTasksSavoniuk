@@ -11,6 +11,10 @@
 @protocol IDPWorkerDelegate <NSObject>
 
 @optional
-- (void)workerDidFinishWork:(id)worker;
+- (void)workerDidBecomeReadyForWork:(id)worker;
+- (void)workerDidBecomeBusy:(id)worker;
+
+@required
+- (void)workerDidBecomeReadyForProcessing:(id)worker;
 
 @end

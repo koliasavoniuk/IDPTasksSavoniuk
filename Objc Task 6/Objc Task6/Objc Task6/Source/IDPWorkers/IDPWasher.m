@@ -35,11 +35,10 @@
     self.car = car;
     NSLog(@"Car: %@ washed", self.car.name);
     self.car = nil;
-    car.state = IDPCarClean;
 }   
 
-- (void)setWorkerStateFree:(IDPWorker *)object {
-    
+- (void)workerDidFinishProcessingObject:(IDPCar *)car {
+    car.state = IDPCarClean;
 }
 
 @end

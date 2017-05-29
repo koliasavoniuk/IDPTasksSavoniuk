@@ -45,7 +45,7 @@
 
 - (void)buildCarWash {
     
-    NSArray *washers = [IDPWasher objectsWithCount:IDPRandomTillNumber(kIDPSizeRandomWashers)];
+    NSArray *washers = [IDPWasher objectsWithCount:kIDPSizeRandomWashers];
     washers = [[washers copy] autorelease];
     IDPAccountant *accountant = [IDPAccountant object];
     IDPDirector *director = [IDPDirector object];

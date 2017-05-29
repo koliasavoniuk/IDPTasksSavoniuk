@@ -20,8 +20,8 @@
     NSLog(@"%@ calculated profit, I have %lu$", self.name, self.money);
 }
 
-- (void)processObjectFinish {
-    self.state = IDPWorkerReadyToProcess;
+- (void)finishingProcessObject {
+    self.state = IDPWorkerFree;
 }
 
 @end
