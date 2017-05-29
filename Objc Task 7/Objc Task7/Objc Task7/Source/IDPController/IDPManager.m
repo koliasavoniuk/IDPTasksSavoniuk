@@ -17,7 +17,9 @@
 #import "NSObject+IDPExtension.h"
 
 @interface IDPManager ()
-@property (nonatomic, retain)   NSMutableArray  *workers;
+@property (nonatomic, retain) NSMutableArray    *washers;
+@property (nonatomic, retain) IDPAccountant     *accountant;
+@property (nonatomic, retain) IDPDirector       *director;
 
 @end
 
@@ -27,17 +29,34 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.workers = nil;
+    self.washers = nil;
+    self.accountant = nil;
+    self.director = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self = [super init];
-    self.workers = [NSMutableArray array];
+    self.washers = [NSMutableArray array];
+    self.accountant = [IDPAccountant object];
+    self.director = [IDPDirector object];
     [self buildCarWash];
     
     return self;
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)setWashers:(NSMutableArray *)washers {
+    if (_washers) {
+        for (IDPWasher *washer in _washers) {
+            [washer deleteObserver:self.accountant];
+        }
+    }
+    
+    _washers = washers;
 }
 
 #pragma mark -
@@ -46,18 +65,15 @@
 - (void)buildCarWash {
     
     NSArray *washers = [IDPWasher objectsWithCount:IDPRandomTillNumber(kIDPSizeRandomWashers)];
-    washers = [[washers copy] autorelease];
+    self.washers = [[washers copy] autorelease];
     IDPAccountant *accountant = [IDPAccountant object];
     IDPDirector *director = [IDPDirector object];
     
     for (IDPWasher *washer in washers) {
         [washer addObserver:accountant];
-        [self.workers addObject:washer];
     }
     
     [accountant addObserver:director];
-    
-    [self.workers addObjectsFromArray:@[accountant, director]];
 }
 
 - (void)washCar:(IDPCar *)car {
@@ -67,25 +83,11 @@
 }
 
  - (id)freeWasher {
- return [self freeWorkerWithClass:[IDPWasher class]];
- }
- 
- - (id)workersWithClass:(Class)cls {
- NSArray *workers =  [self.workers arrayByFilteringWithBlock:^BOOL(id object) {
- return [object isKindOfClass:[cls class]];
- }];
- 
- return [[workers copy] autorelease];
- }
- 
- - (id)freeWorkersWithClass:(Class)class {
- return [[self workersWithClass:class] arrayByFilteringWithBlock:^BOOL(IDPWorker *worker) {
- return  worker.state == IDPWorkerFree;
- }];
- }
- 
- - (id)freeWorkerWithClass:(Class)class {
- return [[self freeWorkersWithClass:class] firstObject];
+     NSArray *washers = [self.washers arrayByFilteringWithBlock:^BOOL(IDPWasher *washer) {
+         return washer.state == IDPWorkerFree;
+     }];
+     
+     return [washers firstObject];
  }
 
 @end

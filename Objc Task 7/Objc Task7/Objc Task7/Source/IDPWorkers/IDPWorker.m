@@ -11,22 +11,17 @@
 @interface IDPWorker()
 @property (nonatomic, assign)   NSUInteger      experience;
 @property (nonatomic, assign)   NSUInteger      money;
-@property (nonatomic, assign)   IDPWorkerState  state;
-
-@property (nonatomic, retain)     NSMutableArray  *observers;
+//@property (nonatomic, assign)   IDPWorkerState  state;
+//@property (nonatomic, retain)     NSMutableArray  *observers;
 
 @end
 
 @implementation IDPWorker
 
+@synthesize state = _state;
+
 #pragma mark -
 #pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-    self.observers = nil;
-    
-    [super dealloc];
-}
 
 - (instancetype)init {
     self = [super init];
@@ -35,7 +30,6 @@
                  IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.experience = IDPRandomTillNumber(kIDPSizeRandomExperience);
     self.state = IDPWorkerFree;
-    self.observers = [NSMutableArray array];
         
     return self;
 }
@@ -43,28 +37,49 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setState:(IDPWorkerState)state {
+- (void)setState:(NSUInteger)state {
     _state = state;
     
-    if (state == IDPWorkerReadyToProcess) {
-        [self notifyObservers];
-    }
+    [self notifyOfState:state];
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)processObject:(id<IDPCashFlow>)object {
+- (void)processObject:(id)object {
     self.state = IDPWorkerBusy;
     
     [self takeMoneyFromObject:object];
     [self performWorkWithObject:object];
     
-    self.state = IDPWorkerReadyToProcess;
+    [self workerDidFinishProcessingObject:object];
+    [self finishingProcessObject];
 }
 
 - (void)performWorkWithObject:(id)object {
     
+}
+
+- (void)finishingProcessObject {
+    self.state = IDPWorkerReadyForProcessing;
+}
+
+- (void)workerDidFinishProcessingObject:(IDPWorker *)worker {
+    worker.state = IDPWorkerFree;
+}
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case IDPWorkerFree:
+            return @selector(workerDidBecomeFree:);
+        case IDPWorkerBusy:
+            return @selector(workerDidBecomeBusy:);
+        case IDPWorkerReadyForProcessing:
+            return @selector(workerDidBecomeReadyForProcessing:);
+            
+        default:
+            return [super selectorForState:state];
+    }
 }
 
 #pragma mark -
@@ -86,27 +101,10 @@
 }
 
 #pragma mark -
-#pragma mark Implementation IDPObserver
+#pragma mark Implementation IDPWorkerObserver
 
-- (void)performWorkWithObservableObject:(id)observableObject {
-    [self processObject:observableObject];
-}
-
-#pragma mark -
-#pragma mark Implementation IDPObserver
-
-- (void)addObserver:(id)observer {
-    [self.observers addObject:observer];
-}
-
-- (void)deleteObserver:(id)observer {
-    [self.observers removeObject:observer];
-}
-
-- (void)notifyObservers {
-    for (id observer in self.observers) {
-        [observer performWorkWithObservableObject:self];
-    }
+- (void)workerDidBecomeReadyForProcessing:(IDPWorker *)worker; {
+    [self processObject:worker];
 }
 
 @end

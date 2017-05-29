@@ -12,26 +12,31 @@
 #import "IDPRandom.h"
 
 #import "IDPCashFlow.h"
-#import "IDPObserver.h"
 #import "IDPObservableObject.h"
 
 typedef NS_ENUM (NSUInteger, IDPWorkerState) {
     IDPWorkerBusy,
-    IDPWorkerReadyToProcess,
+    IDPWorkerReadyForProcessing,
     IDPWorkerFree
 };
 
-@interface IDPWorker : NSObject<IDPCashFlow, IDPObserver, IDPObservableObject>
+@protocol IDPWorkerObserver <NSObject>
+
+@optional
+- (void)workerDidBecomeFree:(id)worker;
+- (void)workerDidBecomeBusy:(id)worker;
+- (void)workerDidBecomeReadyForProcessing:(id)worker;
+
+@end
+
+@interface IDPWorker : IDPObservableObject<IDPCashFlow, IDPWorkerObserver>
 @property (nonatomic, copy)         NSString                *name;
 @property (nonatomic, readonly)     NSUInteger              experience;
-@property (nonatomic, readonly)     IDPWorkerState          state;
-
-@property (nonatomic, assign)       id<IDPObserver>         observer;
-@property (nonatomic, assign)       id<IDPObservableObject> observableObject;
+@property (nonatomic, readonly)     NSUInteger              money;
 
 - (void)processObject:(id<IDPCashFlow>)object;
 
-// This method is created for subclasses, don't call this method manually
+// This method is intended for subclassing. Never call it directly
 - (void)performWorkWithObject:(id<IDPCashFlow>)object;
 
 @end
