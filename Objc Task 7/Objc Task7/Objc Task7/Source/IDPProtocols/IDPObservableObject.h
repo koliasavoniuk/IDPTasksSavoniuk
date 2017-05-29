@@ -10,12 +10,14 @@
 
 #import "IDPObserver.h"
 
-@protocol IDPObservableObject <NSObject>
-@property (nonatomic, readonly) NSArray *observers;
+@interface IDPObservableObject : NSObject
+@property (nonatomic,assign)    NSUInteger  state;
+@property (nonatomic, readonly) NSSet       *observers;
 
-@optional
 - (void)addObserver:(id)observer;
 - (void)deleteObserver:(id)observer;
-- (void)notifyObservers;
+
+- (SEL)selectorForState:(NSUInteger) state;
+- (void)notifyOfState:(NSUInteger) state;
 
 @end

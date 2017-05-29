@@ -33,6 +33,7 @@
 		765EFDCB1ED6B1B500DF165D /* IDPCarWashTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 765EFDB31ED6B1B500DF165D /* IDPCarWashTest.m */; };
 		765EFDD01ED6B1E600DF165D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 765EFDCD1ED6B1E600DF165D /* Info.plist */; };
 		765EFDD11ED6B1E600DF165D /* ObjcTask6Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 765EFDCE1ED6B1E600DF165D /* ObjcTask6Tests.m */; };
+		76A129681EDC2F4D0082467A /* IDPObservableObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 76A129671EDC2F4D0082467A /* IDPObservableObject.m */; };
 		88614352AB8B9F9994576546 /* libPods-ObjcTask6Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8436AB6159899ACA62CC6E9E /* libPods-ObjcTask6Tests.a */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		765EFDCD1ED6B1E600DF165D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		765EFDCE1ED6B1E600DF165D /* ObjcTask6Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcTask6Tests.m; sourceTree = "<group>"; };
 		7661DF8D1EC30C230017A7C5 /* Objc Task7 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Objc Task7"; sourceTree = BUILT_PRODUCTS_DIR; };
+		76A129671EDC2F4D0082467A /* IDPObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObservableObject.m; sourceTree = "<group>"; };
 		76BB7A971ED6B3DF001FDBD2 /* IDPObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObserver.h; sourceTree = "<group>"; };
 		76BB7A981ED6B3FF001FDBD2 /* IDPObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObservableObject.h; sourceTree = "<group>"; };
 		8436AB6159899ACA62CC6E9E /* libPods-ObjcTask6Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ObjcTask6Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +189,7 @@
 				765EFDA31ED6B1B500DF165D /* IDPCashFlow.h */,
 				76BB7A971ED6B3DF001FDBD2 /* IDPObserver.h */,
 				76BB7A981ED6B3FF001FDBD2 /* IDPObservableObject.h */,
+				76A129671EDC2F4D0082467A /* IDPObservableObject.m */,
 			);
 			path = IDPProtocols;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				765EFDCA1ED6B1B500DF165D /* IDPCarWashTest.m in Sources */,
 				765EFDBC1ED6B1B500DF165D /* IDPConstants.m in Sources */,
 				765EFDB41ED6B1B500DF165D /* main.m in Sources */,
+				76A129681EDC2F4D0082467A /* IDPObservableObject.m in Sources */,
 				765EFDBA1ED6B1B500DF165D /* NSObject+IDPExtension.m in Sources */,
 				765EFDC61ED6B1B500DF165D /* IDPWasher.m in Sources */,
 				765EFDC41ED6B1B500DF165D /* IDPDirector.m in Sources */,
@@ -481,7 +485,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
@@ -528,7 +532,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
