@@ -43,6 +43,12 @@
     return [[self.mutableObservers copy] autorelease];
 }
 
+- (void)setState:(NSUInteger)state {
+    _state = state;
+    
+    [self notifyOfState:state];
+}
+
 #pragma mark -
 #pragma mark Public
 

@@ -11,8 +11,6 @@
 @interface IDPWorker()
 @property (nonatomic, assign)   NSUInteger      experience;
 @property (nonatomic, assign)   NSUInteger      money;
-//@property (nonatomic, assign)   IDPWorkerState  state;
-//@property (nonatomic, retain)     NSMutableArray  *observers;
 
 @end
 
