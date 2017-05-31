@@ -37,7 +37,7 @@
     self.car = nil;
 }   
 
-- (void)workerDidFinishProcessingObject:(IDPCar *)car {
+- (void)finishProcessingObject:(IDPCar *)car {
     car.state = IDPCarClean;
 }
 

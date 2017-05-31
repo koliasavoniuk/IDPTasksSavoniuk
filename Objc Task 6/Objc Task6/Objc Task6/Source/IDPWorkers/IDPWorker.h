@@ -29,8 +29,8 @@ typedef NS_ENUM (NSUInteger, IDPWorkerState) {
 @property (nonatomic, assign)       id<IDPWorkerDelegate>   delegate;
 
 - (void)processObject:(id<IDPCashFlow>)object;
-- (void)finishingProcessObject;
-- (void)workerDidFinishProcessingObject:(id<IDPCashFlow>)object;
+- (void)finishProcess;
+- (void)finishProcessingObject:(id<IDPCashFlow>)object;
 
 // This methods is created for subclasses, don't call these methods manually
 - (void)performWorkWithObject:(id<IDPCashFlow>)object;

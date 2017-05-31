@@ -50,19 +50,19 @@
     [self takeMoneyFromObject:object];
     [self performWorkWithObject:object];
     
-    [self workerDidFinishProcessingObject:object];
-    [self finishingProcessObject];
+    [self finishProcessingObject:object];
+    [self finishProcess];
 }
 
 - (void)performWorkWithObject:(id)object {
     
 }
 
-- (void)finishingProcessObject {
+- (void)finishProcess {
     self.state = IDPWorkerReadyForProcessing;
 }
 
-- (void)workerDidFinishProcessingObject:(IDPWorker *)object {
+- (void)finishProcessingObject:(IDPWorker *)object {
     object.state = IDPWorkerFree;
 }
 

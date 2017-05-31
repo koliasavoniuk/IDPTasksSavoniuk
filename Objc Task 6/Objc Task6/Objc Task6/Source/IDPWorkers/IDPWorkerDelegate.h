@@ -13,8 +13,6 @@
 @optional
 - (void)workerDidBecomeReadyForWork:(id)worker;
 - (void)workerDidBecomeBusy:(id)worker;
-
-@required
 - (void)workerDidBecomeReadyForProcessing:(id)worker;
 
 @end
