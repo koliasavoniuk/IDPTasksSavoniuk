@@ -66,7 +66,6 @@
 		768107B21EE156B1003C81BA /* IDPCashFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCashFlow.h; sourceTree = "<group>"; };
 		768107B31EE156B1003C81BA /* IDPObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObservableObject.h; sourceTree = "<group>"; };
 		768107B41EE156B1003C81BA /* IDPObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObservableObject.m; sourceTree = "<group>"; };
-		768107B51EE156B1003C81BA /* IDPObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObserver.h; sourceTree = "<group>"; };
 		768107B71EE156B1003C81BA /* IDPQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPQueue.h; sourceTree = "<group>"; };
 		768107B81EE156B1003C81BA /* IDPQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPQueue.m; sourceTree = "<group>"; };
 		768107BA1EE156B1003C81BA /* IDPRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPRandom.h; sourceTree = "<group>"; };
@@ -247,7 +246,6 @@
 				768107B21EE156B1003C81BA /* IDPCashFlow.h */,
 				768107B31EE156B1003C81BA /* IDPObservableObject.h */,
 				768107B41EE156B1003C81BA /* IDPObservableObject.m */,
-				768107B51EE156B1003C81BA /* IDPObserver.h */,
 			);
 			path = IDPProtocols;
 			sourceTree = "<group>";

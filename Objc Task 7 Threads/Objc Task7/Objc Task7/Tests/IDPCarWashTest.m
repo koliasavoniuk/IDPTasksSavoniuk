@@ -10,6 +10,7 @@
 
 #import "IDPManager.h"
 #import "IDPCar.h"
+#import "IDPCarDispatcher.h"
 
 #import "NSArray+IDPCategory.h"
 #import "NSObject+IDPExtension.h"
@@ -31,11 +32,6 @@ void IDPCarWashTest() {
 #pragma mark Private Declarations
 
 void IDPCarWashTestOne() {
-    NSArray *cars = [IDPCar objectsWithCount:kIDPCarsCount];
-    IDPManager *manager = [IDPManager object];
-    
-    for (IDPCar *car in cars ) {
-        [manager washCar:car];
-        NSLog(@"-----------------------");
-    }
+    IDPCarDispatcher *dispatcher = [IDPCarDispatcher object];
+    [dispatcher setTimerUp];
 }

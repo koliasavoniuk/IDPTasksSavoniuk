@@ -80,7 +80,6 @@
 		765EFDCE1ED6B1E600DF165D /* ObjcTask6Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcTask6Tests.m; sourceTree = "<group>"; };
 		7661DF8D1EC30C230017A7C5 /* Objc Task7 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Objc Task7"; sourceTree = BUILT_PRODUCTS_DIR; };
 		76A129671EDC2F4D0082467A /* IDPObservableObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObservableObject.m; sourceTree = "<group>"; };
-		76BB7A971ED6B3DF001FDBD2 /* IDPObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObserver.h; sourceTree = "<group>"; };
 		76BB7A981ED6B3FF001FDBD2 /* IDPObservableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObservableObject.h; sourceTree = "<group>"; };
 		8436AB6159899ACA62CC6E9E /* libPods-ObjcTask6Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ObjcTask6Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB372091EC387F036063EF65 /* Pods-ObjcTask6Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjcTask6Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ObjcTask6Tests/Pods-ObjcTask6Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -187,7 +186,6 @@
 			isa = PBXGroup;
 			children = (
 				765EFDA31ED6B1B500DF165D /* IDPCashFlow.h */,
-				76BB7A971ED6B3DF001FDBD2 /* IDPObserver.h */,
 				76BB7A981ED6B3FF001FDBD2 /* IDPObservableObject.h */,
 				76A129671EDC2F4D0082467A /* IDPObservableObject.m */,
 			);

@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "IDPObserver.h"
-
 @interface IDPObservableObject : NSObject
 @property (nonatomic,assign)    NSUInteger  state;
 @property (nonatomic, readonly) NSSet       *observers;

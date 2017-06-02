@@ -17,7 +17,8 @@
 }
 
 + (NSArray *)objectsWithCount:(NSUInteger)count {
-    return [NSArray objectsWithCount:count factoryBlock:^id{
+    return [NSArray objectsWithCount:count
+                        factoryBlock:^id{
         return [self object];
     }];
 }

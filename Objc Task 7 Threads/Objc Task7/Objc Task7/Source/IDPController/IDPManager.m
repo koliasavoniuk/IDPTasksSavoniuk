@@ -18,8 +18,8 @@
 #import "NSObject+IDPExtension.h"
 
 @interface IDPManager ()
-@property (nonatomic, retain) NSMutableArray    *washers;
 @property (nonatomic, retain) NSMutableArray    *workers;
+@property (nonatomic, retain) NSMutableArray    *washers;
 @property (nonatomic, retain) IDPAccountant     *accountant;
 @property (nonatomic, retain) IDPDirector       *director;
 @property (nonatomic, retain) IDPQueue          *cars;
@@ -32,8 +32,8 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.washers = nil;
     self.workers = nil;
+    self.washers = nil;
     self.accountant = nil;
     self.director = nil;
     self.cars = nil;
@@ -43,8 +43,8 @@
 
 - (instancetype)init {
     self = [super init];
-    self.washers = [NSMutableArray array];
     self.workers = [NSMutableArray array];
+    self.washers = [NSMutableArray array];
     self.accountant = [IDPAccountant object];
     self.director = [IDPDirector object];
     self.cars = [IDPQueue object];
@@ -87,32 +87,16 @@
     [workers addObjectsFromArray:@[accountant,director]];
 }
 
-- (void)washCar:(IDPCar *)car {
-    IDPWasher *washer = [self freeWasher];
-    
-    [washer processObject:car];
-}
-/*
- - (id)freeWasher {
-     NSArray *washers = [self.washers arrayByFilteringWithBlock:^BOOL(IDPWasher *washer) {
-         return washer.state == IDPWorkerFree;
-     }];
-     
-     return [washers firstObject];
- }
-*/
-/*
-- (id)freeWasher {
+- (void)washCar:(NSArray *)cars {
+    IDPQueue *carsQueue = [self addCarsToQueue:cars];
     NSArray *washers = self.washers;
-    return [[self.washers freeWashers] firstObject];
+    
+    for (id washer in washers) {
+        [washer processObject:[carsQueue popObject]];
+    }
+    
+    self.cars = carsQueue;
 }
-
-- (id)freeWashers {
-    NSArray *washers = [self.washers arrayByFilteringWithBlock:^BOOL(IDPWasher *washer) {
-        return washer.state == IDPWorkerFree;
-    }];
-}
-*/
 
 - (id)freeWasher {
     return [self freeWorkerWithClass:[IDPWasher class]];

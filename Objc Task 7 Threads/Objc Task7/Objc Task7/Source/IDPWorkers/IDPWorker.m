@@ -7,10 +7,12 @@
 //
 
 #import "IDPWorker.h"
+#import "IDPQueue.h"
 
 @interface IDPWorker()
 @property (nonatomic, assign)   NSUInteger      experience;
 @property (nonatomic, assign)   NSUInteger      money;
+@property (nonatomic, retain)   IDPQueue        *workers;
 
 @end
 
@@ -44,14 +46,41 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)processObject:(id)object {
-    self.state = IDPWorkerBusy;
-    
+- (void)performWorkWithObjectInBackground:(id)object {
     [self takeMoneyFromObject:object];
     [self performWorkWithObject:object];
     
+    [self performSelectorOnMainThread:@selector(performWorkWithObjectOnMain:)
+                           withObject:object
+                        waitUntilDone:NO];
+}
+
+- (void)performWorkWithObjectOnMain:(id)object {
     [self finishProcessingObject:object];
-    [self finishProcess];
+    
+    IDPQueue *queue = self.workers;
+    @synchronized (self) {
+        id queueObject = [queue popObject];
+        
+        if (queueObject) {
+            [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
+                                   withObject:queueObject];
+        } else {
+            [self finishProcess];
+        }
+    }
+}
+
+- (void)processObject:(id)object {
+    @synchronized (self) {
+        if (self.state == IDPWorkerFree) {
+            self.state = IDPWorkerBusy;
+            [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
+                                   withObject:object];
+        } else {
+            [self.workers pushObject:object];
+        }
+    }
 }
 
 - (void)performWorkWithObject:(id)object {

@@ -12,14 +12,11 @@
 #import "IDPCar.h"
 #import "IDPQueue.h"
 
-//#import "IDPMacros.h"
-
 #import "NSObject+IDPExtension.h"
 #import "NSArray+IDPCategory.h"
 #import "NSTimer+IDPExtensions.h"
 
-//IDPStaticConstant(NSUInteger, IDPCarsQuantity, 10)
-static const NSUInteger IDPCarsQuantity = 10;
+static const NSUInteger kIDPCarsQuantity = 10;
 
 @interface IDPCarDispatcher ()
 @property (nonatomic, assign) NSTimer       *timer;
@@ -68,7 +65,7 @@ static const NSUInteger IDPCarsQuantity = 10;
 }
 
 - (void)addCars {
-    [self.manager washCar:[IDPCar objectsWithCount:IDPCarsQuantity]];
+    [self.manager washCar:[IDPCar objectsWithCount:kIDPCarsQuantity]];
 }
 
 @end
