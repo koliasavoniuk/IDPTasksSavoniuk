@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class IDPCar;
+@class IDPQueue;
 
 @interface IDPManager : NSObject
 
