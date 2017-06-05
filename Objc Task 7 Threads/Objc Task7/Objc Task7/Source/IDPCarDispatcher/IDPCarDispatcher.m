@@ -56,15 +56,15 @@
 #pragma mark Public
 
 - (void)setupTimer {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01f
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                   target:self
                                                 selector:@selector(addCars)
                                                 userInfo:nil
-                                                 repeats:NO];
+                                                 repeats:YES];
 }
 
 - (void)addCars {
-    [self.manager washCars:[IDPCar objectsWithCount:kIDPCarsCount]];
+    [self.manager processCars:[IDPCar objectsWithCount:kIDPCarsCount]];
 }
 
 @end

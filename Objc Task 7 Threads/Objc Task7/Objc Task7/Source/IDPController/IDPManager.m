@@ -94,15 +94,22 @@
     [accountant addObserver:director];
 }
 
-- (void)washCars:(NSArray *)cars {
+- (void)processCars:(NSArray *)cars {
     IDPQueue *carsQueue = [self addCarsToQueue:cars];
-    NSArray *washers = [self freeWashers];
     
-    for (id washer in washers) {
-        [washer processObject:[carsQueue popObject]];
+    for (IDPCar *car in cars) {
+        [self processCar:car];
     }
     
     self.cars = carsQueue;
+}
+
+- (void)processCar:(IDPCar *)car {
+    NSArray *washers = [self freeWashers];
+    
+    for (id washer in washers) {
+        [washer processObject:car];
+    }
 }
 
 #pragma mark -

@@ -8,11 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class IDPCar;
-@class IDPQueue;
-
 @interface IDPManager : NSObject
 
-- (void)washCars:(NSArray *)car;
+- (void)processCars:(NSArray *)car;
 
 @end
