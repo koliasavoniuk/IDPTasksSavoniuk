@@ -56,11 +56,11 @@
 #pragma mark Public
 
 - (void)setupTimer {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01f
                                                   target:self
                                                 selector:@selector(addCars)
                                                 userInfo:nil
-                                                 repeats:YES];
+                                                 repeats:NO];
 }
 
 - (void)addCars {
