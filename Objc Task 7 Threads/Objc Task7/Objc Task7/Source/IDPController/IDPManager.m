@@ -14,12 +14,11 @@
 #import "IDPConstants.h"
 #import "IDPQueue.h"
 
-#import "NSArray+IDPCategory.h"
-#import "NSObject+IDPExtension.h"
+#import "NSArray+IDPExtensions.h"
+#import "NSObject+IDPExtensions.h"
 #import "IDPWorkerObserver.h"
 
 @interface IDPManager ()
-//@property (nonatomic, retain) NSMutableArray    *workers;
 @property (nonatomic, retain) NSArray           *washers;
 @property (nonatomic, retain) IDPAccountant     *accountant;
 @property (nonatomic, retain) IDPDirector       *director;
@@ -33,7 +32,6 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    //self.workers = nil;
     self.washers = nil;
     self.accountant = nil;
     self.director = nil;
@@ -44,7 +42,6 @@
 
 - (instancetype)init {
     self = [super init];
-    //self.workers = [NSMutableArray array];
     self.washers = [NSMutableArray array];
     self.accountant = [IDPAccountant object];
     self.director = [IDPDirector object];
@@ -110,13 +107,13 @@
 
 #pragma mark -
 #pragma mark Private
-
+/*
 - (NSArray *)freeWashers {
     return [self.washers arrayByFilteringWithBlock:^BOOL(IDPWorker *washer) {
         return washer.state == IDPWorkerFree;
     }];
 }
-
+*/
 /*
 - (id)freeWasher {
     return [self freeWorkerWithClass:[IDPWasher class]];

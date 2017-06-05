@@ -12,8 +12,8 @@
 #import "IDPCar.h"
 #import "IDPCarDispatcher.h"
 
-#import "NSArray+IDPCategory.h"
-#import "NSObject+IDPExtension.h"
+#import "NSArray+IDPExtensions.h"
+#import "NSObject+IDPExtensions.h"
 
 #pragma mark -
 #pragma mark Private Declaration

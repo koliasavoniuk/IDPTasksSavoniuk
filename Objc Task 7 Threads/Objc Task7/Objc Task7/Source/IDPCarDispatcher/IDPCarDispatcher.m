@@ -12,8 +12,8 @@
 #import "IDPCar.h"
 #import "IDPQueue.h"
 
-#import "NSObject+IDPExtension.h"
-#import "NSArray+IDPCategory.h"
+#import "NSObject+IDPExtensions.h"
+#import "NSArray+IDPExtensions.h"
 #import "NSTimer+IDPExtensions.h"
 
 @interface IDPCarDispatcher ()

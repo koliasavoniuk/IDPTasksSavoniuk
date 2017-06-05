@@ -8,7 +8,7 @@
 
 #import "IDPCar.h"
 
-#import "NSObject+IDPExtension.h"
+#import "NSObject+IDPExtensions.h"
 
 @interface IDPCar()
 @property(nonatomic, assign) NSUInteger money;

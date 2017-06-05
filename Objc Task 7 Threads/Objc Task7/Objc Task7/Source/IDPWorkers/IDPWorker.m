@@ -9,7 +9,7 @@
 #import "IDPWorker.h"
 
 #import "IDPQueue.h"
-#import "NSObject+IDPExtension.h"
+#import "NSObject+IDPExtensions.h"
 
 @interface IDPWorker()
 @property (nonatomic, assign)   NSUInteger      experience;

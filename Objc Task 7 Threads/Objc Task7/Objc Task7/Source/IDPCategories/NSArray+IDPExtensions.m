@@ -6,7 +6,7 @@
 //  Copyright © 2017 Student002. All rights reserved.
 //
 
-#import "NSArray+IDPCategory.h"
+#import "NSArray+IDPExtensions.h"
 
 @implementation NSArray (IDPCategory)
 

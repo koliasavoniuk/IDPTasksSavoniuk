@@ -6,9 +6,9 @@
 //  Copyright © 2017 Student002. All rights reserved.
 //
 
-#import "NSObject+IDPExtension.h"
+#import "NSObject+IDPExtensions.h"
 
-#import "NSArray+IDPCategory.h"
+#import "NSArray+IDPExtensions.h"
 
 @implementation NSObject (IDPExtension)
 
