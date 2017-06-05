@@ -10,21 +10,22 @@
 
 #import "IDPTimerProxy.h"
 
-@implementation NSTimer (IDPExtensions)
+#import "NSObject+IDPExtensions.h"
 
-+ (NSTimer *)scheduledTimerWithInterval:(NSTimeInterval)seconds
-                                 target:(id)target
-                               selector:(SEL)selector
-                               userInfo:(id)userInfo
-                                repeats:(BOOL)repeats {
-    IDPTimerProxy *proxy = [[[IDPTimerProxy alloc] initWithTarget:target
-                                                         selector:selector] autorelease];
+@implementation NSTimer (IDPTimerExtention)
+
++ (nonnull NSTimer *)scheduledWeakReferenceTimerWithTimeInterval:(NSTimeInterval)ti
+                                                      target:(nonnull id)aTarget
+                                                    selector:(nonnull SEL)aSelector
+                                                    userInfo:(nullable id)userInfo
+                                                     repeats:(BOOL)yesOrNo {
+    IDPTimerProxy *weakReferenceTimer = [IDPTimerProxy timerWithTarget:aTarget selector:aSelector];
     
-    return [self scheduledTimerWithTimeInterval:seconds
-                                         target:proxy
-                                       selector:@selector(onTimer:)
-                                       userInfo:userInfo
-                                        repeats:repeats];
+    return [NSTimer scheduledTimerWithTimeInterval:ti
+                                            target:weakReferenceTimer
+                                          selector:@selector(onTimer:)
+                                          userInfo:userInfo
+                                           repeats:yesOrNo];
 }
 
 @end

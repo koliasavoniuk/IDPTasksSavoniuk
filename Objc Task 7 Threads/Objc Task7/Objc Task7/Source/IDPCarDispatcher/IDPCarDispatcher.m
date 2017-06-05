@@ -56,7 +56,7 @@
 #pragma mark Public
 
 - (void)setupTimer {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+    self.timer = [NSTimer scheduledWeakReferenceTimerWithTimeInterval:1.0f
                                                   target:self
                                                 selector:@selector(addCars)
                                                 userInfo:nil

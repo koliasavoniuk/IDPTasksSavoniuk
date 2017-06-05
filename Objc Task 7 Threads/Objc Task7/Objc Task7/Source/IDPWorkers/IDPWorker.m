@@ -40,6 +40,21 @@
 
 - (void)setState:(NSUInteger)state {
     @synchronized (self) {
+        IDPWorker *worker = [self.workers popObject];
+        
+        if (worker) {
+            [self processObjectInBackground:worker];
+            state = IDPWorkerBusy;
+        } else {
+            [super setState:state];
+        }
+        
+        [super setState:state];
+    }
+}
+
+/*- (void)setState:(NSUInteger)state {
+    @synchronized (self) {
         [super setState:state];
         
         id object = [self.workers popObject];
@@ -47,7 +62,7 @@
             [self processObject:object];
         }
     }
-}
+}*/
 
 #pragma mark -
 #pragma mark Public Methods
@@ -59,6 +74,11 @@
     [self performSelectorOnMainThread:@selector(performWorkWithObjectOnMain:)
                            withObject:object
                         waitUntilDone:NO];
+}
+
+- (void)processObjectInBackground:(id)object {
+    [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
+                           withObject:object];
 }
 
 - (void)performWorkWithObjectOnMain:(id)object {

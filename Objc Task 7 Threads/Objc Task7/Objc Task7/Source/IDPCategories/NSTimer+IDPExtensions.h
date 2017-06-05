@@ -10,11 +10,12 @@
 
 @class IDPTimerProxy;
 
-@interface NSTimer (IDPExtensions)
+@interface NSTimer (IDPTimerExtension)
 
-+ (NSTimer *)scheduledTimerWithInterval:(NSTimeInterval)seconds
-                                 target:(id)target
-                               selector:(SEL)selector
-                               userInfo:(id)userInfo
-                                repeats:(BOOL)repeats;
++ (nonnull NSTimer *)scheduledWeakReferenceTimerWithTimeInterval:(NSTimeInterval)ti
+                                                          target:(nonnull id)aTarget
+                                                        selector:(nonnull SEL)aSelector
+                                                        userInfo:(nullable id)userInfo
+                                                        repeats:(BOOL)yesOrNo;
+
 @end
