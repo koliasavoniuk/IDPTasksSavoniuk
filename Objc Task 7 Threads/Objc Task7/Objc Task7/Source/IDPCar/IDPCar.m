@@ -8,6 +8,8 @@
 
 #import "IDPCar.h"
 
+#import "NSObject+IDPExtension.h"
+
 @interface IDPCar()
 @property(nonatomic, assign) NSUInteger money;
 
@@ -30,7 +32,7 @@
                      [self class],
                      IDPRandomTillNumber(kIDPSizeRandomNames)];
         self.state = IDPCarDirty;
-        self.money = IDPRandomTillNumber(kIDPSizeRandomMoney);
+        self.money = kIDPMoneyCount;
     
     return self;
 }

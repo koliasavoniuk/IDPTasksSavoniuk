@@ -71,7 +71,7 @@
 
 - (void)buildCarWash {
     
-    NSArray *washers = [IDPWasher objectsWithCount:IDPRandomTillNumber(kIDPSizeRandomWashers)];
+    NSArray *washers = [IDPWasher objectsWithCount:kIDPWashersCount];
     self.washers = [[washers copy] autorelease];
     NSMutableArray *workers = self.workers;
     IDPAccountant *accountant = [IDPAccountant object];
@@ -98,6 +98,20 @@
     self.cars = carsQueue;
 }
 
+#pragma mark -
+#pragma mark WorkerObserver methods
+
+- (void)workerDidBecomeFree:(IDPWorker *)washer {
+    IDPCar *car = [self.cars popObject];
+    
+    if (car) {
+        [washer processObject:car];
+    }
+}
+
+#pragma mark -
+#pragma mark Private
+
 - (id)freeWasher {
     return [self freeWorkerWithClass:[IDPWasher class]];
 }
@@ -119,9 +133,6 @@
 - (id)freeWorkerWithClass:(Class)class {
     return [self freeWorkersWithClass:class].firstObject;
 }
-
-#pragma mark -
-#pragma mark Private
 
 - (IDPQueue *)addCarsToQueue:(NSArray *)cars {
     IDPQueue *carsQueue = self.cars;

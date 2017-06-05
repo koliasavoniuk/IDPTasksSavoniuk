@@ -13,6 +13,10 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         IDPCarWashTest();
+        
+        
+        NSRunLoop *runLoop = [NSRunLoop mainRunLoop];
+        [runLoop run];
     }
     
     return 0;

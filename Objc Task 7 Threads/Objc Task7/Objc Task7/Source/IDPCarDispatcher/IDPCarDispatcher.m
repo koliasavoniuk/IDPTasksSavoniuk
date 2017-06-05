@@ -57,7 +57,7 @@ static const NSUInteger kIDPCarsQuantity = 10;
 #pragma mark Public
 
 - (void)setTimerUp {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0f
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01f
                                                   target:self
                                                 selector:@selector(addCars)
                                                 userInfo:nil
