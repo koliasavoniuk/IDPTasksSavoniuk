@@ -8,8 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSTimer (IDPExtensions)
-@property (nonatomic, assign)   id  target;
-@property (nonatomic, readonly) SEL selector;
+@class IDPTimerProxy;
 
+@interface NSTimer (IDPExtensions)
+
++ (NSTimer *)scheduledTimerWithInterval:(NSTimeInterval)seconds
+                                 target:(id)target
+                               selector:(SEL)selector
+                               userInfo:(id)userInfo
+                                repeats:(BOOL)repeats;
 @end

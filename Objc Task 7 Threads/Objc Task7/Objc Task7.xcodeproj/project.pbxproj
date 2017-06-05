@@ -27,6 +27,7 @@
 		768107D01EE156B1003C81BA /* IDPWasher.m in Sources */ = {isa = PBXBuildFile; fileRef = 768107C21EE156B1003C81BA /* IDPWasher.m */; };
 		768107D11EE156B1003C81BA /* IDPWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 768107C41EE156B1003C81BA /* IDPWorker.m */; };
 		768107D41EE16D58003C81BA /* NSTimer+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 768107D31EE16D58003C81BA /* NSTimer+IDPExtensions.m */; };
+		768489201EE54BAC001B3B01 /* IDPTimerProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7684891F1EE54BAC001B3B01 /* IDPTimerProxy.m */; };
 		88614352AB8B9F9994576546 /* libPods-ObjcTask6Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8436AB6159899ACA62CC6E9E /* libPods-ObjcTask6Tests.a */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,9 @@
 		768107C41EE156B1003C81BA /* IDPWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPWorker.m; sourceTree = "<group>"; };
 		768107D21EE16D58003C81BA /* NSTimer+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+IDPExtensions.h"; sourceTree = "<group>"; };
 		768107D31EE16D58003C81BA /* NSTimer+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+IDPExtensions.m"; sourceTree = "<group>"; };
+		7684891D1EE549AC001B3B01 /* IDPWorkerObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPWorkerObserver.h; sourceTree = "<group>"; };
+		7684891E1EE54BAC001B3B01 /* IDPTimerProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPTimerProxy.h; sourceTree = "<group>"; };
+		7684891F1EE54BAC001B3B01 /* IDPTimerProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPTimerProxy.m; sourceTree = "<group>"; };
 		8436AB6159899ACA62CC6E9E /* libPods-ObjcTask6Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ObjcTask6Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB372091EC387F036063EF65 /* Pods-ObjcTask6Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ObjcTask6Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ObjcTask6Tests/Pods-ObjcTask6Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -236,6 +240,8 @@
 			children = (
 				768107AF1EE156B1003C81BA /* IDPManager.h */,
 				768107B01EE156B1003C81BA /* IDPManager.m */,
+				7684891E1EE54BAC001B3B01 /* IDPTimerProxy.h */,
+				7684891F1EE54BAC001B3B01 /* IDPTimerProxy.m */,
 			);
 			path = IDPController;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 				768107B21EE156B1003C81BA /* IDPCashFlow.h */,
 				768107B31EE156B1003C81BA /* IDPObservableObject.h */,
 				768107B41EE156B1003C81BA /* IDPObservableObject.m */,
+				7684891D1EE549AC001B3B01 /* IDPWorkerObserver.h */,
 			);
 			path = IDPProtocols;
 			sourceTree = "<group>";
@@ -446,6 +453,7 @@
 				768107C51EE156B1003C81BA /* IDPCar.m in Sources */,
 				768107D01EE156B1003C81BA /* IDPWasher.m in Sources */,
 				768107C71EE156B1003C81BA /* NSArray+IDPCategory.m in Sources */,
+				768489201EE54BAC001B3B01 /* IDPTimerProxy.m in Sources */,
 				768107CF1EE156B1003C81BA /* IDPDirector.m in Sources */,
 				765EFDCA1ED6B1B500DF165D /* IDPCarWashTest.m in Sources */,
 				765EFDB41ED6B1B500DF165D /* main.m in Sources */,

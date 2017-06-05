@@ -7,7 +7,9 @@
 //
 
 #import "IDPWorker.h"
+
 #import "IDPQueue.h"
+#import "NSObject+IDPExtension.h"
 
 @interface IDPWorker()
 @property (nonatomic, assign)   NSUInteger      experience;
@@ -17,8 +19,6 @@
 @end
 
 @implementation IDPWorker
-
-@synthesize state = _state;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -30,6 +30,7 @@
                  IDPRandomTillNumber(kIDPSizeRandomNames)];
     self.experience = IDPRandomTillNumber(kIDPSizeRandomExperience);
     self.state = IDPWorkerFree;
+    self.workers = [IDPQueue object];
         
     return self;
 }
@@ -38,9 +39,14 @@
 #pragma mark Accessors
 
 - (void)setState:(NSUInteger)state {
-    _state = state;
-    
-    [self notifyOfState:state];
+    @synchronized (self) {
+        [super setState:state];
+        
+        id object = [self.workers popObject];
+        if (object) {
+            [self processObject:object];
+        }
+    }
 }
 
 #pragma mark -
@@ -113,7 +119,9 @@
 #pragma mark Implementation IDPCashFlow
 
 - (void)takeMoney:(NSUInteger)money {
-    self.money += money;
+    @synchronized (self) {
+        self.money += money;
+    }
 }
 
 - (void)takeMoneyFromObject:(id<IDPCashFlow>)object {
@@ -121,10 +129,12 @@
 }
 
 - (NSUInteger)giveMoney {
-    NSUInteger money = self.money;
-    self.money = 0;
-    
-    return money;
+    @synchronized (self) {
+        NSUInteger money = self.money;
+        self.money = 0;
+        
+        return money;
+    }
 }
 
 #pragma mark -

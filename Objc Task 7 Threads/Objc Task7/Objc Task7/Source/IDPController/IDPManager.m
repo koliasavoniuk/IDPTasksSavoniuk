@@ -16,10 +16,11 @@
 
 #import "NSArray+IDPCategory.h"
 #import "NSObject+IDPExtension.h"
+#import "IDPWorkerObserver.h"
 
 @interface IDPManager ()
-@property (nonatomic, retain) NSMutableArray    *workers;
-@property (nonatomic, retain) NSMutableArray    *washers;
+//@property (nonatomic, retain) NSMutableArray    *workers;
+@property (nonatomic, retain) NSArray           *washers;
 @property (nonatomic, retain) IDPAccountant     *accountant;
 @property (nonatomic, retain) IDPDirector       *director;
 @property (nonatomic, retain) IDPQueue          *cars;
@@ -32,7 +33,7 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.workers = nil;
+    //self.workers = nil;
     self.washers = nil;
     self.accountant = nil;
     self.director = nil;
@@ -43,7 +44,7 @@
 
 - (instancetype)init {
     self = [super init];
-    self.workers = [NSMutableArray array];
+    //self.workers = [NSMutableArray array];
     self.washers = [NSMutableArray array];
     self.accountant = [IDPAccountant object];
     self.director = [IDPDirector object];
@@ -71,23 +72,21 @@
 
 - (void)buildCarWash {
     
-    NSArray *washers = [IDPWasher objectsWithCount:kIDPWashersCount];
-    self.washers = [[washers copy] autorelease];
-    NSMutableArray *workers = self.workers;
-    IDPAccountant *accountant = [IDPAccountant object];
-    IDPDirector *director = [IDPDirector object];
+    IDPAccountant *accountant = self.accountant;
+    IDPDirector *director = self.director;
     
-    for (IDPWasher *washer in washers) {
+    self.washers = [NSArray objectsWithCount:kIDPWashersCount factoryBlock:^{
+        IDPWasher *washer = [IDPWasher object];
         [washer addObserver:accountant];
-        [workers addObject:washer];
-    }
+        [washer addObserver:self];
+        
+        return washer;
+    }];
     
     [accountant addObserver:director];
-    
-    [workers addObjectsFromArray:@[accountant,director]];
 }
 
-- (void)washCar:(NSArray *)cars {
+- (void)washCars:(NSArray *)cars {
     IDPQueue *carsQueue = [self addCarsToQueue:cars];
     NSArray *washers = self.washers;
     
@@ -112,6 +111,13 @@
 #pragma mark -
 #pragma mark Private
 
+- (NSArray *)freeWashers {
+    return [self.washers arrayByFilteringWithBlock:^BOOL(IDPWorker *washer) {
+        return washer.state == IDPWorkerFree;
+    }];
+}
+
+/*
 - (id)freeWasher {
     return [self freeWorkerWithClass:[IDPWasher class]];
 }
@@ -133,7 +139,7 @@
 - (id)freeWorkerWithClass:(Class)class {
     return [self freeWorkersWithClass:class].firstObject;
 }
-
+*/
 - (IDPQueue *)addCarsToQueue:(NSArray *)cars {
     IDPQueue *carsQueue = self.cars;
     

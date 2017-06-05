@@ -16,10 +16,8 @@
 #import "NSArray+IDPCategory.h"
 #import "NSTimer+IDPExtensions.h"
 
-static const NSUInteger kIDPCarsQuantity = 10;
-
 @interface IDPCarDispatcher ()
-@property (nonatomic, assign) NSTimer       *timer;
+@property (nonatomic, retain) NSTimer       *timer;
 @property (nonatomic, retain) IDPManager    *manager;
 
 @end
@@ -50,14 +48,15 @@ static const NSUInteger kIDPCarsQuantity = 10;
 
 - (void)setTimer:(NSTimer *)timer {
     [_timer invalidate];
-    _timer = timer;
+    [timer release];
+    _timer = [timer retain];
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)setTimerUp {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01f
+- (void)setupTimer {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0f
                                                   target:self
                                                 selector:@selector(addCars)
                                                 userInfo:nil
@@ -65,7 +64,7 @@ static const NSUInteger kIDPCarsQuantity = 10;
 }
 
 - (void)addCars {
-    [self.manager washCar:[IDPCar objectsWithCount:kIDPCarsQuantity]];
+    [self.manager washCars:[IDPCar objectsWithCount:kIDPCarsCount]];
 }
 
 @end

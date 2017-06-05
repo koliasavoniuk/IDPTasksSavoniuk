@@ -10,6 +10,6 @@
 
 @interface IDPCarDispatcher : NSObject
 
-- (void)setTimerUp;
+- (void)setupTimer;
 
 @end

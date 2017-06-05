@@ -38,14 +38,18 @@
 }
 
 - (NSUInteger)giveMoney {
-    NSUInteger tempMoney = self.money;
-    self.money = 0;
-    
-    return tempMoney;
+    @synchronized (self) {
+        NSUInteger tempMoney = self.money;
+        self.money = 0;
+        
+        return tempMoney;
+    }
 }
 
 - (void)takeMoney:(NSUInteger)money {
-    self.money += money;
+    @synchronized (self) {
+        self.money += money;
+    }
 }
 
 - (void)takeMoneyFromObject:(id<IDPCashFlow>)object {

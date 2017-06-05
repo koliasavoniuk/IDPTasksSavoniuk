@@ -33,5 +33,5 @@ void IDPCarWashTest() {
 
 void IDPCarWashTestOne() {
     IDPCarDispatcher *dispatcher = [IDPCarDispatcher object];
-    [dispatcher setTimerUp];
+    [dispatcher setupTimer];
 }

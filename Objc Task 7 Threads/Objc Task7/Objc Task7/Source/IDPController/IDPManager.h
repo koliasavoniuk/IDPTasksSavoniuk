@@ -13,6 +13,6 @@
 
 @interface IDPManager : NSObject
 
-- (void)washCar:(NSArray *)car;
+- (void)washCars:(NSArray *)car;
 
 @end
