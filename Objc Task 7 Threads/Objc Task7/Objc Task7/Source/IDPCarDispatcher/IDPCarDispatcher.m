@@ -52,15 +52,31 @@
     _timer = [timer retain];
 }
 
+- (void)setRunning:(BOOL)running {
+    if (running == _running) {
+        return;
+    }
+    
+    if (running) {
+        [self start];
+    } else {
+        [self stop];
+    }
+}
+
 #pragma mark -
 #pragma mark Public
 
-- (void)setupTimer {
+- (void)start {
     self.timer = [NSTimer scheduledWeakReferenceTimerWithTimeInterval:1.0f
                                                   target:self
                                                 selector:@selector(addCars)
                                                 userInfo:nil
                                                  repeats:NO];
+}
+
+- (void)stop {
+    self.timer = nil;
 }
 
 - (void)addCars {

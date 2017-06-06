@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface IDPCarDispatcher : NSObject
-
-- (void)setupTimer;
+@property (nonatomic, assign)   BOOL running;
 
 @end
