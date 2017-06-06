@@ -14,4 +14,4 @@ const NSUInteger kIDPSizeRandomNames = 500;
 const NSUInteger kIDPSizeRandomExperience = 30;
 const NSUInteger kIDPMoneyCount = 10;
 const NSUInteger kIDPWashersCount = 5;
-const NSUInteger kIDPCarsCount = 1000;
+const NSUInteger kIDPCarsCount = 10000;

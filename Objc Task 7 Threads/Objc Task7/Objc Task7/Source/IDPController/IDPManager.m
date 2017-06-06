@@ -116,12 +116,12 @@
 #pragma mark WorkerObserver methods
 
 - (void)workerDidBecomeFree:(IDPWorker *)washer {
-    @synchronized (self) {
-        IDPCar *car = [self.cars popObject];
+    IDPCar *car = [self.cars popObject];
         
-        if (car) {
-            [washer processObject:car];
-        }
+    if (car) {
+        [washer processObject:car];
+    } else {
+        [self.cars pushObject:washer];
     }
 }
 

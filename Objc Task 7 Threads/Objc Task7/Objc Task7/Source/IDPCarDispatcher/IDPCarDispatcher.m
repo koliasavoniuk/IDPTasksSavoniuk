@@ -60,7 +60,7 @@
                                                   target:self
                                                 selector:@selector(addCars)
                                                 userInfo:nil
-                                                 repeats:YES];
+                                                 repeats:NO];
 }
 
 - (void)addCars {

@@ -80,6 +80,22 @@
     }
 }
 
+- (void)addObservers:(NSArray *)observers {
+    @synchronized (self) {
+        for (id observer in observers) {
+            [self addObserver:observer];
+        }
+    }
+}
+
+- (void)deleteObservers:(NSArray *)observers {
+    @synchronized (self) {
+        for (id observer in observers) {
+            [self deleteObserver:observer];
+        }
+    }
+}
+
 // should be overriden in subclasses
 - (SEL)selectorForState:(NSUInteger)state {
     return NULL;
@@ -93,10 +109,12 @@
 #pragma mark Private
 
 - (void)notifyOfStateWithSelector:(SEL)selector {
-    NSSet *observers = self.observers;
-    for (id observer in observers) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self];
+    @synchronized (self) {
+        NSSet *observers = self.observers;
+        for (id observer in observers) {
+            if ([observer respondsToSelector:selector]) {
+                [observer performSelector:selector withObject:self];
+            }
         }
     }
 }

@@ -35,10 +35,12 @@
 #pragma mark Public Methods
 
 - (void)pushObject:(id)object {
+    if (!object) {
+        return;
+    }
+    
     @synchronized (self) {
-        if (object) {
-            [self.queue addObject:object];
-        }
+        [self.queue addObject:object];
     }
 }
 

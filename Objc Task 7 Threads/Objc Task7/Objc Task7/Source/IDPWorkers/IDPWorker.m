@@ -23,6 +23,12 @@
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
+- (void)dealloc {
+    self.workers = nil;
+    
+    [super dealloc];
+}
+
 - (instancetype)init {
     self = [super init];
     self.name = [NSString stringWithFormat:@"%@ #%lu",
@@ -45,27 +51,38 @@
         if (worker) {
             [self processObjectInBackground:worker];
             state = IDPWorkerBusy;
-        } else {
-            [super setState:state];
         }
         
         [super setState:state];
     }
 }
 
-/*- (void)setState:(NSUInteger)state {
-    @synchronized (self) {
-        [super setState:state];
-        
-        id object = [self.workers popObject];
-        if (object) {
-            [self processObject:object];
-        }
-    }
-}*/
-
 #pragma mark -
 #pragma mark Public Methods
+
+- (void)processObject:(id)object {
+    @synchronized (self) {
+        if (IDPWorkerFree == self.state) {
+            self.state = IDPWorkerBusy;
+            
+            [self processObjectInBackground:object];
+        } else {
+            [self.workers pushObject:object];
+        }
+    }
+}
+
+- (void)performWorkWithObject:(id)object {
+    
+}
+
+- (void)finishProcess {
+    self.state = IDPWorkerReadyForProcessing;
+}
+
+- (void)finishProcessingObject:(IDPWorker *)worker {
+    worker.state = IDPWorkerFree;
+}
 
 - (void)performWorkWithObjectInBackground:(id)object {
     [self takeMoneyFromObject:object];
@@ -84,8 +101,8 @@
 - (void)performWorkWithObjectOnMain:(id)object {
     [self finishProcessingObject:object];
     
-    IDPQueue *queue = self.workers;
     @synchronized (self) {
+        IDPQueue *queue = self.workers;
         id queueObject = [queue popObject];
         
         if (queueObject) {
@@ -95,30 +112,6 @@
             [self finishProcess];
         }
     }
-}
-
-- (void)processObject:(id)object {
-    @synchronized (self) {
-        if (self.state == IDPWorkerFree) {
-            self.state = IDPWorkerBusy;
-            [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
-                                   withObject:object];
-        } else {
-            [self.workers pushObject:object];
-        }
-    }
-}
-
-- (void)performWorkWithObject:(id)object {
-    
-}
-
-- (void)finishProcess {
-    self.state = IDPWorkerReadyForProcessing;
-}
-
-- (void)finishProcessingObject:(IDPWorker *)worker {
-    worker.state = IDPWorkerFree;
 }
 
 - (SEL)selectorForState:(NSUInteger)state {
