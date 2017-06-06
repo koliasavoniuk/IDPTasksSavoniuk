@@ -123,19 +123,6 @@
 }
 
 #pragma mark -
-#pragma mark WorkerObserver methods
-
-- (void)workerDidBecomeFree:(IDPWorker *)washer {
-    IDPCar *car = [self.cars popObject];
-        
-    if (car) {
-        [washer processObject:car];
-    } else {
-        [self.cars pushObject:washer];
-    }
-}
-
-#pragma mark -
 #pragma mark Private
 
 - (id)freeWashers {
