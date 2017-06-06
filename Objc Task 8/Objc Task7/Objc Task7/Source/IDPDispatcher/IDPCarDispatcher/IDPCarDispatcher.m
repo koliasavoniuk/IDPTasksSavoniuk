@@ -53,30 +53,24 @@
 }
 
 - (void)setRunning:(BOOL)running {
-    if (running == _running) {
-        return;
-    }
-    
-    if (running) {
-        [self start];
-    } else {
-        [self stop];
+    if (running != _running) {
+        [self startCarsInBackground];
     }
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)start {
+- (void)startCarsInBackground {
     self.timer = [NSTimer scheduledWeakReferenceTimerWithTimeInterval:1.0f
-                                                  target:self
-                                                selector:@selector(addCars)
-                                                userInfo:nil
-                                                 repeats:NO];
+                                                               target:self
+                                                             selector:@selector(addCarsInBackground)
+                                                             userInfo:nil
+                                                              repeats:YES];
 }
 
-- (void)stop {
-    self.timer = nil;
+- (void)addCarsInBackground {
+    [self performSelectorInBackground:@selector(addCars) withObject:nil];
 }
 
 - (void)addCars {
