@@ -13,3 +13,4 @@ extern const NSUInteger kIDPSizeRandomExperience;
 extern const NSUInteger kIDPMoneyCount;
 extern const NSUInteger kIDPWashersCount;
 extern const NSUInteger kIDPCarsCount;
+extern const NSUInteger kIDPAccountantCount;
