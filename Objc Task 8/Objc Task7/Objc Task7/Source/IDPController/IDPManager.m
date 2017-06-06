@@ -25,6 +25,8 @@
 @property (nonatomic, retain) NSArray           *accountants;
 @property (nonatomic, retain) IDPDirector       *director;
 @property (nonatomic, retain) IDPQueue          *cars;
+@property (nonatomic, retain) IDPDispatcher     *washerDispatcher;
+@property (nonatomic, retain) IDPDispatcher     *accountantDispatcher;
 
 @end
 
@@ -39,6 +41,8 @@
     self.accountants = nil;
     self.director = nil;
     self.cars = nil;
+    self.washerDispatcher = nil;
+    self.accountantDispatcher = nil;
     
     [super dealloc];
 }
@@ -50,6 +54,8 @@
     self.accountants = [NSMutableArray array];
     self.director = [IDPDirector object];
     self.cars = [IDPQueue object];
+    self.washerDispatcher = [IDPDispatcher object];
+    self.accountantDispatcher = [IDPDispatcher object];
     [self buildCarWash];
     
     return self;
@@ -74,33 +80,11 @@
 
 #pragma mark -
 #pragma mark Public Methods
-/*
-- (void)buildCarWash {
-    
-    IDPAccountant *accountant = self.accountant;
-    IDPDirector *director = self.director;
-    
-    [self.workers addObjectsFromArray:@[accountant,director]];
-    
-    self.washers = [NSArray objectsWithCount:kIDPWashersCount factoryBlock:^{
-        IDPWasher *washer = [IDPWasher object];
-        [washer addObserver:accountant];
-        [washer addObserver:self];
-        
-        [self.workers addObject:washer];
-        
-        return washer;
-    }];
-    
-    [accountant addObserver:director];
-}
-*/
 
 - (void)buildCarWash {
     IDPDispatcher *washerDispatcher = [IDPDispatcher object];
     IDPDispatcher *accountantDispatcher = [IDPDispatcher object];
     
-    //IDPAccountant *accountant = self.accountant;
     IDPDirector *director = self.director;
     [self.workers addObject:director];
     
@@ -108,9 +92,9 @@
         IDPWasher *washer = [IDPWasher object];
         [washer addObservers:@[washerDispatcher, self]];
         [washerDispatcher addHandler:washer];
-        //[washer addObserver:self];
         
         [self.workers addObject:washer];
+        self.washerDispatcher = washerDispatcher;
         
         return washer;
     }];
@@ -119,9 +103,9 @@
         IDPAccountant *accountant = [IDPAccountant object];
         [accountant addObservers:@[accountantDispatcher, director]];
         [accountantDispatcher addHandler:accountant];
-        //[accountant addObserver:self];
         
         [self.workers addObject:accountant];
+        self.accountantDispatcher = accountantDispatcher;
         
         return accountant;
     }];
@@ -129,21 +113,13 @@
 }
 
 - (void)processCars:(NSArray *)cars {
-    IDPQueue *carsQueue = [self addCarsToQueue:cars];
-    
     for (IDPCar *car in cars) {
         [self processCar:car];
     }
-    
-    self.cars = carsQueue;
 }
 
 - (void)processCar:(IDPCar *)car {
-    NSArray *washers = [self freeWashers];
-    
-    for (id washer in washers) {
-        [washer processObject:car];
-    }
+    [self.washerDispatcher processObject:car];
 }
 
 #pragma mark -
@@ -192,6 +168,13 @@
     }
     
     return carsQueue;
+}
+
+#pragma mark -
+#pragma mark IDPWorkerObserver Implementation
+
+- (void)workerDidBecomeReadyForProcessing:(id)worker {
+    [self.accountantDispatcher processObject:worker];
 }
 
 @end
