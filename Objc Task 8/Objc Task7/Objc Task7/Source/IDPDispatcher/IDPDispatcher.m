@@ -42,12 +42,14 @@
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)addHandler:(id<IDPWorkerObserver>)object {
+- (void)addHandler:(id)object {
     if (!object) {
         return;
     }
     @synchronized (self) {
         [self.handlersArray addObject:object];
+        [self.handlersQueue pushObject:object];
+        [object addObserver:self];
     }
 }
 
@@ -73,13 +75,15 @@
 #pragma mark Private Methods
 
 - (void)processObject:(id)object {
-    IDPQueue *handlersQueue = self.handlersQueue;
-    IDPWorker *handler = [handlersQueue popObject];
-    
-    if (handler) {
-        [handler processObject:object];
-    } else {
-        [self.objects pushObject:object];
+    @synchronized (self) {
+        IDPQueue *handlersQueue = self.handlersQueue;
+        IDPWorker *handler = [handlersQueue popObject];
+        
+        if (handler) {
+            [handler processObject:object];
+        } else {
+            [self.objects pushObject:object];
+        }
     }
 }
 
@@ -101,15 +105,5 @@
         [self processObject:worker];
     }
 }
-/*
-- (void)workerDidBecomeFree:(id)worker {
-    id object = [self.objects popObject];
-    
-    if (object) {
-        [worker processObject:object];
-    } else {
-        [self.handlersArray addObject:worker];
-    }
-}
-*/
+
 @end

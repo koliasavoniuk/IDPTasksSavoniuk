@@ -120,37 +120,6 @@ typedef id(^IDPDispatcherFactory)(Class handlerClass, NSUInteger handlerCount, i
     self.directorDispatcher = directorDispatcher;
 }
 
-/*- (void)buildCarWash {
-    IDPDispatcher *washerDispatcher = [IDPDispatcher object];
-    IDPDispatcher *accountantDispatcher = [IDPDispatcher object];
-    
-    IDPDirector *director = self.director;
-    [self.workers addObject:director];
-    
-    self.washers = [NSArray objectsWithCount:kIDPWashersCount factoryBlock:^{
-        IDPWasher *washer = [IDPWasher object];
-        [washer addObservers:@[washerDispatcher, self]];
-        [washerDispatcher addHandler:washer];
-        
-        [self.workers addObject:washer];
-        self.washersDispatcher = washerDispatcher;
-        
-        return washer;
-    }];
-    
-    self.accountants = [NSArray objectsWithCount:kIDPAccountantCount factoryBlock:^{
-        IDPAccountant *accountant = [IDPAccountant object];
-        [accountant addObservers:@[accountantDispatcher, director]];
-        [accountantDispatcher addHandler:accountant];
-        
-        [self.workers addObject:accountant];
-        self.accountantsDispatcher = accountantDispatcher;
-        
-        return accountant;
-    }];
-    
-}*/
-
 - (id)freeWashers {
     return [self freeWorkersWithClass:[IDPWasher class]];
 }

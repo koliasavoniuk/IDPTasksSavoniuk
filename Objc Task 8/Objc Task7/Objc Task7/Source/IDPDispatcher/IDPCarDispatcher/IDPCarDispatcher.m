@@ -59,7 +59,7 @@
 }
 
 - (void)setRunning:(BOOL)running {
-    if (running != _running) {
+    if (running != _running && running != NO) {
         [self startCarsInBackground];
     }
 }
