@@ -81,18 +81,14 @@
 }
 
 - (void)addObservers:(NSArray *)observers {
-    @synchronized (self) {
-        for (id observer in observers) {
-            [self addObserver:observer];
-        }
+    for (id observer in observers) {
+        [self addObserver:observer];
     }
 }
 
 - (void)deleteObservers:(NSArray *)observers {
-    @synchronized (self) {
-        for (id observer in observers) {
-            [self deleteObserver:observer];
-        }
+    for (id observer in observers) {
+        [self deleteObserver:observer];
     }
 }
 

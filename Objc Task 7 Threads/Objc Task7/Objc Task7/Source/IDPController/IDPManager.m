@@ -58,17 +58,15 @@
 #pragma mark Accessors
 
 - (void)setWashers:(NSMutableArray *)washers {
-    @synchronized (self) {
-        if (_washers) {
-            for (IDPWasher *washer in _washers) {
-                [washer deleteObserver:self.accountant];
-            }
+    if (_washers) {
+        for (IDPWasher *washer in _washers) {
+            [washer deleteObserver:self.accountant];
         }
-        
-        [washers retain];
-        [_washers release];
-        _washers = washers;
     }
+    
+    [washers retain];
+    [_washers release];
+    _washers = washers;
 }
 
 #pragma mark -
@@ -139,7 +137,7 @@
 }
 
 - (NSArray *)freeWorkersWithClass:(Class)class {
-    @synchronized (self) {
+    @synchronized (self.workers) {
         return [[self workersWithClass:class] arrayByFilteringWithBlock:^BOOL(IDPWorker *worker) {
             return  worker.state == IDPWorkerFree;
         }];

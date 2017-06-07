@@ -13,8 +13,9 @@
 #import "IDPWorker.h"
 
 @interface IDPDispatcher()
-@property (nonatomic, assign)    IDPQueue        *objects;
-@property (nonatomic, assign)    NSMutableArray  *handlers;
+@property (nonatomic, assign)   IDPQueue        *objects;
+@property (nonatomic, assign)   IDPQueue        *handlersQueue;
+@property (nonatomic, assign)   NSMutableArray  *handlersArray;
 @end
 
 @implementation IDPDispatcher
@@ -24,14 +25,16 @@
 
 - (void)dealloc {
     self.objects = nil;
-    self.handlers = nil;
+    self.handlersQueue = nil;
+    self.handlersArray = nil;
     
     [super dealloc];
 }
 
 - (instancetype)init {
     self.objects = [IDPQueue object];
-    self.handlers = [NSMutableArray array];
+    self.handlersQueue = [IDPQueue object];
+    self.handlersArray = [NSMutableArray array];
     
     return self;
 }
@@ -44,13 +47,25 @@
         return;
     }
     @synchronized (self) {
-        [self.handlers addObject:object];
+        [self.handlersArray addObject:object];
     }
 }
 
 - (void)deleteHandler:(id<IDPWorkerObserver>)object {
     @synchronized (self) {
-        [self.handlers removeObject:object];
+        [self.handlersArray removeObject:object];
+    }
+}
+
+- (void)addHandlers:(NSArray *)handlers {
+    for (id handler in handlers) {
+        [self addHandler:handler];
+    }
+}
+
+- (void)deleteHandlers:(NSArray *)handlers {
+    for (id handler in handlers) {
+        [self deleteHandler:handler];
     }
 }
 
@@ -58,12 +73,11 @@
 #pragma mark Private Methods
 
 - (void)processObject:(id)object {
-    NSMutableArray *handlerArray = self.handlers;
-    IDPWorker *handler = handlerArray.firstObject;
+    IDPQueue *handlersQueue = self.handlersQueue;
+    IDPWorker *handler = [handlersQueue popObject];
     
     if (handler) {
         [handler processObject:object];
-        [self deleteHandler:handler];
     } else {
         [self.objects pushObject:object];
     }
@@ -73,13 +87,29 @@
 #pragma mark IDPWorkerObserver Implementation
 
 - (void)workerDidBecomeFree:(id)worker {
+    if ([self.handlersArray containsObject:worker]) {
+        id object = [self.objects popObject];
+        [self.handlersQueue pushObject:worker];
+        if (object) {
+            [self processObject:object];
+        }
+    }
+}
+
+- (void)workerDidBecomeReadyForProcessing:(id)worker {
+    if (![self.handlersArray containsObject:worker]) {
+        [self processObject:worker];
+    }
+}
+/*
+- (void)workerDidBecomeFree:(id)worker {
     id object = [self.objects popObject];
     
     if (object) {
         [worker processObject:object];
     } else {
-        [self.handlers addObject:worker];
+        [self.handlersArray addObject:worker];
     }
 }
-
+*/
 @end

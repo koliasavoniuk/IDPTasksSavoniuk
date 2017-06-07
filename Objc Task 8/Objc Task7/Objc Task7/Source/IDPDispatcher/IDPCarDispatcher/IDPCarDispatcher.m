@@ -47,9 +47,15 @@
 #pragma mark Accessors
 
 - (void)setTimer:(NSTimer *)timer {
-    [_timer invalidate];
-    [timer release];
-    _timer = [timer retain];
+    if (NO == timer) {
+        return;
+    }
+    
+    if (timer != _timer) {
+        [_timer invalidate];
+        [timer release];
+        _timer = [timer retain];
+    }
 }
 
 - (void)setRunning:(BOOL)running {

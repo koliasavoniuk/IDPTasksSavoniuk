@@ -9,7 +9,7 @@
 #import "IDPQueue.h"
 
 @interface IDPQueue ()
-@property (nonatomic,retain)  NSMutableArray    *queue;
+@property (nonatomic, retain)  NSMutableArray    *queue;
 
 @end
 

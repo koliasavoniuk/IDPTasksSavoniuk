@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface IDPQueue : NSObject
-@property (nonatomic,readonly, getter=isEmpty)  BOOL    empty;
+@property (nonatomic, readonly, getter=isEmpty)  BOOL    empty;
 
 - (void)pushObject:(id)object;
 - (id)popObject;
