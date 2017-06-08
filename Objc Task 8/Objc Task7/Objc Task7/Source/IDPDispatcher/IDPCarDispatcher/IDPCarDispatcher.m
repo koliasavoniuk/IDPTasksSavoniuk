@@ -38,7 +38,6 @@
 - (instancetype)init {
     self = [super init];
     self.manager = [IDPManager object];
-    self.timer = [[NSTimer new] autorelease];
     
     return self;
 }
@@ -59,9 +58,12 @@
 }
 
 - (void)setRunning:(BOOL)running {
-    if (running != _running && running != NO) {
-        [self startCarsInBackground];
+    if (running != _running) {
+        if (YES == running) {
+            [self startCarsInBackground];
+        }
     }
+    
 }
 
 #pragma mark -

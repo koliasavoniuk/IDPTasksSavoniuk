@@ -110,11 +110,4 @@
     }
 }
 
-#pragma mark -
-#pragma mark Implementation IDPWorkerObserver
-
-- (void)workerDidBecomeReadyForProcessing:(IDPWorker *)worker; {
-    [self processObject:worker];
-}
-
 @end

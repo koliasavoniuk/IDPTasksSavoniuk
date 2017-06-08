@@ -16,6 +16,7 @@
 @property (nonatomic, assign)   IDPQueue        *objects;
 @property (nonatomic, assign)   IDPQueue        *handlersQueue;
 @property (nonatomic, assign)   NSMutableArray  *handlersArray;
+
 @end
 
 @implementation IDPDispatcher
@@ -76,8 +77,7 @@
 
 - (void)processObject:(id)object {
     @synchronized (self) {
-        IDPQueue *handlersQueue = self.handlersQueue;
-        IDPWorker *handler = [handlersQueue popObject];
+        IDPWorker *handler = [self.handlersQueue popObject];
         
         if (handler) {
             [handler processObject:object];
@@ -93,9 +93,11 @@
 - (void)workerDidBecomeFree:(id)worker {
     if ([self.handlersArray containsObject:worker]) {
         id object = [self.objects popObject];
-        [self.handlersQueue pushObject:worker];
+        
         if (object) {
-            [self processObject:object];
+            [worker processObject:object];
+        } else {
+            [self.handlersQueue pushObject:worker];
         }
     }
 }
