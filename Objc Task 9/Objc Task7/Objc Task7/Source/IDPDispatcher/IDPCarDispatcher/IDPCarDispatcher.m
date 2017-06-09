@@ -11,14 +11,18 @@
 #import "IDPManager.h"
 #import "IDPCar.h"
 #import "IDPQueue.h"
+#import "IDPGCDWrap.h"
 
 #import "NSObject+IDPExtensions.h"
 #import "NSArray+IDPExtensions.h"
 #import "NSTimer+IDPExtensions.h"
 
+static NSString * const kIDPGCDQueue      = @"kIDPGCDQueue";
+
 @interface IDPCarDispatcher ()
-@property (nonatomic, retain) NSTimer       *timer;
-@property (nonatomic, retain) IDPManager    *manager;
+@property (nonatomic, retain) NSTimer           *timer;
+@property (nonatomic, retain) IDPManager        *manager;
+@property (nonatomic, retain) dispatch_queue_t  queue;
 
 @end
 
@@ -31,6 +35,7 @@
     
     self.timer = nil;
     self.manager = nil;
+    self.queue = nil;
     
     [super dealloc];
 }
@@ -60,8 +65,19 @@
 - (void)setRunning:(BOOL)running {
     if (running != _running) {
         if (YES == running) {
-            [self startCarsInBackground];
+            dispatch_queue_t queue = dispatch_queue_create([kIDPGCDQueue cStringUsingEncoding:NSUTF8StringEncoding],
+                                                           DISPATCH_QUEUE_CONCURRENT);
+            self.queue = queue;
+            dispatch_release(queue);
+            
+            dispatch_apply(kIDPIterationCount, queue, ^(size_t count) {
+                [self addCarsInBackground];
+            });
+        } else {
+            self.queue = nil;
         }
+        
+        _running = running;
     }
     
 }
@@ -69,20 +85,10 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)startCarsInBackground {
-    self.timer = [NSTimer scheduledWeakReferenceTimerWithTimeInterval:1.0f
-                                                               target:self
-                                                             selector:@selector(addCarsInBackground)
-                                                             userInfo:nil
-                                                              repeats:YES];
-}
-
 - (void)addCarsInBackground {
-    [self performSelectorInBackground:@selector(addCars) withObject:nil];
-}
-
-- (void)addCars {
-    [self.manager processCars:[IDPCar objectsWithCount:kIDPCarsCount]];
+    IDPExecuteConcurrentInBackgroundWithBlock(^{
+        [self.manager processCars:[IDPCar objectsWithCount:kIDPCarsCount]];
+    });
 }
 
 @end
