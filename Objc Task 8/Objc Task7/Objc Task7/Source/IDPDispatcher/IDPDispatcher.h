@@ -15,9 +15,9 @@
 - (void)processObject:(id)object;
 
 - (void)addHandler:(id<IDPWorkerObserver>)object;
-- (void)deleteHandler:(id<IDPWorkerObserver>)object;
+- (void)removeHandler:(id<IDPWorkerObserver>)object;
 
 - (void)addHandlers:(NSArray *)handlers;
-- (void)deleteHandlers:(NSArray *)handlers;
+- (void)removeHandlers:(NSArray *)handlers;
 
 @end

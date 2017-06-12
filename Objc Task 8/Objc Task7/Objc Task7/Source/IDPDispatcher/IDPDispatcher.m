@@ -54,8 +54,9 @@
     }
 }
 
-- (void)deleteHandler:(id<IDPWorkerObserver>)object {
+- (void)removeHandler:(id)object {
     @synchronized (self) {
+        [object removeObserver:self];
         [self.handlersArray removeObject:object];
     }
 }
@@ -66,9 +67,9 @@
     }
 }
 
-- (void)deleteHandlers:(NSArray *)handlers {
+- (void)removeHandlers:(NSArray *)handlers {
     for (id handler in handlers) {
-        [self deleteHandler:handler];
+        [self removeHandler:handler];
     }
 }
 
