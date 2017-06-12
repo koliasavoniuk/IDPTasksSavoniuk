@@ -20,7 +20,7 @@
 
 @interface IDPManager ()
 @property (nonatomic, retain) NSMutableArray    *workers;
-@property (nonatomic, retain) NSArray           *washers;
+@property (nonatomic, retain) NSMutableArray    *washers;
 @property (nonatomic, retain) IDPAccountant     *accountant;
 @property (nonatomic, retain) IDPDirector       *director;
 @property (nonatomic, retain) IDPQueue          *cars;
@@ -60,7 +60,7 @@
 - (void)setWashers:(NSMutableArray *)washers {
     if (_washers) {
         for (IDPWasher *washer in _washers) {
-            [washer deleteObserver:self.accountant];
+            [washer removeObserver:self.accountant];
         }
     }
     
@@ -79,7 +79,7 @@
     
     [self.workers addObjectsFromArray:@[accountant,director]];
     
-    self.washers = [NSArray objectsWithCount:kIDPWashersCount factoryBlock:^{
+    self.washers = [NSMutableArray objectsWithCount:kIDPWashersCount factoryBlock:^{
         IDPWasher *washer = [IDPWasher object];
         [washer addObserver:accountant];
         [washer addObserver:self];
@@ -103,10 +103,11 @@
 }
 
 - (void)processCar:(IDPCar *)car {
-    NSArray *washers = [self freeWashers];
+    NSMutableArray *washers = [self freeWashers];
     
     for (id washer in washers) {
         [washer processObject:car];
+        [self.washers removeObject:washer];
     }
 }
 
@@ -127,13 +128,17 @@
 #pragma mark Private
 
 - (id)freeWashers {
-    return [self freeWorkersWithClass:[IDPWasher class]];
+    @synchronized (self) {
+        return [self freeWorkersWithClass:[IDPWasher class]];
+    }
 }
 
 - (NSArray *)workersWithClass:(Class)cls {
-    return [self.workers arrayByFilteringWithBlock:^BOOL(id object) {
-        return [object isKindOfClass:[cls class]];
-    }];
+    @synchronized (self.workers) {
+        return [self.workers arrayByFilteringWithBlock:^BOOL(id object) {
+            return [object isKindOfClass:[cls class]];
+        }];
+    }
 }
 
 - (NSArray *)freeWorkersWithClass:(Class)class {
@@ -145,7 +150,9 @@
 }
 
 - (id)freeWorkerWithClass:(Class)class {
-    return [self freeWorkersWithClass:class].firstObject;
+    @synchronized (self) {
+        return [self freeWorkersWithClass:class].firstObject;
+    }
 }
 
 - (IDPQueue *)addCarsToQueue:(NSArray *)cars {

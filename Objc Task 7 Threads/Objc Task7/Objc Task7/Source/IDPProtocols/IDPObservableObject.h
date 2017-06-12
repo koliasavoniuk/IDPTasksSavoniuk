@@ -13,10 +13,10 @@
 @property (nonatomic, readonly) NSSet       *observers;
 
 - (void)addObserver:(id)observer;
-- (void)deleteObserver:(id)observer;
+- (void)removeObserver:(id)observer;
 
 - (void)addObservers:(NSArray *)observers;
-- (void)deleteObservers:(NSArray *)observers;
+- (void)removeObservers:(NSArray *)observers;
 
 - (SEL)selectorForState:(NSUInteger)state;
 - (void)notifyOfState:(NSUInteger)state;

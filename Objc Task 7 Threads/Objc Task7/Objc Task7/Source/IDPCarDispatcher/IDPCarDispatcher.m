@@ -38,7 +38,6 @@
 - (instancetype)init {
     self = [super init];
     self.manager = [IDPManager object];
-    self.timer = [[NSTimer new] autorelease];
     
     return self;
 }
@@ -60,26 +59,18 @@
     }
     
     if (running) {
-        [self start];
+        self.timer = [NSTimer scheduledWeakReferenceTimerWithTimeInterval:kIDPTimeInterval
+                                                                   target:self
+                                                                 selector:@selector(addCars)
+                                                                 userInfo:nil
+                                                                  repeats:NO];
     } else {
-        [self stop];
+        [self.timer invalidate];
     }
 }
 
 #pragma mark -
 #pragma mark Public
-
-- (void)start {
-    self.timer = [NSTimer scheduledWeakReferenceTimerWithTimeInterval:1.0f
-                                                  target:self
-                                                selector:@selector(addCars)
-                                                userInfo:nil
-                                                 repeats:NO];
-}
-
-- (void)stop {
-    self.timer = nil;
-}
 
 - (void)addCars {
     [self.manager processCars:[IDPCar objectsWithCount:kIDPCarsCount]];

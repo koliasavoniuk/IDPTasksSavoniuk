@@ -11,13 +11,13 @@
 #import "IDPManager.h"
 #import "IDPCar.h"
 #import "IDPQueue.h"
-#import "IDPGCDWrap.h"
+#import "IDPGCDWrapper.h"
 
 #import "NSObject+IDPExtensions.h"
 #import "NSArray+IDPExtensions.h"
 #import "NSTimer+IDPExtensions.h"
 
-static NSString * const kIDPGCDQueue      = @"kIDPGCDQueue";
+//static NSString * const kIDPGCDQueue      = @"kIDPGCDQueue";
 
 @interface IDPCarDispatcher ()
 @property (nonatomic, retain) NSTimer           *timer;
@@ -63,31 +63,48 @@ static NSString * const kIDPGCDQueue      = @"kIDPGCDQueue";
 }
 
 - (void)setRunning:(BOOL)running {
-    if (running != _running) {
-        if (YES == running) {
-            dispatch_queue_t queue = dispatch_queue_create([kIDPGCDQueue cStringUsingEncoding:NSUTF8StringEncoding],
-                                                           DISPATCH_QUEUE_CONCURRENT);
-            self.queue = queue;
-            dispatch_release(queue);
-            
-            dispatch_apply(kIDPIterationCount, queue, ^(size_t count) {
-                [self addCarsInBackground];
-            });
-        } else {
-            self.queue = nil;
-        }
-        
-        _running = running;
+    if (running == _running) {
+        return;
     }
     
+    _running = running;
+    
+    if (running) {
+        [self start];
+    } else {
+        [self stop];
+    }
+    
+}
+
+#pragma mark -
+#pragma mark Private Methods
+
+- (void)start {
+    
+    double delayInSeconds = 1.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self addCarsInBackground];
+
+        if (self.running) {
+            [self start];
+        }
+    });
+    
+}
+
+- (void)stop {
+    self.running = NO;
 }
 
 #pragma mark -
 #pragma mark Public
 
 - (void)addCarsInBackground {
-    IDPExecuteConcurrentInBackgroundWithBlock(^{
-        [self.manager processCars:[IDPCar objectsWithCount:kIDPCarsCount]];
+    IDPDispatchAsyncOnMainQueue(^{
+        NSArray *cars =  [IDPCar objectsWithCount:kIDPCarsCount];
+        [self.manager processCars:cars];
     });
 }
 

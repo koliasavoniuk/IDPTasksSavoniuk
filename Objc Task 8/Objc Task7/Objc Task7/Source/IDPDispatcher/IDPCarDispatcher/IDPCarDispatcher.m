@@ -46,7 +46,7 @@
 #pragma mark Accessors
 
 - (void)setTimer:(NSTimer *)timer {
-    if (NO == timer) {
+    if (!timer) {
         return;
     }
     
@@ -59,7 +59,7 @@
 
 - (void)setRunning:(BOOL)running {
     if (running != _running) {
-        if (YES == running) {
+        if (running) {
             [self startCarsInBackground];
         }
     }
@@ -70,7 +70,7 @@
 #pragma mark Public
 
 - (void)startCarsInBackground {
-    self.timer = [NSTimer scheduledWeakReferenceTimerWithTimeInterval:1.0f
+    self.timer = [NSTimer scheduledWeakReferenceTimerWithTimeInterval:kIDPTimeInterval
                                                                target:self
                                                              selector:@selector(addCarsInBackground)
                                                              userInfo:nil

@@ -34,4 +34,13 @@ void IDPCarWashTest() {
 void IDPCarWashTestOne() {
     IDPCarDispatcher *dispatcher = [IDPCarDispatcher object];
     dispatcher.running = YES;
+
+    double delayInSeconds = 10.0;
+    __block IDPCarDispatcher *weekDispatcher = dispatcher;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        NSLog(@"------------- STOP");
+        weekDispatcher.running = NO;
+        
+    });
 }

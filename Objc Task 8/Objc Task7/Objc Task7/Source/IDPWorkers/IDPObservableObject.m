@@ -70,7 +70,7 @@
     }
 }
 
-- (void)deleteObserver:(id)observer {
+- (void)removeObserver:(id)observer {
     if (!observer) {
         return;
     }
@@ -86,9 +86,9 @@
     }
 }
 
-- (void)deleteObservers:(NSArray *)observers {
+- (void)removeObservers:(NSArray *)observers {
     for (id observer in observers) {
-        [self deleteObserver:observer];
+        [self removeObserver:observer];
     }
 }
 

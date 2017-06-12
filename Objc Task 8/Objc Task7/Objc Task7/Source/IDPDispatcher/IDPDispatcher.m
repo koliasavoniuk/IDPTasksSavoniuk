@@ -91,20 +91,24 @@
 #pragma mark IDPWorkerObserver Implementation
 
 - (void)workerDidBecomeFree:(id)worker {
-    if ([self.handlersArray containsObject:worker]) {
-        id object = [self.objects popObject];
-        
-        if (object) {
-            [worker processObject:object];
-        } else {
-            [self.handlersQueue pushObject:worker];
+    @synchronized (self) {
+        if ([self.handlersArray containsObject:worker]) {
+            id object = [self.objects popObject];
+            
+            if (object) {
+                [worker processObject:object];
+            } else {
+                [self.handlersQueue pushObject:worker];
+            }
         }
     }
 }
 
 - (void)workerDidBecomeReadyForProcessing:(id)worker {
-    if (![self.handlersArray containsObject:worker]) {
-        [self processObject:worker];
+    @synchronized (self) {
+        if (![self.handlersArray containsObject:worker]) {
+            [self processObject:worker];
+        }
     }
 }
 

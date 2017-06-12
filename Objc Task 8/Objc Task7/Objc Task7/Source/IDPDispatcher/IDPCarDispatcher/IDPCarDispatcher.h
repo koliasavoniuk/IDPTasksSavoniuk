@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface IDPCarDispatcher : NSObject
-@property (nonatomic, assign)   BOOL running;
+@property (nonatomic, readwrite)   BOOL running;
 
 @end

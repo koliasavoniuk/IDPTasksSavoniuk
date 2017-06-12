@@ -11,4 +11,7 @@
 @interface IDPCarDispatcher : NSObject
 @property (nonatomic, assign)   BOOL running;
 
+- (void)start;
+- (void)stop;
+
 @end

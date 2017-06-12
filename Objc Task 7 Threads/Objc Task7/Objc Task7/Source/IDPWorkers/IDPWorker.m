@@ -105,9 +105,8 @@
         IDPQueue *queue = self.workers;
         id queueObject = [queue popObject];
         
-        if (queueObject) {
-            [self performSelectorInBackground:@selector(performWorkWithObjectInBackground:)
-                                   withObject:queueObject];
+        if (queueObject) {            
+            [self processObjectInBackground:queueObject];
         } else {
             [self finishProcess];
         }
