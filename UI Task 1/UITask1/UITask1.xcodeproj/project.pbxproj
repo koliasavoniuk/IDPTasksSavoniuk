@@ -1,0 +1,331 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		767BCFAF1EEE781C0082B26F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 767BCFAE1EEE781C0082B26F /* main.m */; };
+		767BCFB21EEE781C0082B26F /* IDPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 767BCFB11EEE781C0082B26F /* IDPAppDelegate.m */; };
+		767BCFBA1EEE781C0082B26F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 767BCFB91EEE781C0082B26F /* Assets.xcassets */; };
+		767BCFBD1EEE781C0082B26F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 767BCFBB1EEE781C0082B26F /* LaunchScreen.storyboard */; };
+		767BCFC91EEE83710082B26F /* IDPLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 767BCFC71EEE83710082B26F /* IDPLabelViewController.m */; };
+		767BCFCA1EEE83710082B26F /* IDPLabelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 767BCFC81EEE83710082B26F /* IDPLabelViewController.xib */; };
+		767BCFCD1EEEA0380082B26F /* IDPLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 767BCFCC1EEEA0380082B26F /* IDPLabelView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		767BCFAA1EEE781C0082B26F /* UITask1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UITask1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		767BCFAE1EEE781C0082B26F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		767BCFB01EEE781C0082B26F /* IDPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDPAppDelegate.h; sourceTree = "<group>"; };
+		767BCFB11EEE781C0082B26F /* IDPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDPAppDelegate.m; sourceTree = "<group>"; };
+		767BCFB91EEE781C0082B26F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		767BCFBC1EEE781C0082B26F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		767BCFBE1EEE781C0082B26F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		767BCFC61EEE83710082B26F /* IDPLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPLabelViewController.h; sourceTree = "<group>"; };
+		767BCFC71EEE83710082B26F /* IDPLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPLabelViewController.m; sourceTree = "<group>"; };
+		767BCFC81EEE83710082B26F /* IDPLabelViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPLabelViewController.xib; sourceTree = "<group>"; };
+		767BCFCB1EEEA0380082B26F /* IDPLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPLabelView.h; sourceTree = "<group>"; };
+		767BCFCC1EEEA0380082B26F /* IDPLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPLabelView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		767BCFA71EEE781C0082B26F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		767BCFA11EEE781C0082B26F = {
+			isa = PBXGroup;
+			children = (
+				767BCFAC1EEE781C0082B26F /* UITask1 */,
+				767BCFAB1EEE781C0082B26F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		767BCFAB1EEE781C0082B26F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				767BCFAA1EEE781C0082B26F /* UITask1.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		767BCFAC1EEE781C0082B26F /* UITask1 */ = {
+			isa = PBXGroup;
+			children = (
+				767BCFC41EEE82D70082B26F /* Source */,
+				767BCFB01EEE781C0082B26F /* IDPAppDelegate.h */,
+				767BCFB11EEE781C0082B26F /* IDPAppDelegate.m */,
+				767BCFB91EEE781C0082B26F /* Assets.xcassets */,
+				767BCFBB1EEE781C0082B26F /* LaunchScreen.storyboard */,
+				767BCFBE1EEE781C0082B26F /* Info.plist */,
+				767BCFAD1EEE781C0082B26F /* Supporting Files */,
+			);
+			path = UITask1;
+			sourceTree = "<group>";
+		};
+		767BCFAD1EEE781C0082B26F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				767BCFAE1EEE781C0082B26F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		767BCFC41EEE82D70082B26F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				767BCFC51EEE82D70082B26F /* IDPLabelViewController */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		767BCFC51EEE82D70082B26F /* IDPLabelViewController */ = {
+			isa = PBXGroup;
+			children = (
+				767BCFC61EEE83710082B26F /* IDPLabelViewController.h */,
+				767BCFC71EEE83710082B26F /* IDPLabelViewController.m */,
+				767BCFC81EEE83710082B26F /* IDPLabelViewController.xib */,
+				767BCFCB1EEEA0380082B26F /* IDPLabelView.h */,
+				767BCFCC1EEEA0380082B26F /* IDPLabelView.m */,
+			);
+			path = IDPLabelViewController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		767BCFA91EEE781C0082B26F /* UITask1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 767BCFC11EEE781C0082B26F /* Build configuration list for PBXNativeTarget "UITask1" */;
+			buildPhases = (
+				767BCFA61EEE781C0082B26F /* Sources */,
+				767BCFA71EEE781C0082B26F /* Frameworks */,
+				767BCFA81EEE781C0082B26F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UITask1;
+			productName = UITask1;
+			productReference = 767BCFAA1EEE781C0082B26F /* UITask1.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		767BCFA21EEE781C0082B26F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Student002;
+				TargetAttributes = {
+					767BCFA91EEE781C0082B26F = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 767BCFA51EEE781C0082B26F /* Build configuration list for PBXProject "UITask1" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 767BCFA11EEE781C0082B26F;
+			productRefGroup = 767BCFAB1EEE781C0082B26F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				767BCFA91EEE781C0082B26F /* UITask1 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		767BCFA81EEE781C0082B26F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				767BCFCA1EEE83710082B26F /* IDPLabelViewController.xib in Resources */,
+				767BCFBD1EEE781C0082B26F /* LaunchScreen.storyboard in Resources */,
+				767BCFBA1EEE781C0082B26F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		767BCFA61EEE781C0082B26F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				767BCFB21EEE781C0082B26F /* IDPAppDelegate.m in Sources */,
+				767BCFCD1EEEA0380082B26F /* IDPLabelView.m in Sources */,
+				767BCFC91EEE83710082B26F /* IDPLabelViewController.m in Sources */,
+				767BCFAF1EEE781C0082B26F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		767BCFBB1EEE781C0082B26F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				767BCFBC1EEE781C0082B26F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		767BCFBF1EEE781C0082B26F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		767BCFC01EEE781C0082B26F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		767BCFC21EEE781C0082B26F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = UITask1/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Student002.UITask1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		767BCFC31EEE781C0082B26F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = UITask1/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Student002.UITask1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		767BCFA51EEE781C0082B26F /* Build configuration list for PBXProject "UITask1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				767BCFBF1EEE781C0082B26F /* Debug */,
+				767BCFC01EEE781C0082B26F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		767BCFC11EEE781C0082B26F /* Build configuration list for PBXNativeTarget "UITask1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				767BCFC21EEE781C0082B26F /* Debug */,
+				767BCFC31EEE781C0082B26F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 767BCFA21EEE781C0082B26F /* Project object */;
+}
