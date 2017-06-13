@@ -6,10 +6,14 @@
 //  Copyright © 2017 Student002. All rights reserved.
 //
 
+
 typedef void(^IDPBlock)();
 
+extern void IDPTimerDispatch(NSUInteger timeInterval, IDPBlock block);
+
+extern dispatch_queue_t IDPDispatchGetGlobalQueue(qos_class_t priority, unsigned long flags);
+
 // dispatch asynchronous queues
-extern void IDPDispatchAsyncOnMainQueue(IDPBlock block);
 extern void IDPDispatchAsyncInBackground(IDPBlock block);
 extern void IDPDispatchAsyncWithUtilityPriority(IDPBlock block);
 extern void IDPDispatchAsyncWithInitiatedPriority(IDPBlock block);

@@ -10,13 +10,22 @@
 
 #import "IDPGCDWrapper.h"
 
-// dispatch asynchronous queues
-static void IDPDispatchAsyncOnGlobalQueue(unsigned int priority, IDPBlock block) {
-    dispatch_async(dispatch_get_global_queue(priority, 0), block);
+extern void IDPTimerDispatch(NSUInteger timeInterval, IDPBlock block) {
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, timeInterval * NSEC_PER_SEC);
+    dispatch_after(popTime, IDPDispatchGetGlobalQueue(QOS_CLASS_BACKGROUND, 0), block);
 }
 
-void IDPDispatchAsyncOnMainQueue(IDPBlock block) {
-    dispatch_async(dispatch_get_main_queue(), block);
+dispatch_queue_t IDPDispatchGetGlobalQueue(qos_class_t priority, unsigned long flags) {
+    return dispatch_get_global_queue(priority, flags);
+}
+
+void IDPDispatch_async(qos_class_t priority, unsigned long flags, IDPBlock block) {
+    dispatch_async(IDPDispatchGetGlobalQueue(priority, flags), block);
+}
+
+// dispatch asynchronous queues
+static void IDPDispatchAsyncOnGlobalQueue(qos_class_t priority, IDPBlock block) {
+    IDPDispatch_async(priority, 0, block);
 }
 
 void IDPDispatchAsyncInBackground(IDPBlock block) {
@@ -41,12 +50,16 @@ void IDPDispatchAsyncWithDefaultPriority(IDPBlock block) {
 
 // dispatch synchronous queues
 
-static void IDPDispatchSyncOnGlobalQueue(unsigned int priority, IDPBlock block) {
-    dispatch_sync(dispatch_get_global_queue(priority, 0), block);
+static void IDPDispatchSyncOnGlobalQueue(qos_class_t priority, IDPBlock block) {
+    IDPDispatch_async(priority, 0, block);
 }
 
 void IDPDispatchSyncOnMainQueue(IDPBlock block) {
-    dispatch_sync(dispatch_get_main_queue(), block);
+    if ([NSThread isMainThread]) {
+        block();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
 }
 
 void IDPDispatchSyncInBackground(IDPBlock block) {

@@ -102,7 +102,7 @@
 #pragma mark Public
 
 - (void)addCarsInBackground {
-    IDPDispatchAsyncOnMainQueue(^{
+    IDPDispatchSyncOnMainQueue(^{
         NSArray *cars =  [IDPCar objectsWithCount:kIDPCarsCount];
         [self.manager processCars:cars];
     });
