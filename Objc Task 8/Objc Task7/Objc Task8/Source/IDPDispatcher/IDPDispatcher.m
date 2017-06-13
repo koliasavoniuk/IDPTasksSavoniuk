@@ -56,8 +56,8 @@
 
 - (void)removeHandler:(id)object {
     @synchronized (self) {
-        [object removeObserver:self];
         [self.handlersArray removeObject:object];
+        [object removeObserver:self];
     }
 }
 

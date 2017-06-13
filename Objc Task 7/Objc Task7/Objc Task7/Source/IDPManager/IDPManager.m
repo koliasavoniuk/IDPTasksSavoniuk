@@ -103,11 +103,13 @@
 }
 
 - (void)processCar:(IDPCar *)car {
-    NSMutableArray *washers = [self freeWashers];
-    
-    for (id washer in washers) {
-        [washer processObject:car];
-        [self.washers removeObject:washer];
+    @synchronized (self) {
+        NSMutableArray *washers = [self freeWashers];
+        
+        for (id washer in washers) {
+            [washer processObject:car];
+            [self.washers removeObject:washer];
+        }
     }
 }
 

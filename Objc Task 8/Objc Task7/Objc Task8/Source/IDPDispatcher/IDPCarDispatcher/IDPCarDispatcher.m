@@ -62,8 +62,11 @@
         if (running) {
             [self startCarsInBackground];
         }
+    } else {
+        self.timer = nil;
     }
     
+    _running = running;
 }
 
 #pragma mark -
@@ -72,12 +75,12 @@
 - (void)startCarsInBackground {
     self.timer = [NSTimer scheduledWeakReferenceTimerWithTimeInterval:kIDPTimeInterval
                                                                target:self
-                                                             selector:@selector(addCarsInBackground)
+                                                             selector:@selector(addCarsInBackground:)
                                                              userInfo:nil
                                                               repeats:YES];
 }
 
-- (void)addCarsInBackground {
+- (void)addCarsInBackground:(NSTimer *)timer {
     [self performSelectorInBackground:@selector(addCars) withObject:nil];
 }
 

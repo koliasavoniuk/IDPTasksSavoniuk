@@ -55,8 +55,10 @@
 }
 
 - (void)processCar:(IDPCar *)car {
-    if (car) {
-        [self.washersDispatcher processObject:car];
+    @synchronized (self) {
+        if (car) {
+            [self.washersDispatcher processObject:car];
+        }
     }
 }
 

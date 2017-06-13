@@ -61,18 +61,20 @@
     if (running) {
         self.timer = [NSTimer scheduledWeakReferenceTimerWithTimeInterval:kIDPTimeInterval
                                                                    target:self
-                                                                 selector:@selector(addCars)
+                                                                 selector:@selector(addCars:)
                                                                  userInfo:nil
                                                                   repeats:NO];
     } else {
-        [self.timer invalidate];
+        self.timer = nil;
     }
+    
+    _running = running;
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)addCars {
+- (void)addCars:(NSTimer *)timer {
     [self.manager processCars:[IDPCar objectsWithCount:kIDPCarsCount]];
 }
 
