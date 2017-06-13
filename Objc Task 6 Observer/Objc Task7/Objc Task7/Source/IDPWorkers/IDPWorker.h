@@ -13,13 +13,21 @@
 
 #import "IDPCashFlow.h"
 #import "IDPObservableObject.h"
-#import "IDPWorkerObserver.h"
 
 typedef NS_ENUM (NSUInteger, IDPWorkerState) {
     IDPWorkerBusy,
     IDPWorkerReadyForProcessing,
     IDPWorkerFree
 };
+
+@protocol IDPWorkerObserver <NSObject>
+
+@optional
+- (void)workerDidBecomeFree:(id)worker;
+- (void)workerDidBecomeBusy:(id)worker;
+- (void)workerDidBecomeReadyForProcessing:(id)worker;
+
+@end
 
 @interface IDPWorker : IDPObservableObject<IDPCashFlow, IDPWorkerObserver>
 @property (nonatomic, copy)         NSString                *name;

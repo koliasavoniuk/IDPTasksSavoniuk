@@ -8,8 +8,6 @@
 
 #import "IDPCar.h"
 
-#import "NSObject+IDPExtensions.h"
-
 @interface IDPCar()
 @property(nonatomic, assign) NSUInteger money;
 
@@ -32,24 +30,20 @@
                      [self class],
                      IDPRandomTillNumber(kIDPSizeRandomNames)];
         self.state = IDPCarDirty;
-        self.money = kIDPMoneyCount;
+        self.money = IDPRandomTillNumber(kIDPSizeRandomMoney);
     
     return self;
 }
 
 - (NSUInteger)giveMoney {
-    @synchronized (self) {
-        NSUInteger tempMoney = self.money;
-        self.money = 0;
-        
-        return tempMoney;
-    }
+    NSUInteger tempMoney = self.money;
+    self.money = 0;
+    
+    return tempMoney;
 }
 
 - (void)takeMoney:(NSUInteger)money {
-    @synchronized (self) {
-        self.money += money;
-    }
+    self.money += money;
 }
 
 - (void)takeMoneyFromObject:(id<IDPCashFlow>)object {

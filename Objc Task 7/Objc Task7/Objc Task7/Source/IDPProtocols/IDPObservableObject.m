@@ -40,26 +40,56 @@
 #pragma mark Accessors
 
 - (NSSet *)observers {
-    return [[self.mutableObservers copy] autorelease];
+    @synchronized (self) {
+        return [[self.mutableObservers copy] autorelease];
+    }
 }
 
 - (void)setState:(NSUInteger)state {
-    _state = state;
-    
-    [self notifyOfState:state];
+    @synchronized (self) {
+        if (_state == state) {
+            return;
+        }
+        
+        _state = state;
+        
+        [self notifyOfState:state];
+    }
 }
 
 #pragma mark -
 #pragma mark Public
 
 - (void)addObserver:(id)observer {
-    if (observer) {
+    if (!observer) {
+        return;
+    }
+    
+    @synchronized (self) {
         [self.mutableObservers addObject:observer];
     }
 }
 
-- (void)deleteObserver:(id)observer {
-    [self.mutableObservers removeObject:observer];
+- (void)removeObserver:(id)observer {
+    if (!observer) {
+        return;
+    }
+    
+    @synchronized (self) {
+        [self.mutableObservers removeObject:observer];
+    }
+}
+
+- (void)addObservers:(NSArray *)observers {
+    for (id observer in observers) {
+        [self addObserver:observer];
+    }
+}
+
+- (void)removeObservers:(NSArray *)observers {
+    for (id observer in observers) {
+        [self removeObserver:observer];
+    }
 }
 
 // should be overriden in subclasses
@@ -75,10 +105,12 @@
 #pragma mark Private
 
 - (void)notifyOfStateWithSelector:(SEL)selector {
-    NSSet *observers = self.observers;
-    for (id observer in observers) {
-        if ([observer respondsToSelector:selector]) {
-            [observer performSelector:selector withObject:self];
+    @synchronized (self) {
+        NSSet *observers = self.observers;
+        for (id observer in observers) {
+            if ([observer respondsToSelector:selector]) {
+                [observer performSelector:selector withObject:self];
+            }
         }
     }
 }

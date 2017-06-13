@@ -5,7 +5,7 @@
 //  Created by Student002 on 5/23/17.
 //  Copyright © 2017 Student002. All rights reserved.
 //
-
+/*
 #import <XCTest/XCTest.h>
 
 @interface ObjcTask6Tests : XCTestCase
@@ -37,3 +37,4 @@
 }
 
 @end
+*/

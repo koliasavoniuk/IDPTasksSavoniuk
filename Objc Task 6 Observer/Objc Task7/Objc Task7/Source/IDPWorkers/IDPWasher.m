@@ -33,12 +33,9 @@
 
 - (void)washCar:(IDPCar *)car {
     self.car = car;
-    NSLog(@"Car: %@ washed, washer %@", self.car.name, self.name);
+    NSLog(@"Car: %@ washed", self.car.name);
     self.car = nil;
-}   
-
-- (void)finishProcessingObject:(IDPCar *)car {
     car.state = IDPCarClean;
-}
+}   
 
 @end
