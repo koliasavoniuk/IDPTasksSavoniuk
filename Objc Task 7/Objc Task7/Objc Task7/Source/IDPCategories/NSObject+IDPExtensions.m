@@ -16,8 +16,8 @@
     return [[[self alloc] init] autorelease];
 }
 
-+ (NSArray *)objectsWithCount:(NSUInteger)count {
-    return [NSArray objectsWithCount:count
++ (NSMutableArray *)objectsWithCount:(NSUInteger)count {
+    return [NSMutableArray objectsWithCount:count
                         factoryBlock:^id{
         return [self object];
     }];

@@ -16,4 +16,5 @@ const NSUInteger        kIDPMoneyCount = 10;
 const NSUInteger        kIDPWashersCount = 5;
 const NSUInteger        kIDPCarsCount = 10;
 const NSUInteger        kIDPAccountantCount = 5;
+const NSUInteger        kIDPDirectorCount = 5;
 const NSTimeInterval    kIDPTimeInterval = 1.0f;

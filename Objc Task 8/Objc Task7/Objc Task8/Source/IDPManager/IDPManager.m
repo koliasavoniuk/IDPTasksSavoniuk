@@ -83,7 +83,7 @@ typedef id(^IDPDispatcherFactory)(Class handlerClass, NSUInteger handlerCount, i
         return dispatcher;
     };
     
-    IDPDispatcher *directorDispatcher = factory([IDPDirector class], 1, nil);
+    IDPDispatcher *directorDispatcher = factory([IDPDirector class], kIDPDirectorCount, nil);
     IDPDispatcher *accountantsDispatcher = factory([IDPAccountant class], kIDPAccountantCount, directorDispatcher);
     IDPDispatcher *washersDispatcher = factory([IDPWasher class],kIDPWashersCount, accountantsDispatcher);
     

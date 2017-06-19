@@ -13,7 +13,7 @@
 #import "IDPWorker.h"
 
 @interface IDPDispatcher()
-@property (nonatomic, assign)   IDPQueue        *objects;
+@property (nonatomic, assign)   IDPQueue        *objectsQueue;
 @property (nonatomic, assign)   IDPQueue        *handlersQueue;
 @property (nonatomic, assign)   NSMutableArray  *handlersArray;
 
@@ -25,7 +25,7 @@
 #pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.objects = nil;
+    self.objectsQueue = nil;
     self.handlersQueue = nil;
     self.handlersArray = nil;
     
@@ -33,7 +33,7 @@
 }
 
 - (instancetype)init {
-    self.objects = [IDPQueue object];
+    self.objectsQueue = [IDPQueue object];
     self.handlersQueue = [IDPQueue object];
     self.handlersArray = [NSMutableArray array];
     
@@ -49,8 +49,8 @@
     }
     @synchronized (self) {
         [self.handlersArray addObject:object];
-        [self.handlersQueue pushObject:object];
         [object addObserver:self];
+        [self.handlersQueue pushObject:object];
     }
 }
 
@@ -83,7 +83,7 @@
         if (handler) {
             [handler processObject:object];
         } else {
-            [self.objects pushObject:object];
+            [self.objectsQueue pushObject:object];
         }
     }
 }
@@ -94,7 +94,7 @@
 - (void)workerDidBecomeFree:(id)worker {
     @synchronized (self) {
         if ([self.handlersArray containsObject:worker]) {
-            id object = [self.objects popObject];
+            id object = [self.objectsQueue popObject];
             
             if (object) {
                 [worker processObject:object];

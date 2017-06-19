@@ -28,7 +28,6 @@
 #pragma mark Deallocations and initializations
 
 - (void)dealloc {
-    
     self.timer = nil;
     self.manager = nil;
     
@@ -61,11 +60,10 @@
     if (running != _running) {
         if (running) {
             [self startCarsInBackground];
+        } else {
+            self.timer = nil;
         }
-    } else {
-        self.timer = nil;
     }
-    
     _running = running;
 }
 
@@ -75,12 +73,12 @@
 - (void)startCarsInBackground {
     self.timer = [NSTimer scheduledWeakReferenceTimerWithTimeInterval:kIDPTimeInterval
                                                                target:self
-                                                             selector:@selector(addCarsInBackground:)
+                                                             selector:@selector(addCarsWithTimerInBackground:)
                                                              userInfo:nil
                                                               repeats:YES];
 }
 
-- (void)addCarsInBackground:(NSTimer *)timer {
+- (void)addCarsWithTimerInBackground:(NSTimer *)timer {
     [self performSelectorInBackground:@selector(addCars) withObject:nil];
 }
 
