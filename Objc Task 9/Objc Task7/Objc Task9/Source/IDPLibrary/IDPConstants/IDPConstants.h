@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-extern const NSUInteger kIDPSizeRandomNames;
-extern const NSUInteger kIDPSizeRandomExperience;
-extern const NSUInteger kIDPMoneyCount;
-extern const NSUInteger kIDPWashersCount;
-extern const NSUInteger kIDPCarsCount;
-extern const NSUInteger kIDPAccountantCount;
-extern const NSUInteger kIDPIterationCount;
+extern const NSUInteger     kIDPSizeRandomNames;
+extern const NSUInteger     kIDPSizeRandomExperience;
+extern const NSUInteger     kIDPMoneyCount;
+extern const NSUInteger     kIDPWashersCount;
+extern const NSUInteger     kIDPCarsCount;
+extern const NSUInteger     kIDPAccountantCount;
+extern const NSUInteger     kIDPIterationCount;
+extern const NSTimeInterval kIDPTimerInterval;

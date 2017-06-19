@@ -7,11 +7,17 @@
 //
 
 
+#import <Foundation/Foundation.h>
+
 typedef void(^IDPBlock)();
+typedef BOOL(^IDPRunBlock)();
 
-extern void IDPTimerDispatch(NSUInteger timeInterval, IDPBlock block);
+extern void IDPDispatchOnMainQueue(IDPBlock block);
 
-extern dispatch_queue_t IDPDispatchGetGlobalQueue(qos_class_t priority, unsigned long flags);
+// dipatch async queue on time interval
+extern void IDPDispatchAsyncInBackgroundWithInterval(NSTimeInterval interval,
+                                                     IDPBlock block,
+                                                     IDPRunBlock running);
 
 // dispatch asynchronous queues
 extern void IDPDispatchAsyncInBackground(IDPBlock block);
@@ -21,7 +27,6 @@ extern void IDPDispatchAsyncWithInteractivePriority(IDPBlock block);
 extern void IDPDispatchAsyncWithDefaultPriority(IDPBlock block);
 
 // dispatch synchronous queues
-extern void IDPDispatchSyncOnMainQueue(IDPBlock block);
 extern void IDPDispatchSyncInBackground(IDPBlock block);
 extern void IDPDispatchSyncWithUtilityPriority(IDPBlock block);
 extern void IDPDispatchSyncWithInitiatedPriority(IDPBlock block);

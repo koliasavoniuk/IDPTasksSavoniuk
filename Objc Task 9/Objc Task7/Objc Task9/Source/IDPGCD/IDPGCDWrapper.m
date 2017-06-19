@@ -6,26 +6,36 @@
 //  Copyright © 2017 Student002. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "IDPGCDWrapper.h"
 
-extern void IDPTimerDispatch(NSUInteger timeInterval, IDPBlock block) {
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, timeInterval * NSEC_PER_SEC);
-    dispatch_after(popTime, IDPDispatchGetGlobalQueue(QOS_CLASS_BACKGROUND, 0), block);
+static dispatch_queue_t IDPDispatchGetGlobalQueue(qos_class_t priority) {
+    return dispatch_get_global_queue(priority, 0);
 }
 
-dispatch_queue_t IDPDispatchGetGlobalQueue(qos_class_t priority, unsigned long flags) {
-    return dispatch_get_global_queue(priority, flags);
+void IDPDispatchAsyncInBackgroundWithInterval(NSTimeInterval interval,
+                                              IDPBlock block,
+                                              IDPRunBlock running)
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, interval * NSEC_PER_SEC),
+                   IDPDispatchGetGlobalQueue(QOS_CLASS_BACKGROUND), ^{
+                       if (running()) {
+                           block();
+                           IDPDispatchAsyncInBackgroundWithInterval(interval, block, running);
+                       }
+                   });
 }
 
-void IDPDispatch_async(qos_class_t priority, unsigned long flags, IDPBlock block) {
-    dispatch_async(IDPDispatchGetGlobalQueue(priority, flags), block);
+void IDPDispatchOnMainQueue(IDPBlock block) {
+    if ([NSThread isMainThread]) {
+        block();
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), block);
+    }
 }
 
 // dispatch asynchronous queues
 static void IDPDispatchAsyncOnGlobalQueue(qos_class_t priority, IDPBlock block) {
-    IDPDispatch_async(priority, 0, block);
+    dispatch_async(IDPDispatchGetGlobalQueue(priority), block);
 }
 
 void IDPDispatchAsyncInBackground(IDPBlock block) {
@@ -49,17 +59,8 @@ void IDPDispatchAsyncWithDefaultPriority(IDPBlock block) {
 }
 
 // dispatch synchronous queues
-
 static void IDPDispatchSyncOnGlobalQueue(qos_class_t priority, IDPBlock block) {
-    IDPDispatch_async(priority, 0, block);
-}
-
-void IDPDispatchSyncOnMainQueue(IDPBlock block) {
-    if ([NSThread isMainThread]) {
-        block();
-    } else {
-        dispatch_sync(dispatch_get_main_queue(), block);
-    }
+    dispatch_sync(IDPDispatchGetGlobalQueue(priority), block);
 }
 
 void IDPDispatchSyncInBackground(IDPBlock block) {

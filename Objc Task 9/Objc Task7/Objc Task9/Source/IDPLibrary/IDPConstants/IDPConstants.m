@@ -17,3 +17,4 @@ const NSUInteger kIDPWashersCount = 5;
 const NSUInteger kIDPCarsCount = 10;
 const NSUInteger kIDPAccountantCount = 5;
 const NSUInteger kIDPIterationCount = 10;
+const NSTimeInterval kIDPTimerInterval = 1.0f;
