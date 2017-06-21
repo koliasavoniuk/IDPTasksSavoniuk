@@ -10,7 +10,7 @@
 
 @interface IDPObservableObject : NSObject
 @property (nonatomic, assign)    NSUInteger  state;
-@property (nonatomic, readonly) NSSet       *observers;
+@property (nonatomic, readonly)  NSSet       *observers;
 
 - (void)addObserver:(id)observer;
 - (void)removeObserver:(id)observer;
