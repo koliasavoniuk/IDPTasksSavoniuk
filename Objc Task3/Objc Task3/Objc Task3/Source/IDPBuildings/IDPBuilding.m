@@ -7,17 +7,17 @@
 //
 
 #import "IDPBuilding.h"
+
 #import "IDPConstants.h"
 #import "IDPRandom.h"
 
 #import "NSArray+IDPCategory.h"
 
-@class IDPRoomWashCar;
+@class IDPCarWashRoom;
 @class IDPRoom;
 
 @interface IDPBuilding()
 @property (nonatomic, retain)   NSMutableArray  *mutableRooms;
-@property (nonatomic, assign)   NSInteger       countHumens;
 
 @end
 
@@ -26,13 +26,9 @@
 @dynamic rooms;
 
 #pragma mark -
-#pragma mark Class Methods
-
-#pragma mark -
-#pragma mark Initializations and Reallocations
+#pragma mark Initializations and Deallocations
 
 - (void)dealloc {
-    self.name = nil;
     self.mutableRooms = nil;
     
     [super dealloc];
@@ -40,13 +36,7 @@
 
 - (instancetype)init {
     self = [super init];
-    if (self) {
-        self.name = [NSString stringWithFormat:@"%@ #%lu",
-                     [self class],
-                     IDPRandomTillNumber(kIDPSizeRandomNames)];
-        self.mutableRooms = [NSMutableArray array];
-        self.countHumens = 0;
-    }
+    self.mutableRooms = [NSMutableArray array];
     
     return self;
 }
@@ -54,7 +44,7 @@
 #pragma mark -
 #pragma mark Accessors Methods
 
--(NSMutableArray *)rooms {
+- (NSMutableArray *)rooms {
     return [[self.mutableRooms copy] autorelease];
 }
 
@@ -68,21 +58,16 @@
 }
 
 - (void)removeRoom:(IDPRoom *)room {
-    [self.mutableCopy removeObject:room];
+    [self.mutableRooms removeObject:room];
 }
 
-- (NSArray *)workersWithClass:(Class)class {
-    
+- (NSArray *)workersWithClass:(Class)class {    
     NSMutableArray *array = [NSMutableArray array];
-    for (id room in self.mutableRooms ) {
-        NSArray *workers =  [[room workers] arrayByFilteringWithBlock:^BOOL(id object) {
-            return [object isKindOfClass:[class class]];
-        }];
-        [array addObjectsFromArray:workers];
+    for (id room in self.mutableRooms) {
+        [array addObjectsFromArray:[room workersWithClass:class]];
     }
     
     return array;
 }
 
 @end
-
